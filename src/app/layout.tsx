@@ -1,13 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { profile } from "@/features/portfolio/config/profile";
+import { siteMetadata } from "@/features/portfolio/config/seo";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: `${profile.name} · ${profile.role}`,
-  description: profile.description,
-  authors: [{ name: profile.englishName }],
-};
+export const metadata: Metadata = siteMetadata;
 
 export const viewport: Viewport = {
   width: "device-width",

@@ -15,7 +15,8 @@ Use Bun exclusively. Run `bun run check` (tests, lint, production build) for app
 - `src/features/portfolio/server`: source IDs and sorts, raw page contracts, mapping, repository, and user-safe error classification. No React or UI dependencies.
 - `src/features/portfolio/portfolio-content.tsx`: server composition, parallel section streaming, per-section failures, and empty-state handling.
 - `src/features/portfolio/ui`: pure presentation receiving typed data. Sections share entry primitives and never import repositories or read environment variables.
-- `src/features/portfolio/config`: static public profile information.
+- `src/features/portfolio/config`: static public profile and SEO information. Canonical URLs use `https://sspzoa.io`; metadata and JSON-LD must never query Notion.
+- `src/features/portfolio/og-image.tsx`: request-generated social image using fixed profile copy and bundled fonts. `src/app/opengraph-image.tsx` exposes the metadata image route.
 - `src/shared`: reusable date formatting and safe server-rendered Markdown through `react-markdown`. No feature or server dependencies.
 
 The dependency direction is route/composition → feature UI or repository → domain/shared or generic Notion. Use explicit imports instead of mixed client/server barrel exports. Environment, client, and repository entry points are guarded by `server-only`.
@@ -31,6 +32,8 @@ Keep awards, certificates, and education separate. An empty source omits its sec
 Keep one reading column, simple typography, whitespace, and thin rules. UI copy is Korean; code and identifiers are English. Use named exports except for framework-required defaults. Do not add code comments unless requested.
 
 Main projects are visible. Side projects are always rendered into initial HTML inside a native, initially closed `details` element. Never conditionally mount, client-fetch, or mark that content `aria-hidden`. Both mouse and keyboard must expand the same existing markup. Nested project descriptions also use native `details`.
+
+OG fonts in `assets/fonts` are renamed Pretendard 1.3.9 subsets covering ASCII and the static profile text. Preserve their OFL license and refresh glyph coverage when changing Korean OG copy. Image generation must work without network access; its test verifies this.
 
 Use Server Components by default. Avoid client state for presentation. Rich text uses the synchronous `react-markdown` component for CommonMark, with HTTP/HTTPS/mailto links. Preserve Unicode bullet normalization and literal raw HTML; never add `rehype-raw`, client Markdown hooks, or unmanaged image loading. Add Markdown plugins only for content requirements. Ongoing date labels are opt-in for careers, experience, and education; single-day activities and projects must remain dates.
 

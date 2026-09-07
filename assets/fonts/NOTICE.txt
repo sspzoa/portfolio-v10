@@ -1,0 +1,8 @@
+Portfolio OG Sans is a renamed subset of Pretendard 1.3.9 Regular and Bold.
+Copyright (c) 2021, Kil Hyung-jin (https://github.com/orioncactus/pretendard).
+Licensed under the SIL Open Font License, Version 1.1. See OFL.txt.
+
+Source: https://github.com/orioncactus/pretendard/tree/5c41199ea0024a9e0b2cb31735265056e5472d76
+Original files: packages/pretendard/dist/public/static/alternative/Pretendard-{Regular,Bold}.ttf
+Subset coverage: printable ASCII, static profile text, and common punctuation.
+Font family and PostScript names were changed to Portfolio OG Sans.
