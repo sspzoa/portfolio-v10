@@ -1,0 +1,19 @@
+import type { Career } from "@/features/portfolio/model/schemas";
+import { TimelineEntry } from "../entries/timeline-entry";
+
+export function CareersContent({ data }: { data: Career[] }) {
+  return (
+    <ul className="entry-list">
+      {data.map((career) => (
+        <TimelineEntry
+          key={career.id}
+          title={career.organization || career.role}
+          subtitle={career.organization ? career.role : null}
+          description={career.description}
+          start={career.startDate}
+          end={career.endDate}
+        />
+      ))}
+    </ul>
+  );
+}

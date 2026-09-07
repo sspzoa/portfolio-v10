@@ -1,0 +1,244 @@
+.profile {
+  padding-bottom: var(--space-16);
+}
+
+.profile-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+}
+
+.profile h1 {
+  font-size: var(--text-title);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.profile-name {
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+
+.profile-role {
+  margin-top: var(--space-2);
+  color: var(--secondary);
+}
+
+.profile-intro {
+  margin-top: var(--space-6);
+  color: var(--secondary);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-5);
+  font-size: var(--text-small);
+}
+
+.social-links a {
+  padding-block: var(--space-1);
+}
+
+.portfolio-section {
+  border-top: 1px solid var(--line);
+  padding-block: var(--space-10) var(--space-12);
+  scroll-margin-top: var(--space-8);
+}
+
+.section-title {
+  margin-bottom: var(--space-6);
+  font-size: var(--text-heading);
+  font-weight: 700;
+}
+
+.section-body {
+  min-width: 0;
+}
+
+.entry-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.entry,
+.record {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.entry-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+}
+
+.entry-title {
+  font-size: var(--text-body);
+  font-weight: 700;
+  color: var(--ink);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.entry-meta {
+  margin-top: var(--space-1);
+  color: var(--secondary);
+  font-size: var(--text-small);
+}
+
+.entry-period {
+  color: var(--muted);
+  font-size: var(--text-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.entry-description {
+  margin-top: var(--space-3);
+  color: var(--secondary);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin-top: var(--space-3);
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+
+.project-details {
+  margin-top: var(--space-3);
+}
+
+.project-summary {
+  width: fit-content;
+  padding-block: var(--space-1);
+  cursor: pointer;
+  font-size: var(--text-small);
+  color: var(--secondary);
+}
+
+.project-summary:hover {
+  color: var(--ink);
+}
+
+.project-details[open] > .project-summary {
+  margin-bottom: var(--space-3);
+}
+
+.project-details > .rich-text {
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--line);
+}
+
+.skill-group + .skill-group {
+  margin-top: var(--space-5);
+}
+
+.skill-group h3 {
+  margin-bottom: var(--space-1);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+}
+
+.record-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.record {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-4);
+}
+
+.record > .entry-period {
+  flex-shrink: 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--line);
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+
+.footer a {
+  color: inherit;
+}
+
+.side-projects {
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-5);
+}
+
+.side-projects-summary {
+  width: fit-content;
+  cursor: pointer;
+  padding-block: var(--space-2);
+  font-size: var(--text-small);
+  color: var(--secondary);
+}
+
+.side-projects-summary:hover {
+  color: var(--ink);
+}
+
+.side-projects-count {
+  margin-left: var(--space-2);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.side-projects[open] > .side-projects-summary {
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 40rem) {
+  .profile {
+    padding-bottom: var(--space-12);
+  }
+
+  .portfolio-section {
+    padding-block: var(--space-8) var(--space-10);
+  }
+
+  .entry-heading,
+  .record {
+    flex-direction: column;
+  }
+}
+
+@media print {
+  .footer {
+    display: none;
+  }
+
+  .entry,
+  .record {
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,45 @@
+:root {
+  color-scheme: light dark;
+  --canvas: #ffffff;
+  --ink: #22252a;
+  --secondary: #535a63;
+  --muted: #6b727c;
+  --line: #e8eaed;
+  --surface: #f6f7f8;
+  --accent: #426a99;
+  --selection: #dce7f5;
+  --font-body: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --content-width: 46rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --text-small: 0.875rem;
+  --text-body: 1rem;
+  --text-heading: 1.125rem;
+  --text-title: clamp(2rem, 1.75rem + 1vw, 2.5rem);
+  --radius-control: 0.25rem;
+  --duration-fast: 150ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: #111214;
+    --ink: #ebedef;
+    --secondary: #bcc0c7;
+    --muted: #949ba6;
+    --line: #2a2d32;
+    --surface: #1b1d21;
+    --accent: #9abce7;
+    --selection: #2d405b;
+  }
+}
