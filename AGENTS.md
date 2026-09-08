@@ -13,7 +13,7 @@ Use Bun exclusively. Run `bun run check` (tests, lint, production build) for app
 - `src/server/env.ts`: lazy server credential validation. Keep `NOTION_TOKEN` in ignored `.env.local` and never serialize it to a client.
 - `src/features/portfolio/model`: canonical Zod entity schemas and inferred types. No React or server imports.
 - `src/features/portfolio/server`: source IDs and sorts, raw page contracts, mapping, repository, and user-safe error classification. No React or UI dependencies.
-- `src/features/portfolio/portfolio-content.tsx`: server composition, parallel section streaming, per-section failures, and empty-state handling.
+- `src/features/portfolio/portfolio-content.tsx`: awaits all parallel section requests before rendering complete server HTML, with per-section failures and empty-state handling.
 - `src/features/portfolio/ui`: pure presentation receiving typed data. Sections share entry primitives and never import repositories or read environment variables.
 - `src/features/portfolio/config`: static public profile and SEO information. Canonical URLs use `https://sspzoa.io`; metadata and JSON-LD must never query Notion.
 - `src/features/portfolio/og-image.tsx`: request-generated social image using fixed profile copy and bundled fonts. `src/app/opengraph-image.tsx` exposes the metadata image route.
@@ -26,6 +26,8 @@ The dependency direction is route/composition → feature UI or repository → d
 Preserve API version `2025-09-03`, uncached requests, 15-second timeouts, three total attempts, 1s/2s backoff, source IDs, and sorting. Query every cursor page; malformed payloads and pagination loops must fail safely. HTTP 429 is transient, not configuration failure. Validate raw Notion payloads before mapping and domain data after mapping.
 
 Keep awards, certificates, and education separate. An empty source omits its section; one failing source must not remove other sections.
+
+The initial HTML must contain all portfolio sections and collapsed content without JavaScript execution. Keep concurrent Notion requests, but await all results before rendering. Do not add section Suspense boundaries or a route loading fallback that streams portfolio content into hidden replacement containers.
 
 ## UI behavior
 
@@ -40,6 +42,8 @@ Use Server Components by default. Avoid client state for presentation. Rich text
 ## Styling and security
 
 Theme tokens live in `src/app/styles/tokens.css`; document basics in `src/app/globals.css`; feature styles in `src/features/portfolio/ui/portfolio.css`. Components use semantic class names. Respect system light/dark and reduced-motion preferences. Preserve skip links, focus indicators, CSP, and other security headers in `next.config.ts`.
+
+Use Tailwind CSS v4 utilities through `@apply` for semantic component classes. The inline theme in `globals.css` maps existing tokens to Tailwind colors, spacing, typography, and sizing; feature styles use `@reference` to share that theme without duplicating CSS. Keep custom CSS for browser-specific behavior and motion preferences. Styling is compiled by `@tailwindcss/postcss` and must not introduce client-side style generation or change the complete-HTML SSR contract.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

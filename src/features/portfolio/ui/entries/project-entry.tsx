@@ -1,6 +1,5 @@
 import type { Project } from "@/features/portfolio/model/schemas";
 import { RichText } from "@/shared/ui/rich-text";
-import { BrandImage } from "../brand-image";
 import { Period } from "../period";
 
 export function ProjectEntry({ project }: { project: Project }) {
@@ -13,13 +12,10 @@ export function ProjectEntry({ project }: { project: Project }) {
 
   return (
     <li className="entry">
-      <div className="entry-heading timeline-heading">
-        <div className="entry-identity">
-          <BrandImage src={project.iconImage} variant="logo" />
-          <div>
-            <h3 className="entry-title">{project.name}</h3>
-            {metadata && <p className="entry-meta">{metadata}</p>}
-          </div>
+      <div className="entry-heading">
+        <div>
+          <h3 className="entry-title">{project.name}</h3>
+          {metadata && <p className="entry-meta">{metadata}</p>}
         </div>
         <Period start={project.startDate} end={project.endDate} />
       </div>

@@ -4,31 +4,42 @@
 @import "./styles/tokens.css";
 
 @theme inline {
+  --spacing: var(--space-1);
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-brand-image: var(--brand-image-canvas);
+  --color-accent: var(--accent);
+  --color-selection: var(--selection);
+  --text-profile: var(--text-title);
+  --text-section: var(--text-heading);
+  --text-copy: var(--text-body);
+  --text-caption: var(--text-small);
+  --radius-ui: var(--radius-control);
+  --container-reading: var(--content-width);
   --color-background-standard-primary: var(--canvas);
   --color-content-standard-primary: var(--ink);
   --color-content-standard-secondary: var(--secondary);
   --color-line-divider: var(--line);
   --color-core-accent: var(--accent);
   --font-sans: var(--font-body);
+  --font-mono: var(--font-code);
 }
 
 html {
-  scroll-padding-top: var(--space-8);
+  @apply scroll-pt-8;
 }
 
 body {
-  margin: 0;
-  background: var(--canvas);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: var(--text-body);
-  line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
+  @apply m-0 bg-canvas text-ink font-sans text-copy leading-[1.75] antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--selection);
+  @apply bg-selection;
 }
 
 a,
@@ -38,111 +49,87 @@ summary {
 }
 
 a {
-  color: var(--accent);
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: var(--space-1);
+  @apply text-accent underline decoration-transparent underline-offset-4;
   transition: text-decoration-color var(--duration-fast);
 }
 
 a:hover {
-  text-decoration-color: currentColor;
+  @apply decoration-current;
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: var(--space-1);
-  border-radius: var(--radius-control);
+  @apply outline-2 outline-solid outline-accent outline-offset-4 rounded-ui;
 }
 
 .page-shell {
-  width: min(100%, var(--content-width));
-  margin-inline: auto;
-  padding: var(--space-24) var(--space-6) var(--space-10);
+  @apply w-full max-w-reading mx-auto pt-24 px-6 pb-10;
 }
 
 .rich-text {
-  color: var(--secondary);
-  overflow-wrap: anywhere;
+  @apply text-secondary wrap-anywhere;
 }
 
 .rich-text > * + * {
-  margin-top: var(--space-3);
+  @apply mt-3;
 }
 
 .rich-text p {
-  white-space: pre-line;
+  @apply whitespace-pre-line;
 }
 
 .rich-text ul,
 .rich-text ol {
-  padding-left: var(--space-5);
+  @apply pl-5;
 }
 
 .rich-text ul {
-  list-style-type: disc;
+  @apply list-disc;
 }
 
 .rich-text ol {
-  list-style-type: decimal;
+  @apply list-decimal;
 }
 
 .rich-text blockquote {
-  padding-left: var(--space-4);
-  border-left: 1px solid var(--line);
+  @apply pl-4 border-l border-line;
 }
 
 .rich-text code {
-  font-family: var(--font-code);
-  font-size: var(--text-small);
+  @apply font-mono text-caption;
 }
 
 .rich-text pre {
-  overflow-x: auto;
-  padding: var(--space-4);
-  background: var(--surface);
-  white-space: pre;
+  @apply overflow-x-auto p-4 bg-surface whitespace-pre;
 }
 
 .rich-text hr {
-  border: 0;
-  border-top: 1px solid var(--line);
-  margin-block: var(--space-5);
+  @apply border-0 border-t border-line my-5;
 }
 
 .rich-text li + li {
-  margin-top: var(--space-1);
+  @apply mt-1;
 }
 
 .rich-text li::marker {
-  color: var(--muted);
+  @apply text-muted;
 }
 
 .rich-text strong {
-  color: var(--ink);
-  font-weight: 700;
+  @apply text-ink font-bold;
 }
 
 .rich-text a {
-  text-decoration-color: currentColor;
+  @apply decoration-current;
 }
 
 .muted,
 .section-error {
-  color: var(--muted);
-  font-size: var(--text-small);
+  @apply text-muted text-caption;
 }
 
 .skip-link {
-  position: fixed;
-  top: var(--space-4);
-  left: var(--space-4);
+  @apply fixed top-4 left-4 z-10 py-2 px-4 bg-canvas text-ink border border-line;
   transform: translateY(calc(-100% - var(--space-8)));
-  z-index: 10;
-  padding: var(--space-2) var(--space-4);
-  background: var(--canvas);
-  color: var(--ink);
-  border: 1px solid var(--line);
 }
 
 .skip-link:focus {
@@ -150,28 +137,20 @@ a:hover {
 }
 
 .error-page h1 {
-  font-size: var(--text-heading);
-  font-weight: 700;
+  @apply text-section font-bold;
 }
 
 .error-page > * + * {
-  display: block;
-  margin-top: var(--space-4);
+  @apply block mt-4;
 }
 
 .retry-button {
-  width: fit-content;
-  padding: var(--space-2) var(--space-4);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-control);
-  cursor: pointer;
+  @apply w-fit py-2 px-4 bg-surface border border-line rounded-ui cursor-pointer;
 }
 
 @media (max-width: 40rem) {
   .page-shell {
-    padding-top: var(--space-12);
-    padding-inline: var(--space-5);
+    @apply pt-12 px-5;
   }
 }
 
@@ -202,11 +181,10 @@ a:hover {
   }
 
   .page-shell {
-    width: 100%;
-    padding: 0;
+    @apply w-full p-0;
   }
 
   .skip-link {
-    display: none;
+    @apply hidden;
   }
 }
