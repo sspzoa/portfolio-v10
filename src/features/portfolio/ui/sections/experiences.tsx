@@ -8,7 +8,6 @@ export function ExperiencesContent({ data }: { data: Experience[] }) {
         <TimelineEntry
           key={experience.id}
           logo={null}
-          url={experience.url}
           title={experience.organization || experience.role}
           subtitle={experience.organization ? experience.role : null}
           description={experience.description}

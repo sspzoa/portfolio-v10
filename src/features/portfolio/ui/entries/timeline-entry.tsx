@@ -9,25 +9,16 @@ type TimelineEntryProps = {
   start: string | null;
   end: string | null;
   logo: string | null;
-  url: string | null;
 };
 
-export function TimelineEntry({ title, subtitle, description, start, end, logo, url }: TimelineEntryProps) {
+export function TimelineEntry({ title, subtitle, description, start, end, logo }: TimelineEntryProps) {
   return (
     <li className="entry">
       <div className="entry-heading timeline-heading">
         <div className="entry-identity">
           <BrandImage src={logo} variant="logo" />
           <div>
-            <h3 className="entry-title">
-              {url ? (
-                <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`${title} 웹사이트 (새 탭)`}>
-                  {title}
-                </a>
-              ) : (
-                title
-              )}
-            </h3>
+            <h3 className="entry-title">{title}</h3>
             {subtitle && <p className="entry-meta">{subtitle}</p>}
           </div>
         </div>

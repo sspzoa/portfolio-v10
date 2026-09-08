@@ -63,14 +63,6 @@
   @apply items-center;
 }
 
-.entry-title a {
-  @apply text-inherit decoration-line;
-}
-
-.entry-title a:hover {
-  @apply text-accent decoration-current;
-}
-
 .entry-identity {
   @apply flex items-center gap-3 min-w-0;
 }

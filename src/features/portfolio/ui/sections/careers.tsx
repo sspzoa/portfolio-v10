@@ -8,7 +8,6 @@ export function CareersContent({ data }: { data: Career[] }) {
         <TimelineEntry
           key={career.id}
           logo={career.logo}
-          url={career.url}
           title={career.organization || career.role}
           subtitle={career.organization ? career.role : null}
           description={career.description}
