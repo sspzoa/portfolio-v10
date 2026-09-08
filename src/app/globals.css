@@ -47,11 +47,11 @@ a:hover {
   :root {
     color-scheme: light;
     --canvas: #ffffff;
-    --ink: #22252a;
-    --secondary: #535a63;
-    --muted: #6b727c;
-    --line: #e8eaed;
-    --accent: #426a99;
+    --ink: #202322;
+    --secondary: #53564e;
+    --muted: #6c6e63;
+    --line: #e8e4d3;
+    --accent: #786000;
   }
 }
 

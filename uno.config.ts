@@ -21,7 +21,6 @@ export default defineConfig({
       muted: "var(--muted)",
       line: "var(--line)",
       surface: "var(--surface)",
-      "brand-image": "var(--brand-image-canvas)",
       accent: "var(--accent)",
       selection: "var(--selection)",
     },

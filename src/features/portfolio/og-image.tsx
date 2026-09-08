@@ -3,17 +3,18 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { profile } from "./config/profile";
-import { siteUrl, socialImage } from "./config/seo";
+import { socialImage } from "./config/seo";
 
-const [regular, bold] = await Promise.all([
+const [regular, bold, logo] = await Promise.all([
   readFile(join(process.cwd(), "assets/fonts/portfolio-og-regular.ttf")),
   readFile(join(process.cwd(), "assets/fonts/portfolio-og-bold.ttf")),
+  readFile(join(process.cwd(), "assets/seungpyo-logo.png")),
 ]);
 
 const colors = {
-  canvas: "#ffffff",
-  ink: "#22252a",
-  muted: "#6b727c",
+  canvas: "#ffe34d",
+  ink: "#202322",
+  muted: "#53564e",
 };
 
 export function createPortfolioImage() {
@@ -39,19 +40,17 @@ export function createPortfolioImage() {
           justifyContent: "center",
           paddingBottom: 24,
         }}>
-        <div style={{ display: "flex", fontSize: 76, fontWeight: 700, lineHeight: 1.2 }}>{profile.name}</div>
-        <div style={{ display: "flex", marginTop: 20, fontSize: 28, lineHeight: 1.4, color: colors.muted }}>
+        <img
+          src={`data:image/png;base64,${logo.toString("base64")}`}
+          alt=""
+          width={224}
+          height={224}
+          style={{ marginBottom: 8 }}
+        />
+        <div style={{ display: "flex", fontSize: 84, fontWeight: 700, lineHeight: 1.2 }}>{profile.englishName}</div>
+        <div style={{ display: "flex", marginTop: 20, fontSize: 32, lineHeight: 1.4, color: colors.muted }}>
           {profile.role}
         </div>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          fontSize: 20,
-          color: colors.muted,
-        }}>
-        {new URL(siteUrl).hostname}
       </div>
     </div>,
     {

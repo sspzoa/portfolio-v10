@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none" role="img" aria-labelledby="title description">
+  <title id="title">Seungpyo</title>
+  <desc id="description">A charcoal character with one folded ear, a slanted gaze, and an offset smile on a warm yellow square.</desc>
+  <path fill="#FFE34D" d="M0 0H512V512H0Z"/>
+  <path fill="#202322" d="M145 207L157 112C159 96 177 89 189 100L245 158L306 111C320 100 338 103 346 118L379 179C385 191 380 204 367 209L346 217C365 236 377 260 377 288C377 351 326 389 253 389C175 389 130 350 130 288C130 257 135 234 145 207Z"/>
+  <path fill="#FFE34D" d="M303 149L320 180L346 171L328 140C325 135 320 135 315 139L303 149Z"/>
+  <path fill="#FFE34D" d="M186 250C184 243 189 237 196 237H224L216 264H200C193 264 189 259 186 250ZM263 237H291C298 237 302 244 299 250C296 259 292 264 285 264H255L263 237Z"/>
+  <path d="M242 310C253 323 272 323 286 309" stroke="#FFE34D" stroke-width="13" stroke-linecap="round"/>
+</svg>

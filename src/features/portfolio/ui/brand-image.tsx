@@ -13,7 +13,7 @@ export function BrandImage({ src, variant }: { src: string | null; variant: "log
       height={size}
       sizes={`${size}px`}
       draggable={false}
-      className={`block shrink-0 rounded-ui bg-brand-image object-contain ${variant === "logo" ? "size-10 p-1" : "size-6 p-0.5"}`}
+      className={`block shrink-0 rounded-ui object-contain ${variant === "logo" ? "size-10 p-1" : "size-6 p-0.5"}`}
     />
   );
 }
