@@ -42,7 +42,7 @@ a:hover {
 }
 
 .rich-text {
-  @apply text-secondary wrap-anywhere;
+  @apply text-secondary break-keep wrap-anywhere;
 }
 
 .rich-text > * + * {

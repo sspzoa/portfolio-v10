@@ -7,7 +7,7 @@
 }
 
 .profile h1 {
-  @apply text-profile font-bold leading-[1.35];
+  @apply text-profile font-bold leading-[1.35] tracking-[-0.025em];
 }
 
 .profile-name {
@@ -27,7 +27,7 @@
 }
 
 .social-links a {
-  @apply py-1;
+  @apply inline-flex items-center min-h-9 py-1;
 }
 
 .portfolio-section {
@@ -35,7 +35,7 @@
 }
 
 .section-title {
-  @apply mb-6 text-section font-bold;
+  @apply mb-6 text-section font-bold tracking-[-0.015em];
 }
 
 .section-body {
@@ -56,7 +56,7 @@
 }
 
 .entry-title {
-  @apply text-copy font-bold text-ink break-keep wrap-anywhere;
+  @apply text-copy font-bold text-ink break-keep wrap-anywhere tracking-[-0.01em];
 }
 
 .timeline-heading {
@@ -80,7 +80,7 @@
 }
 
 .brand-image {
-  @apply block shrink-0 object-contain bg-brand-image;
+  @apply block shrink-0 object-contain bg-brand-image rounded-ui;
 }
 
 .brand-image--logo {
@@ -96,7 +96,7 @@
 }
 
 .entry-period {
-  @apply text-muted text-caption tabular-nums;
+  @apply text-muted text-caption tabular-nums whitespace-nowrap;
 }
 
 .entry-description {
@@ -112,10 +112,11 @@
 }
 
 .project-summary {
-  @apply w-fit py-1 cursor-pointer text-caption text-secondary;
+  @apply w-fit min-h-9 py-1 cursor-pointer text-caption text-secondary;
 }
 
-.project-summary:hover {
+.project-summary:hover,
+.project-details[open] > .project-summary {
   @apply text-ink;
 }
 
@@ -164,15 +165,40 @@
 }
 
 .side-projects-summary {
-  @apply w-fit cursor-pointer py-2 text-caption text-secondary;
+  @apply w-fit min-h-10 cursor-pointer py-2 text-caption text-secondary;
 }
 
-.side-projects-summary:hover {
+.side-projects-summary:hover,
+.side-projects[open] > .side-projects-summary {
   @apply text-ink;
 }
 
 .side-projects-count {
-  @apply ml-2 text-muted tabular-nums;
+  @apply text-muted tabular-nums;
+}
+
+.project-summary,
+.side-projects-summary {
+  @apply flex items-center gap-2 rounded-ui;
+  transition: color var(--duration-fast);
+}
+
+.project-summary::-webkit-details-marker,
+.side-projects-summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-summary::before,
+.side-projects-summary::before {
+  @apply block w-1.5 h-1.5 shrink-0 border-r border-b border-current mr-1;
+  content: "";
+  transform: rotate(-45deg);
+  transition: transform var(--duration-fast);
+}
+
+.project-details[open] > .project-summary::before,
+.side-projects[open] > .side-projects-summary::before {
+  transform: translateY(-2px) rotate(45deg);
 }
 
 .side-projects[open] > .side-projects-summary {
