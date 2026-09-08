@@ -88,6 +88,50 @@
   overflow-wrap: anywhere;
 }
 
+.timeline-heading {
+  align-items: center;
+}
+
+.entry-title a {
+  color: inherit;
+  text-decoration-color: var(--line);
+}
+
+.entry-title a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+.entry-identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.entry-identity > div {
+  min-width: 0;
+}
+
+.brand-image {
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+  background: var(--brand-image-canvas);
+}
+
+.brand-image--logo {
+  width: var(--space-10);
+  height: var(--space-10);
+  padding: var(--space-1);
+}
+
+.brand-image--icon {
+  width: var(--space-6);
+  height: var(--space-6);
+  padding: calc(var(--space-1) / 2);
+}
+
 .entry-meta {
   margin-top: var(--space-1);
   color: var(--secondary);
@@ -153,7 +197,13 @@
 .skill-list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-1) var(--space-4);
+  gap: var(--space-3) var(--space-5);
+}
+
+.skill-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 .record-list {
@@ -229,6 +279,10 @@
   .entry-heading,
   .record {
     flex-direction: column;
+  }
+
+  .timeline-heading {
+    align-items: flex-start;
   }
 }
 

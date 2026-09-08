@@ -23,6 +23,7 @@ function mapTimeline(page: TimelinePage) {
     startDate: formatDate(properties.date.date?.start),
     endDate: formatDate(properties.date.date?.end),
     logo: readFileUrl(properties.logo.files[0]),
+    url: readOptionalText(properties.url.rich_text)?.trim() ?? null,
   };
 }
 

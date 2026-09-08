@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+const websiteUrlSchema = z.url({ protocol: /^https?$/ }).nullable();
+
 const dateStringSchema = z
   .string()
   .regex(/^\d{4}\.\d{2}$/, "Date must be in YYYY.MM format")
@@ -36,6 +38,7 @@ export const experienceSchema = z.object({
   startDate: dateStringSchema,
   endDate: dateStringSchema,
   logo: z.string().url().nullable(),
+  url: websiteUrlSchema,
 });
 
 export const educationSchema = z.object({
@@ -46,6 +49,7 @@ export const educationSchema = z.object({
   startDate: dateStringSchema,
   endDate: dateStringSchema,
   logo: z.string().url().nullable(),
+  url: websiteUrlSchema,
 });
 
 export const certificationSchema = z.object({
@@ -64,6 +68,7 @@ export const careerSchema = z.object({
   startDate: dateStringSchema,
   endDate: dateStringSchema,
   logo: z.string().url().nullable(),
+  url: websiteUrlSchema,
 });
 
 export const awardSchema = z.object({

@@ -7,6 +7,8 @@ export function EducationContent({ data }: { data: Education[] }) {
       {data.map((education) => (
         <TimelineEntry
           key={education.id}
+          logo={education.logo}
+          url={education.url}
           title={education.organization || education.department}
           subtitle={education.organization ? education.department : null}
           description={education.description}

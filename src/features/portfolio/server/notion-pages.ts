@@ -18,6 +18,7 @@ const timelineProperties = {
   description: richTextPropertySchema,
   date: datePropertySchema,
   logo: filesPropertySchema,
+  url: richTextPropertySchema,
 };
 
 export const aboutMePageSchema = pageSchema.extend({

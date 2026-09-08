@@ -13,9 +13,7 @@ const [regular, bold] = await Promise.all([
 const colors = {
   canvas: "#ffffff",
   ink: "#22252a",
-  secondary: "#535a63",
   muted: "#6b727c",
-  line: "#e8eaed",
 };
 
 export function createPortfolioImage() {
@@ -26,7 +24,7 @@ export function createPortfolioImage() {
         flexDirection: "column",
         width: "100%",
         height: "100%",
-        padding: "60px 72px",
+        padding: 64,
         backgroundColor: colors.canvas,
         color: colors.ink,
         fontFamily: "Portfolio OG Sans",
@@ -35,26 +33,22 @@ export function createPortfolioImage() {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
-          fontSize: 24,
-          color: colors.secondary,
+          flexDirection: "column",
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          paddingBottom: 24,
         }}>
-        <span>{profile.englishName}</span>
-        <span>Portfolio</span>
-      </div>
-      <div style={{ display: "flex", flexDirection: "column", flex: 1, justifyContent: "center" }}>
-        <div style={{ display: "flex", fontSize: 104, fontWeight: 700, lineHeight: 1.15 }}>{profile.name}</div>
-        <div style={{ display: "flex", marginTop: 12, fontSize: 40 }}>{profile.role}</div>
-        <div style={{ display: "flex", marginTop: 32, fontSize: 29, lineHeight: 1.5, color: colors.secondary }}>
-          {profile.introduction}
+        <div style={{ display: "flex", fontSize: 76, fontWeight: 700, lineHeight: 1.2 }}>{profile.name}</div>
+        <div style={{ display: "flex", marginTop: 20, fontSize: 28, lineHeight: 1.4, color: colors.muted }}>
+          {profile.role}
         </div>
       </div>
       <div
         style={{
           display: "flex",
-          borderTop: `1px solid ${colors.line}`,
-          paddingTop: 24,
-          fontSize: 22,
+          justifyContent: "center",
+          fontSize: 20,
           color: colors.muted,
         }}>
         {new URL(siteUrl).hostname}

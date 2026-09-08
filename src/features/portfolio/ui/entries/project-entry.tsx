@@ -1,21 +1,25 @@
 import type { Project } from "@/features/portfolio/model/schemas";
 import { RichText } from "@/shared/ui/rich-text";
+import { BrandImage } from "../brand-image";
 import { Period } from "../period";
 
 export function ProjectEntry({ project }: { project: Project }) {
   const metadata = [
     project.isSideProject ? "사이드 프로젝트" : null,
-    project.teamSize !== null ? `${project.teamSize}명` : null,
+    project.teamSize !== null ? `${project.teamSize}인 프로젝트` : null,
   ]
     .filter(Boolean)
     .join(" · ");
 
   return (
     <li className="entry">
-      <div className="entry-heading">
-        <div>
-          <h3 className="entry-title">{project.name}</h3>
-          {metadata && <p className="entry-meta">{metadata}</p>}
+      <div className="entry-heading timeline-heading">
+        <div className="entry-identity">
+          <BrandImage src={project.iconImage} variant="logo" />
+          <div>
+            <h3 className="entry-title">{project.name}</h3>
+            {metadata && <p className="entry-meta">{metadata}</p>}
+          </div>
         </div>
         <Period start={project.startDate} end={project.endDate} />
       </div>

@@ -7,8 +7,10 @@ export function ExperiencesContent({ data }: { data: Experience[] }) {
       {data.map((experience) => (
         <TimelineEntry
           key={experience.id}
-          title={experience.role}
-          subtitle={experience.organization}
+          logo={experience.logo}
+          url={experience.url}
+          title={experience.organization || experience.role}
+          subtitle={experience.organization ? experience.role : null}
           description={experience.description}
           start={experience.startDate}
           end={experience.endDate}

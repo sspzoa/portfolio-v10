@@ -2,7 +2,7 @@ import { afterEach, describe, expect, mock, spyOn, test } from "bun:test";
 import { EnvironmentError, getServerEnv } from "@/server/env";
 import { NotionPayloadError, NotionRequestError } from "@/server/notion/errors";
 import { getSectionErrorMessage, PortfolioValidationError } from "./errors";
-import { fetchAboutMe, fetchProjects } from "./repository";
+import { fetchAboutMe, fetchCareers, fetchEducations, fetchExperiences, fetchProjects } from "./repository";
 
 const originalToken = process.env.NOTION_TOKEN;
 
@@ -40,7 +40,49 @@ function mockResponse(payload: unknown) {
   spyOn(globalThis, "fetch").mockResolvedValue(Response.json(payload));
 }
 
+function timelinePage(url: string[]) {
+  return {
+    id: "organization",
+    properties: {
+      role: { title: [{ plain_text: "Engineer" }] },
+      department: { title: [{ plain_text: "Engineering" }] },
+      organization: { rich_text: [{ plain_text: "Organization" }] },
+      description: { rich_text: [] },
+      date: { date: null },
+      logo: { files: [] },
+      url: { rich_text: url.map((plain_text) => ({ plain_text })) },
+    },
+  };
+}
+
 describe("Portfolio repository", () => {
+  test.each([
+    ["careers", fetchCareers],
+    ["educations", fetchEducations],
+    ["experiences", fetchExperiences],
+  ] as const)("preserves the %s website URL across rich-text segments", async (_, fetchItems) => {
+    mockResponse({
+      results: [timelinePage([" https://", "example.com/team "])],
+      has_more: false,
+      next_cursor: null,
+    });
+
+    const [item] = await fetchItems();
+    expect(item.url).toBe("https://example.com/team");
+  });
+
+  test("keeps an organization without a website", async () => {
+    mockResponse({ results: [timelinePage(["  "])], has_more: false, next_cursor: null });
+    const [item] = await fetchCareers();
+    expect(item.organization).toBe("Organization");
+    expect(item.url).toBeNull();
+  });
+
+  test("rejects non-HTTP website protocols before rendering links", async () => {
+    mockResponse({ results: [timelinePage(["javascript:alert(1)"])], has_more: false, next_cursor: null });
+    await expect(fetchCareers()).rejects.toBeInstanceOf(PortfolioValidationError);
+  });
+
   test("retains side projects and concatenates rich text and titles across pages", async () => {
     process.env.NOTION_TOKEN = "secret_test";
     const request = spyOn(globalThis, "fetch")
