@@ -10,9 +10,9 @@ export function SkillsContent({ data }: { data: Skill[] }) {
   }
 
   return Array.from(groups, ([category, items]) => (
-    <div key={category} className="skill-group">
-      <h3 className="entry-meta">{category}</h3>
-      <ul className="skill-list">
+    <div key={category} className="[&+div]:mt-5">
+      <h3 className="mt-1 mb-1 font-medium text-caption text-muted">{category}</h3>
+      <ul className="flex flex-wrap gap-x-4 gap-y-1">
         {items.map((skill) => (
           <li key={skill.id}>{skill.isMain ? <strong>{skill.name}</strong> : skill.name}</li>
         ))}

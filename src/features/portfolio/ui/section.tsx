@@ -7,11 +7,14 @@ export interface SectionIdentity {
 
 export function Section({ id, title, children }: SectionIdentity & { children: ReactNode }) {
   return (
-    <section id={id} className="portfolio-section" aria-labelledby={`${id}-title`}>
-      <h2 id={`${id}-title`} className="section-title">
+    <section
+      id={id}
+      className="scroll-mt-8 border-line border-t pt-10 pb-12 max-[40rem]:pt-8 max-[40rem]:pb-10"
+      aria-labelledby={`${id}-title`}>
+      <h2 id={`${id}-title`} className="mb-6 font-bold text-section tracking-[-0.015em]">
         {title}
       </h2>
-      <div className="section-body">{children}</div>
+      <div className="min-w-0">{children}</div>
     </section>
   );
 }

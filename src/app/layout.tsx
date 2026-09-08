@@ -17,9 +17,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ko" data-scroll-behavior="smooth">
-      <body>
-        <a className="skip-link" href="#main-content">
+    <html className="scroll-pt-8 motion-safe:scroll-smooth" lang="ko" data-scroll-behavior="smooth">
+      <body className="m-0 bg-canvas font-sans text-copy text-ink leading-[1.75] antialiased">
+        <a
+          className="fixed top-4 left-4 z-10 border border-line bg-canvas px-4 py-2 text-ink [transform:translateY(calc(-100%_-_var(--space-8)))] focus:translate-y-0 print:hidden"
+          href="#main-content">
           본문으로 바로가기
         </a>
         <AppProviders>{children}</AppProviders>

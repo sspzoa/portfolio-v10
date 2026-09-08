@@ -4,7 +4,7 @@ import { RecordEntry } from "../entries/record-entry";
 
 export function ActivitiesContent({ data }: { data: Activity[] }) {
   return (
-    <ul className="record-list">
+    <ul className="flex flex-col gap-5">
       {data.map((activity) => (
         <RecordEntry
           key={activity.id}

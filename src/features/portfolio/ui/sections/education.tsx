@@ -3,7 +3,7 @@ import { TimelineEntry } from "../entries/timeline-entry";
 
 export function EducationContent({ data }: { data: Education[] }) {
   return (
-    <ul className="entry-list">
+    <ul className="flex flex-col gap-10">
       {data.map((education) => (
         <TimelineEntry
           key={education.id}

@@ -11,29 +11,29 @@ export function ProjectEntry({ project }: { project: Project }) {
     .join(" · ");
 
   return (
-    <li className="entry">
-      <div className="entry-heading">
+    <li className="wrap-anywhere min-w-0 print:break-inside-avoid">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 max-[40rem]:flex-col">
         <div>
-          <h3 className="entry-title">{project.name}</h3>
-          {metadata && <p className="entry-meta">{metadata}</p>}
+          <h3 className="wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]">{project.name}</h3>
+          {metadata && <p className="mt-1 text-caption text-secondary">{metadata}</p>}
         </div>
         <Period start={project.startDate} end={project.endDate} />
       </div>
       {project.shortDescription && (
-        <div className="entry-description">
+        <div className="mt-3">
           <RichText>{project.shortDescription}</RichText>
         </div>
       )}
       {project.tags.length > 0 && (
-        <div className="project-tags">
+        <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-caption text-muted">
           {project.tags.map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
         </div>
       )}
       {project.description && (
-        <details className="project-details">
-          <summary className="project-summary" aria-label={`${project.name} 자세히 보기`}>
+        <details className="mt-3 [&>div]:border-line [&>div]:border-l [&>div]:pl-4 [&[open]>summary::before]:[transform:translateY(-2px)_rotate(45deg)] [&[open]>summary]:mb-3 [&[open]>summary]:text-ink">
+          <summary className="disclosure-summary min-h-9 py-1" aria-label={`${project.name} 자세히 보기`}>
             자세히 보기
           </summary>
           <RichText>{project.description}</RichText>

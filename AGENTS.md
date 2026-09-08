@@ -96,9 +96,9 @@ Render Markdown synchronously with `react-markdown`. Preserve CommonMark, Unicod
 
 ## Styling, accessibility, and metadata
 
-`src/app/styles/tokens.css` owns design tokens. `uno.config.ts` maps them to utilities and defines source scanning. `src/app/globals.css` owns document basics and loads the Tailwind v4-compatible reset; this is not a Tailwind compiler dependency. `src/features/portfolio/ui/portfolio.css` owns feature styles.
+`src/app/styles/tokens.css` owns design tokens. `uno.config.ts` maps them to utilities and defines source scanning. `src/app/globals.css` owns document basics and loads the Tailwind v4-compatible reset; this is not a Tailwind compiler dependency. Component styles live in JSX utility classes.
 
-Use semantic component classes with UnoCSS `@apply`. Keep custom CSS for browser-specific behavior and motion preferences. Custom font sizes must inherit line height unless a component deliberately overrides it; UnoCSS's default line-height fallback previously compressed entry headings and captions.
+Use statically extractable UnoCSS utilities directly in JSX. Keep utilities visible on the elements by default. Use a shortcut only for a substantial repeated combination, such as `disclosure-summary`; keep per-instance spacing and sizing on the element. Do not create shortcuts for one-off styles or simple utility combinations. Keep global CSS limited to imports, document defaults, accessibility, motion preferences, and custom keyframes. Preserve complete literal utility alternatives for dynamic variants rather than constructing class names. OG image rendering uses inline styles because its image renderer does not consume the page stylesheet. Custom font sizes must inherit line height unless a component deliberately overrides it; UnoCSS's default line-height fallback previously compressed entry headings and captions.
 
 Preserve `tools/postcss/config-dependencies.cjs` in the PostCSS pipeline so UnoCSS configuration changes invalidate CSS caches. Verify configuration changes against generated CSS and the running page; a passing build alone does not prove that cached styles refreshed.
 

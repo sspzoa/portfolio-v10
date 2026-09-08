@@ -5,6 +5,14 @@ export default defineConfig({
     filesystem: ["./src/**/*.{html,js,ts,jsx,tsx}", "!./src/**/*.test.{ts,tsx}"],
   },
   presets: [presetWind3()],
+  shortcuts: {
+    "disclosure-summary": [
+      "flex w-fit cursor-pointer items-center gap-2 rounded-ui",
+      "text-caption text-secondary [transition:color_var(--duration-fast)] before:mr-1 before:block before:size-1.5",
+      "before:shrink-0 before:border-current before:border-r before:border-b before:content-empty hover:text-ink",
+      "before:[transform:rotate(-45deg)] before:[transition:transform_var(--duration-fast)] [&::-webkit-details-marker]:hidden",
+    ],
+  },
   theme: {
     colors: {
       canvas: "var(--canvas)",

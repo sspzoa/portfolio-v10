@@ -34,7 +34,7 @@ describe("ProjectsContent", () => {
       }),
     ];
     const html = renderToStaticMarkup(<ProjectsContent data={data} />);
-    const disclosureStart = html.indexOf('<details class="side-projects"');
+    const disclosureStart = html.search(/<details[^>]*id="side-projects"/);
     const mainContent = html.slice(0, disclosureStart);
     const sideContent = html.slice(disclosureStart);
 
@@ -48,7 +48,7 @@ describe("ProjectsContent", () => {
     expect(sideContent).toContain("<strong>구현 내용</strong>");
     expect(sideContent).toContain('href="https://example.com/source"');
     expect(sideContent).toContain('aria-label="작은 도구 자세히 보기"');
-    expect(sideContent).toContain('class="side-projects-count">1개</span>');
+    expect(sideContent).toMatch(/<span[^>]*>1개<\/span>/);
     expect(sideContent).not.toMatch(/\s(?:open|hidden|aria-hidden)(?:\s|=|>)/);
   });
 
@@ -63,8 +63,8 @@ describe("ProjectsContent", () => {
   test("renders a side-only list without an empty main-project list", () => {
     const html = renderToStaticMarkup(<ProjectsContent data={[project({ isSideProject: true })]} />);
 
-    expect(html).toStartWith('<details class="side-projects" id="side-projects">');
-    expect(html.match(/<ul class="entry-list">/g)).toHaveLength(1);
+    expect(html).toMatch(/^<details[^>]*id="side-projects"[^>]*>/);
+    expect(html.match(/<ul(?:\s[^>]*)?>/g)).toHaveLength(1);
     expect(html).toContain("주요 프로젝트");
   });
 

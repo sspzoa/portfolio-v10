@@ -37,7 +37,7 @@ async function renderSection<T>({ id, title, load, Content }: PortfolioSectionDe
     console.error(`[Portfolio:${id}]`, error instanceof Error ? error.name : "UnknownError");
     return (
       <Section key={id} id={id} title={title}>
-        <p className="section-error">{getSectionErrorMessage(error)}</p>
+        <p className="text-caption text-muted">{getSectionErrorMessage(error)}</p>
       </Section>
     );
   }

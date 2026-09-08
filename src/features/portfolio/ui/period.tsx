@@ -8,5 +8,5 @@ type PeriodProps = {
 
 export function Period({ start, end, present = false }: PeriodProps) {
   const period = formatPeriod(start, end, { present });
-  return period ? <p className="entry-period">{period}</p> : null;
+  return period ? <p className="whitespace-nowrap text-caption text-muted tabular-nums">{period}</p> : null;
 }

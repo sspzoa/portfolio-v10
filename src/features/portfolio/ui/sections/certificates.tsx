@@ -3,7 +3,7 @@ import { RecordEntry } from "../entries/record-entry";
 
 export function CertificatesContent({ data }: { data: Certificate[] }) {
   return (
-    <ul className="record-list">
+    <ul className="flex flex-col gap-5">
       {data.map((certificate) => (
         <RecordEntry
           key={certificate.id}

@@ -3,19 +3,12 @@
 
 @import "./styles/tokens.css";
 
-@unocss all;
-
-html {
-  @apply scroll-pt-8;
-}
-
 body {
-  @apply m-0 bg-canvas text-ink font-sans text-copy leading-[1.75] antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  @apply bg-selection;
+  background-color: var(--selection);
 }
 
 a,
@@ -25,115 +18,20 @@ summary {
 }
 
 a {
-  @apply text-accent underline decoration-transparent underline-offset-4;
+  color: var(--accent);
+  text-decoration: underline transparent;
+  text-underline-offset: 4px;
   transition: text-decoration-color var(--duration-fast);
 }
 
 a:hover {
-  @apply decoration-current;
+  text-decoration-color: currentColor;
 }
 
 :focus-visible {
-  @apply outline-2 outline-solid outline-accent outline-offset-4 rounded-ui;
-}
-
-.page-shell {
-  @apply w-full max-w-reading mx-auto pt-24 px-6 pb-10;
-}
-
-.rich-text {
-  @apply text-secondary break-keep wrap-anywhere;
-}
-
-.rich-text > * + * {
-  @apply mt-3;
-}
-
-.rich-text p {
-  @apply whitespace-pre-line;
-}
-
-.rich-text ul,
-.rich-text ol {
-  @apply pl-5;
-}
-
-.rich-text ul {
-  @apply list-disc;
-}
-
-.rich-text ol {
-  @apply list-decimal;
-}
-
-.rich-text blockquote {
-  @apply pl-4 border-l border-line;
-}
-
-.rich-text code {
-  @apply font-mono text-caption;
-}
-
-.rich-text pre {
-  @apply overflow-x-auto p-4 bg-surface whitespace-pre;
-}
-
-.rich-text hr {
-  @apply border-0 border-t border-line my-5;
-}
-
-.rich-text li + li {
-  @apply mt-1;
-}
-
-.rich-text li::marker {
-  @apply text-muted;
-}
-
-.rich-text strong {
-  @apply text-ink font-bold;
-}
-
-.rich-text a {
-  @apply decoration-current;
-}
-
-.muted,
-.section-error {
-  @apply text-muted text-caption;
-}
-
-.skip-link {
-  @apply fixed top-4 left-4 z-10 py-2 px-4 bg-canvas text-ink border border-line;
-  transform: translateY(calc(-100% - var(--space-8)));
-}
-
-.skip-link:focus {
-  transform: translateY(0);
-}
-
-.error-page h1 {
-  @apply text-section font-bold;
-}
-
-.error-page > * + * {
-  @apply block mt-4;
-}
-
-.retry-button {
-  @apply w-fit py-2 px-4 bg-surface border border-line rounded-ui cursor-pointer;
-}
-
-@media (max-width: 40rem) {
-  .page-shell {
-    @apply pt-12 px-5;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-control);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -155,12 +53,6 @@ a:hover {
     --line: #e8eaed;
     --accent: #426a99;
   }
-
-  .page-shell {
-    @apply w-full p-0;
-  }
-
-  .skip-link {
-    @apply hidden;
-  }
 }
+
+@unocss all;

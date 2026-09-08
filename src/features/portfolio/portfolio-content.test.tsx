@@ -46,7 +46,7 @@ test("returns complete readable HTML, including collapsed projects, despite one 
     expect(html).toContain("주요 프로젝트");
     expect(html).toContain("접힌 프로젝트");
     expect(html.match(/<strong>전체 상세 설명<\/strong>/g)).toHaveLength(2);
-    expect(html).toContain('<details class="side-projects" id="side-projects">');
+    expect(html).toMatch(/<details[^>]*id="side-projects"[^>]*>/);
     expect(html).toContain("설정을 확인해 주세요.");
     expect(html).not.toContain('id="skills"');
     expect(html).not.toContain("불러오는 중");
