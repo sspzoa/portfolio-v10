@@ -5,7 +5,7 @@ import {
   activitySchema,
   awardSchema,
   careerSchema,
-  certificationSchema,
+  certificateSchema,
   educationSchema,
   experienceSchema,
   projectSchema,
@@ -68,7 +68,7 @@ export function fetchExperiences() {
   return fetchCollection("experiences", rolePageSchema, mapRole, experienceSchema);
 }
 
-export function fetchEducations() {
+export function fetchEducation() {
   return fetchCollection("educations", educationPageSchema, mapEducation, educationSchema);
 }
 
@@ -81,7 +81,7 @@ export function fetchAwards() {
 }
 
 export function fetchCertificates() {
-  return fetchCollection("certificates", certificatePageSchema, mapCertificate, certificationSchema);
+  return fetchCollection("certificates", certificatePageSchema, mapCertificate, certificateSchema);
 }
 
 export function fetchActivities() {

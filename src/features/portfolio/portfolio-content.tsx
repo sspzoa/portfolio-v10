@@ -7,7 +7,7 @@ import {
   fetchAwards,
   fetchCareers,
   fetchCertificates,
-  fetchEducations,
+  fetchEducation,
   fetchExperiences,
   fetchProjects,
   fetchSkills,
@@ -23,12 +23,12 @@ import { ExperiencesContent } from "@/features/portfolio/ui/sections/experiences
 import { ProjectsContent } from "@/features/portfolio/ui/sections/projects";
 import { SkillsContent } from "@/features/portfolio/ui/sections/skills";
 
-interface DataSectionProps<T> extends SectionIdentity {
+interface PortfolioSectionDefinition<T> extends SectionIdentity {
   load: () => Promise<T | null>;
   Content: ComponentType<{ data: T }>;
 }
 
-async function loadSection<T>({ id, title, load, Content }: DataSectionProps<T>) {
+async function renderSection<T>({ id, title, load, Content }: PortfolioSectionDefinition<T>) {
   let data: T | null;
 
   try {
@@ -53,15 +53,15 @@ async function loadSection<T>({ id, title, load, Content }: DataSectionProps<T>)
 
 export async function PortfolioContent() {
   const sections = await Promise.all([
-    loadSection({ id: "about", title: "소개", load: fetchAboutMe, Content: AboutContent }),
-    loadSection({ id: "careers", title: "경력", load: fetchCareers, Content: CareersContent }),
-    loadSection({ id: "projects", title: "프로젝트", load: fetchProjects, Content: ProjectsContent }),
-    loadSection({ id: "experiences", title: "경험", load: fetchExperiences, Content: ExperiencesContent }),
-    loadSection({ id: "education", title: "학력", load: fetchEducations, Content: EducationContent }),
-    loadSection({ id: "skills", title: "기술", load: fetchSkills, Content: SkillsContent }),
-    loadSection({ id: "awards", title: "수상", load: fetchAwards, Content: AwardsContent }),
-    loadSection({ id: "certificates", title: "자격증", load: fetchCertificates, Content: CertificatesContent }),
-    loadSection({ id: "activities", title: "활동", load: fetchActivities, Content: ActivitiesContent }),
+    renderSection({ id: "about", title: "소개", load: fetchAboutMe, Content: AboutContent }),
+    renderSection({ id: "careers", title: "경력", load: fetchCareers, Content: CareersContent }),
+    renderSection({ id: "projects", title: "프로젝트", load: fetchProjects, Content: ProjectsContent }),
+    renderSection({ id: "experiences", title: "경험", load: fetchExperiences, Content: ExperiencesContent }),
+    renderSection({ id: "education", title: "학력", load: fetchEducation, Content: EducationContent }),
+    renderSection({ id: "skills", title: "기술", load: fetchSkills, Content: SkillsContent }),
+    renderSection({ id: "awards", title: "수상", load: fetchAwards, Content: AwardsContent }),
+    renderSection({ id: "certificates", title: "자격증", load: fetchCertificates, Content: CertificatesContent }),
+    renderSection({ id: "activities", title: "활동", load: fetchActivities, Content: ActivitiesContent }),
   ]);
 
   return <>{sections}</>;

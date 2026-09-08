@@ -10,7 +10,14 @@ function safeHref(value: string): string | undefined {
 }
 
 const markdownComponents: Components = {
-  a: ({ children, href }) => (href ? <a href={href}>{children}</a> : children),
+  a: ({ children, href }) =>
+    href ? (
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    ) : (
+      children
+    ),
   img: ({ alt }) => alt ?? null,
   h1: "p",
   h2: "p",

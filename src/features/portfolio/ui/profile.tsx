@@ -11,11 +11,7 @@ export function ProfileHeader() {
       <p className="profile-intro">{profile.introduction}</p>
       <nav className="social-links" aria-label="연락처 및 소셜 링크">
         {profile.links.map(({ href, label }) => (
-          <a
-            key={href}
-            href={href}
-            target={href.startsWith("https:") ? "_blank" : undefined}
-            rel={href.startsWith("https:") ? "noopener noreferrer" : undefined}>
+          <a key={href} href={href} target="_blank" rel="noopener noreferrer">
             {label}
           </a>
         ))}

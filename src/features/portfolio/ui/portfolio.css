@@ -1,5 +1,3 @@
-@reference "../../../app/globals.css";
-
 .profile {
   @apply pb-16;
 }

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { siteMetadata } from "@/features/portfolio/config/seo";
+import { AppProviders } from "./app-providers";
 import "./globals.css";
 
 export const metadata: Metadata = siteMetadata;
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a className="skip-link" href="#main-content">
           본문으로 바로가기
         </a>
-        {children}
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );

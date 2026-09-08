@@ -52,7 +52,7 @@ export const educationSchema = z.object({
   url: websiteUrlSchema,
 });
 
-export const certificationSchema = z.object({
+export const certificateSchema = z.object({
   id: z.string(),
   name: z.string(),
   kind: z.string().nullable(),
@@ -95,7 +95,7 @@ export type Skill = z.infer<typeof skillSchema>;
 export type Project = z.infer<typeof projectSchema>;
 export type Experience = z.infer<typeof experienceSchema>;
 export type Education = z.infer<typeof educationSchema>;
-export type Certification = z.infer<typeof certificationSchema>;
+export type Certificate = z.infer<typeof certificateSchema>;
 export type Career = z.infer<typeof careerSchema>;
 export type Award = z.infer<typeof awardSchema>;
 export type Activity = z.infer<typeof activitySchema>;

@@ -8,8 +8,12 @@ describe("Notion rich text presentation", () => {
       <RichText>{"[**프로젝트**](https://example.com)\n\n**[구현 내용](https://example.com/source)**"}</RichText>,
     );
 
-    expect(html).toContain('<a href="https://example.com/"><strong>프로젝트</strong></a>');
-    expect(html).toContain('<strong><a href="https://example.com/source">구현 내용</a></strong>');
+    expect(html).toContain(
+      '<a href="https://example.com/" target="_blank" rel="noopener noreferrer"><strong>프로젝트</strong></a>',
+    );
+    expect(html).toContain(
+      '<strong><a href="https://example.com/source" target="_blank" rel="noopener noreferrer">구현 내용</a></strong>',
+    );
     expect(html).not.toContain("**");
   });
 
@@ -18,7 +22,9 @@ describe("Notion rich text presentation", () => {
       <RichText>{"[문서](https://example.com/docs/Architecture_(overview))"}</RichText>,
     );
 
-    expect(html).toContain('<a href="https://example.com/docs/Architecture_(overview)">문서</a>');
+    expect(html).toContain(
+      '<a href="https://example.com/docs/Architecture_(overview)" target="_blank" rel="noopener noreferrer">문서</a>',
+    );
     expect(html).not.toContain("</a>)");
   });
 

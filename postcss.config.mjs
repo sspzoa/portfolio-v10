@@ -1,6 +1,13 @@
+import { resolve } from "node:path";
+
 const config = {
   plugins: {
-    "@tailwindcss/postcss": {},
+    [resolve("tools/postcss/config-dependencies.cjs")]: {
+      files: ["./uno.config.ts"],
+    },
+    "@unocss/postcss": {
+      configOrPath: "./uno.config.ts",
+    },
   },
 };
 

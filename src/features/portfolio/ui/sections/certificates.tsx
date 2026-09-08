@@ -1,7 +1,7 @@
-import type { Certification } from "@/features/portfolio/model/schemas";
+import type { Certificate } from "@/features/portfolio/model/schemas";
 import { RecordEntry } from "../entries/record-entry";
 
-export function CertificatesContent({ data }: { data: Certification[] }) {
+export function CertificatesContent({ data }: { data: Certificate[] }) {
   return (
     <ul className="record-list">
       {data.map((certificate) => (

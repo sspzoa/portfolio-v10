@@ -2,7 +2,7 @@ import { afterEach, describe, expect, mock, spyOn, test } from "bun:test";
 import { EnvironmentError, getServerEnv } from "@/server/env";
 import { NotionPayloadError, NotionRequestError } from "@/server/notion/errors";
 import { getSectionErrorMessage, PortfolioValidationError } from "./errors";
-import { fetchAboutMe, fetchCareers, fetchEducations, fetchExperiences, fetchProjects } from "./repository";
+import { fetchAboutMe, fetchCareers, fetchEducation, fetchExperiences, fetchProjects } from "./repository";
 
 const originalToken = process.env.NOTION_TOKEN;
 
@@ -58,7 +58,7 @@ function timelinePage(url: string[]) {
 describe("Portfolio repository", () => {
   test.each([
     ["careers", fetchCareers],
-    ["educations", fetchEducations],
+    ["educations", fetchEducation],
     ["experiences", fetchExperiences],
   ] as const)("preserves the %s website URL across rich-text segments", async (_, fetchItems) => {
     mockResponse({
