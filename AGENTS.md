@@ -12,22 +12,21 @@ The project was initialized with `create-solid@0.12.0 --solidstart --v2 --ts --t
 
 ## Stack and commands
 
-Use Bun for dependencies, scripts, and tests. SolidStart 2 runs on Vite 8 and Nitro 3 with Node.js 24 or newer. Keep exact dependency versions in `package.json` and `bun.lock`. Keep UnoCSS packages pinned to the same version.
+Use Bun for dependencies and scripts. SolidStart 2 runs on Vite 8 and Nitro 3 with Node.js 24 or newer. Keep exact dependency versions in `package.json` and `bun.lock`. Keep UnoCSS packages pinned to the same version.
 
 - Rendering: SolidJS, Solid Router, SolidStart async SSR, and `@solidjs/meta`.
-- State: native Solid signals/stores and `@tanstack/solid-query` for client API caching.
+- State: native Solid signals/stores when a product requirement needs client state.
 - Styling: UnoCSS Wind3 through PostCSS, CSS custom properties, and the Tailwind v4-compatible reset.
-- API: Elysia with Eden from `@elysia/eden`.
+- API: Elysia through thin SolidStart API adapters, with Eden Treaty clients.
 - Content: Notion HTTP API, Zod validation, and synchronous `markdown-it` rendering.
 - Social image: request-time SVG rendering with `@resvg/resvg-js` and bundled fonts.
-- Quality: Bun tests, Biome, TypeScript, and the production build.
+- Quality: Biome, TypeScript, and the production build.
 
 | Command | Purpose |
 | --- | --- |
 | `bun install` | Install dependencies from the manifest and lockfile |
 | `bun run dev` | Generate the social image and start Vite on port 3000 |
-| `bun run check` | Run tests, lint, type checking, and production build |
-| `bun run test` | Run Bun tests with Solid SSR JSX compilation |
+| `bun run check` | Run lint, type checking, and production build |
 | `bun run lint` | Check formatting and lint rules |
 | `bun run typecheck` | Check TypeScript without emitting files |
 | `bun run build` | Generate the social image and build the application |
@@ -40,34 +39,30 @@ Run `bun run check` for application or build changes. Documentation-only changes
 
 | Location | Responsibility |
 | --- | --- |
-| `src/app.tsx` | Router, metadata and query providers, and one root Suspense boundary |
-| `src/components/app-shell.tsx` | Skip link and app error boundary |
+| `src/app.tsx` | Router, metadata provider, app error boundary, skip link, and one root Suspense boundary |
 | `src/entry-client.tsx` | Solid hydration entry |
 | `src/entry-server.tsx` | HTML document, assets, icons, viewport, and complete async SSR |
 | `src/routes` | UI routes, thin API adapters, metadata endpoints, and 404 handling |
 | `src/middleware.ts` | Response security headers and uncached dynamic responses |
 | `src/app.css` and `src/tokens.css` | Document defaults and design tokens |
-| `src/lib/api-client.ts` | Application-specific Eden HTTP client factory |
-| `src/lib/server/api` | Elysia application and direct server Eden client |
+| `src/lib/server/api` | Elysia public API application and direct server Eden client |
+| `src/lib/api-client.ts` | Typed Eden HTTP client factory; imports only the API type |
 | `src/lib/server/env.ts` | Lazy server credential validation |
 | `src/lib/server/notion` | Generic HTTP transport, pagination, raw schemas, property readers, and integration errors |
-| `src/lib/portfolio` | Canonical Zod entities and inferred domain types |
+| `src/lib/portfolio` | Canonical Zod entities, public result types, and the query boundary |
 | `src/lib/server/portfolio` | Notion sources, page validation, mapping, repository, and concurrent section loading |
-| `src/lib/portfolio-query.ts` | Solid Router query with a server-function boundary |
+| `src/lib/portfolio/query.ts` | Solid Router query with a server-function boundary |
 | `src/components/portfolio.tsx` | Page composition from typed data |
 | `src/components/portfolio-content.tsx` | Section composition, safe failures, and empty-section omission |
 | `src/components` | Typed presentation, sections, and entries |
 | `src/lib/profile.ts` and `src/lib/seo.ts` | Static public profile, canonical URLs, SEO copy, and JSON-LD |
 | `src/lib/server/og-image.ts` | Dynamic social PNG generation |
-| `src/lib` | Public configuration, schemas, Markdown, API clients, and query helpers |
-| `src/components/query-provider.tsx` | Request-isolated TanStack Solid Query provider |
-| `src/lib/query-client.ts` | QueryClient factory with a 60-second stale time |
-| `tests` | Test setup and cross-layer API, Eden, and typography checks |
+| `src/lib` | Public configuration, schemas, Markdown, and server code |
 | `tools/postcss` | CSS configuration dependency tracking |
 
 Use the official basic template layout: `src/routes` for routes, `src/components` for UI, and `src/lib` for application logic. Use the built-in `~` alias; do not recreate `features/server/shared` top-level layers. Keep authenticated code inside `src/lib/server` and schemas inside `src/lib/portfolio`. Generic Notion transport must not depend on portfolio-specific mapping or UI. Domain schemas have no UI or server imports. Components receive typed data without querying repositories or reading credentials.
 
-Use explicit imports and English identifiers, descriptive kebab-case filenames, and named exports except framework entry points. Do not introduce barrels mixing client and server modules. Guard credentials, authenticated Notion clients, repositories, loaders, and API server entry points with `import "server-only"`; SolidStart enforces this boundary during builds. Browser Eden imports `ApiApp` using `import type`, never the Elysia instance. UI may use erased type-only imports for loader result types.
+Use explicit imports and English identifiers, descriptive kebab-case filenames, and named exports except framework entry points. Do not introduce barrels mixing client and server modules. Guard credentials, authenticated Notion clients, repositories, loaders, and API server entry points with `import "server-only"`; SolidStart enforces this boundary during builds. UI imports public data types from `src/lib/portfolio/types.ts`, not server loaders.
 
 Preserve terminology including `Certificate`, `certificateSchema`, and `fetchEducation`. Keep the Notion source key `educations`. Do not add code comments unless requested.
 
@@ -77,17 +72,17 @@ The home route preloads the portfolio query, reads it with `createAsync`, and em
 
 `loadPortfolio` starts all section requests concurrently and resolves all results before returning. Failures are converted into safe section messages without dropping successful sections. Omit empty sections. Keep `createHandler` in `mode: "async"`: the initial HTML includes every successful section and all collapsed descriptions. The root Suspense boundary coordinates async data; do not introduce section-level streaming, loading routes, or hidden replacement containers.
 
-Keep `Router` in `explicitLinks` mode so native anchors, including the skip link, retain browser focus behavior. Use reactive prop reads and `For`/`Show` where appropriate. Do not destructure reactive props or snapshot derived values outside accessors or memos. Native `createSignal`, `createStore`, and Context handle application state when needed; do not add Jotai or a React adapter. `QueryProvider` creates an isolated TanStack Solid Query client per app root with a 60-second stale time. The current portfolio still uses the server loader and needs no client query or global state. Never share a mutable server cache between requests.
+Keep `Router` in `explicitLinks` mode so native anchors, including the skip link, retain browser focus behavior. Use reactive prop reads and `For`/`Show` where appropriate. Do not destructure reactive props or snapshot derived values outside accessors or memos. Native `createSignal`, `createStore`, and Context handle application state when needed; do not add Jotai or a React adapter. The portfolio uses the server loader and needs no client query cache, provider, or global state. Do not install TanStack Query without a concrete product requirement. Eden is an explicitly requested API client; do not add providers or synthetic requests to justify its presence. Never share a mutable server cache between requests.
 
 Main projects remain visible. Side projects use an initially closed native `details`; nested descriptions also use native `details`. Mouse and keyboard reveal existing markup without client requests, conditional mounting, or `aria-hidden` on its content.
 
-## Elysia and Eden
+## Elysia
 
-Keep `apiApp` in `src/lib/server/api/app.ts` with the `/api` prefix and chained routes so Eden retains inferred types. Export `ApiApp = typeof apiApp`. The SolidStart adapters pass `event.request` to `apiApp.fetch`.
+Keep `apiApp` in `src/lib/server/api/app.ts` with the `/api` prefix and chained routes. Export `ApiApp = typeof apiApp` for Eden type inference. The SolidStart adapters pass `event.request` to `apiApp.fetch`.
 
 `/api` returns static public profile data; `/api/health` reports application availability. Neither queries Notion; health is not a Notion connectivity check. Keep these endpoints independent of credentials.
 
-Use `createApiClient(origin, options)` for HTTP, with the browser origin for same-origin requests. Use `serverApi` for direct server calls. Check Eden's `error` before consuming `data`.
+Use `createApiClient(origin, options)` for HTTP and `serverApi` for direct Elysia calls. The HTTP client imports `ApiApp` with `import type`; it must never import the server instance. Check Eden errors before consuming data. Portfolio server reads call the repository directly.
 
 ## Notion and content contracts
 
@@ -113,6 +108,6 @@ Canonical URLs use `https://sspzoa.io`. Metadata, crawler routes, and JSON-LD us
 
 ## Verification
 
-Tests use Bun with `tests/setup.ts` preloaded. Its JSX transform uses the Solid SSR compiler. The only globally mocked module is `server-only`. Data tests use injected transports, local handlers, fixtures, or scoped spies, never live Notion. Restore environment values and spies.
+The user removed automated tests and their tooling. Do not reintroduce tests unless requested. Run `bun run check` for lint, type checking, and the production build.
 
-Keep unit tests beside modules and cross-layer checks in `tests`. Add focused behavioral regressions. For UI/CSS, inspect desktop/mobile, keyboard disclosures and skip links, light/dark, and reduced motion. Check raw initial HTML when changing rendering. Check API status, Eden errors/types, metadata, OG output, and browser assets for server-code leakage. Report actual checks and limitations; do not claim browser validation from unit tests.
+For UI/CSS, inspect desktop/mobile, keyboard disclosures and skip links, light/dark, and reduced motion. Check raw initial HTML when changing rendering. Check API status, metadata, OG output, and browser assets for server-code leakage. Report actual checks and limitations.

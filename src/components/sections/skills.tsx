@@ -1,5 +1,4 @@
-import { createMemo, For } from "solid-js";
-import { BrandImage } from "~/components/brand-image";
+import { createMemo, For, Show } from "solid-js";
 import type { Skill } from "~/lib/portfolio/schemas";
 
 export function SkillsContent(props: { data: Skill[] }) {
@@ -7,32 +6,40 @@ export function SkillsContent(props: { data: Skill[] }) {
     const categories = new Map<string, Skill[]>();
     for (const skill of props.data) {
       const category = skill.category || "기타";
-      const items = categories.get(category) ?? [];
-      items.push(skill);
-      categories.set(category, items);
+      if (!categories.has(category)) categories.set(category, []);
+      categories.get(category)!.push(skill);
     }
-    return Array.from(
-      categories,
-      ([category, items]) => [category, items.sort((a, b) => Number(b.isMain) - Number(a.isMain))] as const,
-    );
+    return Array.from(categories, ([name, skills]) => ({
+      name,
+      skills: skills.sort((a, b) => Number(b.isMain) - Number(a.isMain)),
+    }));
   });
   return (
     <For each={groups()}>
-      {([category, items]) => (
+      {(group) => (
         <div class="[&+div]:mt-5">
-          <h3 class="mt-1 mb-1 font-medium text-caption text-muted">{category}</h3>
+          <h3 class="mt-1 mb-1 font-medium text-caption text-muted">{group.name}</h3>
           <ul class="flex flex-wrap gap-x-4 gap-y-1">
-            <For each={items}>
+            <For each={group.skills}>
               {(skill) => (
-                <li class="flex items-center gap-1 [&_img]:grayscale">
-                  {skill.isMain ? (
-                    <>
-                      <BrandImage src={skill.icon} variant="icon" />
-                      <strong>{skill.name}</strong>
-                    </>
-                  ) : (
-                    skill.name
-                  )}
+                <li class="flex items-center gap-1">
+                  <Show when={skill.isMain} fallback={skill.name}>
+                    <Show when={skill.icon}>
+                      {(icon) => (
+                        <img
+                          src={icon()}
+                          alt=""
+                          width={24}
+                          height={24}
+                          loading="lazy"
+                          decoding="async"
+                          draggable={false}
+                          class="block size-6 shrink-0 rounded-ui object-contain p-0.5 grayscale"
+                        />
+                      )}
+                    </Show>
+                    <strong>{skill.name}</strong>
+                  </Show>
                 </li>
               )}
             </For>

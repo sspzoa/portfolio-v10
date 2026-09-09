@@ -1,4 +1,5 @@
 import "server-only";
+import type { PortfolioData, SectionResult } from "~/lib/portfolio/types";
 import { getSectionErrorMessage } from "~/lib/server/portfolio/errors";
 import {
   fetchAboutMe,
@@ -12,8 +13,6 @@ import {
   fetchSkills,
 } from "~/lib/server/portfolio/repository";
 
-export type SectionResult<T> = { data: T; error: null } | { data: null; error: string };
-
 export async function loadSection<T>(name: string, load: () => Promise<T>): Promise<SectionResult<T>> {
   try {
     return { data: await load(), error: null };
@@ -23,7 +22,7 @@ export async function loadSection<T>(name: string, load: () => Promise<T>): Prom
   }
 }
 
-export async function loadPortfolio() {
+export async function loadPortfolio(): Promise<PortfolioData> {
   const [about, careers, projects, experiences, education, skills, awards, certificates, activities] =
     await Promise.all([
       loadSection("about", fetchAboutMe),
@@ -38,5 +37,3 @@ export async function loadPortfolio() {
     ]);
   return { about, careers, projects, experiences, education, skills, awards, certificates, activities };
 }
-
-export type PortfolioData = Awaited<ReturnType<typeof loadPortfolio>>;
