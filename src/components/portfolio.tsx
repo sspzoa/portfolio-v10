@@ -2,7 +2,7 @@ import { For } from "solid-js";
 import { PortfolioContent } from "~/components/portfolio-content";
 import type { PortfolioData } from "~/lib/portfolio/types";
 import { profile } from "~/lib/profile";
-import character from "../../assets/og-logo.svg";
+import character from "../../assets/background-character.svg";
 
 export function PortfolioPage(props: { data: PortfolioData }) {
   return (
