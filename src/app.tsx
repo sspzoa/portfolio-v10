@@ -14,7 +14,7 @@ export default function App() {
         <MetaProvider>
           <ErrorBoundary
             fallback={(_error, reset) => (
-              <main id="main-content" tabindex={-1} class="mx-auto max-w-reading px-6 py-24">
+              <main class="mx-auto max-w-reading px-6 py-24">
                 <HttpStatusCode code={500} />
                 <h1 class="font-bold text-section">페이지를 표시하지 못했어요.</h1>
                 <p class="mt-3 text-secondary">잠시 후 다시 시도해 주세요.</p>

@@ -59,9 +59,7 @@ export function ProjectsContent(props: { data: Project[] }) {
         </ul>
       </Show>
       <Show when={side().length}>
-        <details
-          id="side-projects"
-          class="mt-8 border-line border-t pt-5 [&[open]>summary::before]:[transform:translateY(-2px)_rotate(45deg)] [&[open]>summary]:mb-6 [&[open]>summary]:text-ink">
+        <details class="mt-8 border-line border-t pt-5 [&[open]>summary::before]:[transform:translateY(-2px)_rotate(45deg)] [&[open]>summary]:mb-6 [&[open]>summary]:text-ink">
           <summary class="disclosure-summary min-h-10 py-2">
             <span>사이드 프로젝트</span>
             <span class="text-muted tabular-nums">{side().length}개</span>

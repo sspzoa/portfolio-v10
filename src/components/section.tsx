@@ -15,9 +15,8 @@ export function Section<T>(props: {
   return (
     <Show when={visible()}>
       <section
-        id={props.id}
         aria-labelledby={`${props.id}-title`}
-        class="scroll-mt-8 border-line border-t pt-10 pb-12 max-[40rem]:pt-8 max-[40rem]:pb-10">
+        class="border-line border-t pt-10 pb-12 max-[40rem]:pt-8 max-[40rem]:pb-10">
         <h2 id={`${props.id}-title`} class="mb-6 font-bold text-section tracking-[-0.015em]">
           {props.title}
         </h2>

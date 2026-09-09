@@ -3,7 +3,7 @@ import { HttpStatusCode } from "@solidjs/start";
 
 export default function NotFound() {
   return (
-    <main id="main-content" tabindex={-1} class="mx-auto max-w-reading px-6 py-24">
+    <main class="mx-auto max-w-reading px-6 py-24">
       <HttpStatusCode code={404} />
       <Title>페이지를 찾을 수 없습니다 · 서승표</Title>
       <Meta name="robots" content="noindex" />

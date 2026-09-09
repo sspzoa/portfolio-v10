@@ -2,10 +2,16 @@ import { For } from "solid-js";
 import { PortfolioContent } from "~/components/portfolio-content";
 import type { PortfolioData } from "~/lib/portfolio/types";
 import { profile } from "~/lib/profile";
+import character from "../../assets/og-logo.svg";
 
 export function PortfolioPage(props: { data: PortfolioData }) {
   return (
-    <div id="top" class="mx-auto w-full max-w-reading px-6 pt-24 pb-10 max-[40rem]:px-5 max-[40rem]:pt-12 print:p-0">
+    <div class="relative isolate mx-auto w-full max-w-reading px-6 pt-24 pb-10 max-[40rem]:px-5 max-[40rem]:pt-12 print:p-0">
+      <div
+        aria-hidden="true"
+        class="pointer-events-none fixed inset-0 -z-1 flex items-center justify-center overflow-hidden print:hidden">
+        <img src={character} alt="" class="w-[min(40vw,22rem)] max-w-none select-none opacity-[0.035]" />
+      </div>
       <header class="pb-16 max-[40rem]:pb-12">
         <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2">
           <h1 class="font-bold text-profile leading-[1.35] tracking-[-0.025em]">{profile.name}</h1>
@@ -27,16 +33,13 @@ export function PortfolioPage(props: { data: PortfolioData }) {
           </For>
         </nav>
       </header>
-      <main id="main-content" tabindex={-1}>
+      <main>
         <PortfolioContent data={props.data} />
       </main>
-      <footer class="mt-8 flex flex-wrap justify-between gap-3 border-line border-t pt-6 text-caption text-muted print:hidden">
-        <span>
+      <footer class="mt-8 flex flex-wrap items-center justify-between gap-3 border-line border-t pt-6 text-caption text-muted print:hidden">
+        <span class="inline-flex items-center gap-2">
           © {new Date().getFullYear()} {profile.englishName}
         </span>
-        <a href="#top" class="text-inherit">
-          맨 위로
-        </a>
       </footer>
     </div>
   );
