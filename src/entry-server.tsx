@@ -4,7 +4,7 @@ export default createHandler(
   () => (
     <StartServer
       document={(props) => (
-        <html lang="ko" class="scroll-pt-8 motion-safe:scroll-smooth">
+        <html lang="ko">
           <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,7 +14,7 @@ export default createHandler(
             <link rel="apple-touch-icon" href="/apple-icon.png" />
             {props.assets}
           </head>
-          <body class="m-0 bg-canvas font-sans text-copy text-ink leading-[1.75] antialiased">
+          <body>
             <div id="app">{props.children}</div>
             {props.scripts}
           </body>

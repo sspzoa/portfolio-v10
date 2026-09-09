@@ -45,7 +45,7 @@ export function PortfolioContent(props: { data: PortfolioData }) {
                   description={item.description}
                   start={item.startDate}
                   end={item.endDate}
-                  logo={item.logo}
+                  logo={null}
                 />
               )}
             </For>

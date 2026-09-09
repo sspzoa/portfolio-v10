@@ -26,6 +26,7 @@ export function createNotionRequest({
     const body = options.body === undefined ? undefined : JSON.stringify(options.body);
 
     for (let attempt = 0; attempt < 3; attempt++) {
+      let retryDelay = 1_000 * 2 ** attempt;
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
@@ -48,6 +49,11 @@ export function createNotionRequest({
         }
 
         if (!response.ok) {
+          const retryAfter = response.headers.get("Retry-After");
+          if (retryAfter !== null && /^\d+$/.test(retryAfter.trim())) {
+            const milliseconds = Number(retryAfter) * 1_000;
+            if (Number.isSafeInteger(milliseconds)) retryDelay = Math.max(retryDelay, milliseconds);
+          }
           await response.body?.cancel().catch(() => undefined);
           throw new NotionRequestError(response.status);
         }
@@ -70,7 +76,7 @@ export function createNotionRequest({
         clearTimeout(timeout);
       }
 
-      await sleep(1_000 * 2 ** attempt);
+      await sleep(retryDelay);
     }
 
     throw new NotionRequestError(null);

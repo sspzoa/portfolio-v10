@@ -1,48 +1,56 @@
 import "server-only";
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
-import { Resvg } from "@resvg/resvg-js";
+import { renderAsync } from "@resvg/resvg-js";
+import satori from "satori";
 import { profile } from "~/lib/profile";
 import { socialImage } from "~/lib/seo";
 import boldFont from "../../../assets/fonts/portfolio-og-bold.ttf?inline";
 import regularFont from "../../../assets/fonts/portfolio-og-regular.ttf?inline";
-import logo from "../../../assets/seungpyo-logo.png?inline";
+import logo from "../../../assets/og-logo.svg?inline";
 
-function escapeXml(text: string) {
-  return text.replace(
-    /[&<>"']/g,
-    (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" })[character]!,
-  );
-}
+const fonts = [
+  { name: "Portfolio OG Sans", data: Buffer.from(regularFont.split(",")[1]!, "base64"), weight: 400 as const },
+  { name: "Portfolio OG Sans", data: Buffer.from(boldFont.split(",")[1]!, "base64"), weight: 700 as const },
+];
 
 export async function createPortfolioImage() {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${socialImage.width}" height="${socialImage.height}" viewBox="0 0 1200 630">
-    <rect width="1200" height="630" fill="#ffe34d"/>
-    <image x="488" y="107" width="224" height="224" xlink:href="${logo}"/>
-    <text x="600" y="411" text-anchor="middle" font-family="Portfolio OG Sans" font-size="84" font-weight="700" fill="#202322">${escapeXml(profile.englishName)}</text>
-    <text x="600" y="475" text-anchor="middle" font-family="Portfolio OG Sans" font-size="32" fill="#53564e">${escapeXml(profile.role)}</text>
-  </svg>`;
-  const directory = await mkdtemp(join(tmpdir(), "portfolio-og-"));
-  try {
-    const fontFiles = await Promise.all(
-      [regularFont, boldFont].map(async (font, index) => {
-        const path = join(directory, `${index}.ttf`);
-        await writeFile(path, Buffer.from(font.split(",")[1]!, "base64"));
-        return path;
-      }),
-    );
-    const png = new Resvg(svg, {
-      font: {
-        loadSystemFonts: false,
-        defaultFontFamily: "Portfolio OG Sans",
-        fontFiles,
+  const svg = await satori(
+    {
+      key: null,
+      type: "div",
+      props: {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          paddingBottom: 16,
+          backgroundColor: "#ffe34d",
+          color: "#202322",
+          fontFamily: "Portfolio OG Sans",
+        },
+        children: [
+          { type: "img", props: { src: logo, width: 176, height: 176, style: { objectFit: "contain" } } },
+          {
+            type: "div",
+            props: {
+              style: { marginTop: 32, fontSize: 64, fontWeight: 700, lineHeight: 1.15 },
+              children: profile.englishName,
+            },
+          },
+          {
+            type: "div",
+            props: {
+              style: { marginTop: 12, fontSize: 28, lineHeight: 1.4, color: "#53564e" },
+              children: profile.role,
+            },
+          },
+        ],
       },
-    })
-      .render()
-      .asPng();
-    return new Response(new Uint8Array(png), { headers: { "Content-Type": "image/png" } });
-  } finally {
-    await rm(directory, { recursive: true, force: true });
-  }
+    },
+    { width: socialImage.width, height: socialImage.height, fonts },
+  );
+  const image = await renderAsync(svg, { font: { loadSystemFonts: false } });
+  return new Response(new Uint8Array(image.asPng()), { headers: { "Content-Type": "image/png" } });
 }

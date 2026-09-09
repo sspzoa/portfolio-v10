@@ -1,6 +1,6 @@
 import "server-only";
 import type { PortfolioData, SectionResult } from "~/lib/portfolio/types";
-import { getSectionErrorMessage } from "~/lib/server/portfolio/errors";
+import { getSectionErrorDetails, getSectionErrorMessage } from "~/lib/server/portfolio/errors";
 import {
   fetchAboutMe,
   fetchActivities,
@@ -17,7 +17,7 @@ export async function loadSection<T>(name: string, load: () => Promise<T>): Prom
   try {
     return { data: await load(), error: null };
   } catch (error) {
-    console.error(`[Portfolio:${name}]`, error instanceof Error ? error.name : "UnknownError");
+    console.error("Portfolio section failed", { section: name, ...getSectionErrorDetails(error) });
     return { data: null, error: getSectionErrorMessage(error) };
   }
 }

@@ -34,7 +34,7 @@ export function SkillsContent(props: { data: Skill[] }) {
                           loading="lazy"
                           decoding="async"
                           draggable={false}
-                          class="block size-6 shrink-0 rounded-ui object-contain p-0.5 grayscale"
+                          class="block size-6 shrink-0 rounded-ui object-contain p-0.5"
                         />
                       )}
                     </Show>

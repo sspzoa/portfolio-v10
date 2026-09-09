@@ -3,7 +3,19 @@
 
 @import "./tokens.css";
 
+html {
+  scroll-padding-top: var(--space-8);
+}
+
 body {
+  margin: 0;
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
@@ -34,6 +46,12 @@ a:hover {
   border-radius: var(--radius-control);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -54,6 +72,3 @@ a:hover {
     --accent: #786000;
   }
 }
-
-
-@unocss all;

@@ -4,6 +4,7 @@ import { HttpStatusCode } from "@solidjs/start";
 import { FileRoutes } from "@solidjs/start/router";
 import { ErrorBoundary, Suspense } from "solid-js";
 import "./app.css";
+import "virtual:uno.css";
 
 export default function App() {
   return (
