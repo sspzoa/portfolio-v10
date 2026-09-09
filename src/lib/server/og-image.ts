@@ -20,30 +20,42 @@ export async function createPortfolioImage() {
       props: {
         style: {
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
           width: "100%",
           height: "100%",
           justifyContent: "center",
-          paddingBottom: 16,
+          gap: 96,
+          padding: 80,
           backgroundColor: "#ffe34d",
           color: "#202322",
           fontFamily: "Portfolio OG Sans",
         },
         children: [
-          { type: "img", props: { src: logo, width: 176, height: 176, style: { objectFit: "contain" } } },
           {
-            type: "div",
-            props: {
-              style: { marginTop: 32, fontSize: 64, fontWeight: 700, lineHeight: 1.15 },
-              children: profile.englishName,
-            },
+            type: "img",
+            props: { src: logo, width: 224, height: 262, style: { objectFit: "contain", flexShrink: 0 } },
           },
           {
             type: "div",
             props: {
-              style: { marginTop: 12, fontSize: 28, lineHeight: 1.4, color: "#53564e" },
-              children: profile.role,
+              style: { display: "flex", flexDirection: "column", justifyContent: "center" },
+              children: [
+                {
+                  type: "div",
+                  props: {
+                    style: { fontSize: 76, fontWeight: 700, lineHeight: 1.15, whiteSpace: "nowrap" },
+                    children: profile.englishName,
+                  },
+                },
+                {
+                  type: "div",
+                  props: {
+                    style: { marginTop: 20, fontSize: 38, lineHeight: 1.4, color: "#53564e" },
+                    children: profile.role,
+                  },
+                },
+              ],
             },
           },
         ],
