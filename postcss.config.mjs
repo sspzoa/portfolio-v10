@@ -1,14 +1,6 @@
-import { resolve } from "node:path";
+import UnoCSS from "@unocss/postcss";
+import configDependencies from "./tools/postcss/config-dependencies.cjs";
 
-const config = {
-  plugins: {
-    [resolve("tools/postcss/config-dependencies.cjs")]: {
-      files: ["./uno.config.ts"],
-    },
-    "@unocss/postcss": {
-      configOrPath: "./uno.config.ts",
-    },
-  },
+export default {
+  plugins: [configDependencies({ files: ["./uno.config.ts"] }), UnoCSS({ configOrPath: "./uno.config.ts" })],
 };
-
-export default config;

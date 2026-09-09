@@ -16,9 +16,9 @@ pnpm-lock.yaml
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
+# SolidStart
+/.output/
+/.nitro/
 
 # production
 /build
@@ -41,6 +41,5 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
 .idea

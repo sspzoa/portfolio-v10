@@ -4,122 +4,115 @@
 
 `portfolio-v10` is Seungpyo Suh's Korean, single-page portfolio at `https://sspzoa.io`. Notion is the content source. Keep the site readable, accessible, and minimal: one reading column, simple typography, whitespace, and thin rules.
 
-Make changes for actual product requirements. Installed libraries are available infrastructure, not a requirement to introduce more state, API endpoints, wrappers, or abstraction layers. Preserve unrelated working-tree changes.
+Make changes for actual product requirements. Installed libraries are infrastructure, not a reason to introduce state, endpoints, wrappers, or abstraction layers. Preserve unrelated working-tree changes.
+
+## Scaffold
+
+The project was initialized with `create-solid@0.12.0 --solidstart --v2 --ts --template basic`. Keep its `src/app.tsx`, entry modules, `src/routes`, `src/components`, `src/app.css`, `src/global.d.ts`, and `~` alias conventions. Retain product-specific SSR, accessibility, security, and content guarantees when extending the scaffold.
 
 ## Stack and commands
 
-Use Bun for dependency management, scripts, and tests. Next.js App Router runs on Node.js; installing packages with Bun does not make Next.js a Bun server. Exact dependency versions belong in `package.json` and `bun.lock`.
+Use Bun for dependencies, scripts, and tests. SolidStart 2 runs on Vite 8 and Nitro 3 with Node.js 24 or newer. Keep exact dependency versions in `package.json` and `bun.lock`. Keep UnoCSS packages pinned to the same version.
 
-- Rendering: React Server Components, React Compiler, and Next.js metadata routes.
-- Styling: UnoCSS Wind3, PostCSS, and CSS custom properties.
-- APIs: Elysia with Eden from `@elysia/eden`.
-- Client infrastructure: Jotai and TanStack Query.
-- Content: Notion HTTP API, Zod validation, and synchronous `react-markdown`.
-- Quality: Bun tests, Biome, TypeScript, and the Next.js production build.
+- Rendering: SolidJS, Solid Router, SolidStart async SSR, and `@solidjs/meta`.
+- State: native Solid signals/stores and `@tanstack/solid-query` for client API caching.
+- Styling: UnoCSS Wind3 through PostCSS, CSS custom properties, and the Tailwind v4-compatible reset.
+- API: Elysia with Eden from `@elysia/eden`.
+- Content: Notion HTTP API, Zod validation, and synchronous `markdown-it` rendering.
+- Social image: request-time SVG rendering with `@resvg/resvg-js` and bundled fonts.
+- Quality: Bun tests, Biome, TypeScript, and the production build.
 
 | Command | Purpose |
 | --- | --- |
-| `bun install` | Install dependencies from the project manifest and lockfile |
-| `bun run dev` | Start the development server |
-| `bun run check` | Run tests, lint, and the production build with type checking |
-| `bun run test` | Run Bun tests |
+| `bun install` | Install dependencies from the manifest and lockfile |
+| `bun run dev` | Generate the social image and start Vite on port 3000 |
+| `bun run check` | Run tests, lint, type checking, and production build |
+| `bun run test` | Run Bun tests with Solid SSR JSX compilation |
 | `bun run lint` | Check formatting and lint rules |
-| `bun run build` | Build the production application |
-| `bun run start` | Serve the production build |
+| `bun run typecheck` | Check TypeScript without emitting files |
+| `bun run build` | Generate the social image and build the application |
+| `bun run start` | Serve the Node production build, loading `.env.local` when present |
 | `bun outdated` | Review available dependency updates |
 
-Run `bun run check` for application or build-configuration changes. Documentation-only changes need a content and diff review. Keep dependency updates scoped, update `bun.lock`, and align runtime type packages with supported runtimes. Keep UnoCSS packages pinned to the same version; its PostCSS integration is experimental.
+Run `bun run check` for application or build changes. Documentation-only changes need content and diff review. Review the installed SolidStart APIs and current official documentation before changing framework configuration. Nitro uses its Node server preset locally and can target other hosts through `NITRO_PRESET`; verify the intended deployment output before publishing.
 
-## Code ownership and dependencies
+## Code ownership
 
 | Location | Responsibility |
 | --- | --- |
-| `src/app` | Next.js routes, root layout, provider composition, metadata endpoints, error boundaries, and document styles |
-| `src/app/api/[[...slugs]]/route.ts` | Thin Next.js adapter exporting supported HTTP handlers from `apiApp.fetch` |
-| `src/app/app-providers.tsx` | Jotai and TanStack Query client provider boundary |
-| `src/client/api.ts` | Application-specific Eden HTTP client factory |
-| `src/server/api` | Elysia application composition and the server-side Eden client |
-| `src/server/env.ts` | Lazy server credential validation |
-| `src/server/notion` | Feature-independent HTTP transport, pagination, raw schemas, property readers, and integration errors |
-| `src/features/portfolio/model` | Canonical Zod entity schemas and inferred domain types |
-| `src/features/portfolio/server` | Notion source configuration, page schemas, mapping, repository, and safe section error messages |
-| `src/features/portfolio/portfolio-page.tsx` | Page composition |
-| `src/features/portfolio/portfolio-content.tsx` | Concurrent section loading and complete server-rendered content |
-| `src/features/portfolio/ui` | Typed presentation, sections, and reusable entry components |
-| `src/features/portfolio/config` | Static public profile, canonical URLs, SEO metadata, and JSON-LD |
-| `src/features/portfolio/og-image.tsx` | Social image generation from static copy and bundled fonts |
-| `src/shared` | Feature-independent helpers, Markdown presentation, and QueryClient lifecycle |
+| `src/app.tsx` | Router, metadata and query providers, and one root Suspense boundary |
+| `src/components/app-shell.tsx` | Skip link and app error boundary |
+| `src/entry-client.tsx` | Solid hydration entry |
+| `src/entry-server.tsx` | HTML document, assets, icons, viewport, and complete async SSR |
+| `src/routes` | UI routes, thin API adapters, metadata endpoints, and 404 handling |
+| `src/middleware.ts` | Response security headers and uncached dynamic responses |
+| `src/app.css` and `src/tokens.css` | Document defaults and design tokens |
+| `src/lib/api-client.ts` | Application-specific Eden HTTP client factory |
+| `src/lib/server/api` | Elysia application and direct server Eden client |
+| `src/lib/server/env.ts` | Lazy server credential validation |
+| `src/lib/server/notion` | Generic HTTP transport, pagination, raw schemas, property readers, and integration errors |
+| `src/lib/portfolio` | Canonical Zod entities and inferred domain types |
+| `src/lib/server/portfolio` | Notion sources, page validation, mapping, repository, and concurrent section loading |
+| `src/lib/portfolio-query.ts` | Solid Router query with a server-function boundary |
+| `src/components/portfolio.tsx` | Page composition from typed data |
+| `src/components/portfolio-content.tsx` | Section composition, safe failures, and empty-section omission |
+| `src/components` | Typed presentation, sections, and entries |
+| `src/lib/profile.ts` and `src/lib/seo.ts` | Static public profile, canonical URLs, SEO copy, and JSON-LD |
+| `src/lib/server/og-image.ts` | Dynamic social PNG generation |
+| `src/lib` | Public configuration, schemas, Markdown, API clients, and query helpers |
+| `src/components/query-provider.tsx` | Request-isolated TanStack Solid Query provider |
+| `src/lib/query-client.ts` | QueryClient factory with a 60-second stale time |
 | `tests` | Test setup and cross-layer API, Eden, and typography checks |
 | `tools/postcss` | CSS configuration dependency tracking |
 
-Next.js routes and Elysia compose features; features depend on domain types, shared utilities, and generic Notion infrastructure. `src/server/api` may import features; `src/server/notion` and `src/shared` must not. Domain models have no React or server imports. Feature server modules have no UI imports. Presentation components receive typed data and do not call repositories or read credentials.
+Use the official basic template layout: `src/routes` for routes, `src/components` for UI, and `src/lib` for application logic. Use the built-in `~` alias; do not recreate `features/server/shared` top-level layers. Keep authenticated code inside `src/lib/server` and schemas inside `src/lib/portfolio`. Generic Notion transport must not depend on portfolio-specific mapping or UI. Domain schemas have no UI or server imports. Components receive typed data without querying repositories or reading credentials.
 
-Use explicit imports. Do not introduce barrel files mixing client and server modules. Guard credential access, the authenticated Notion client, repositories, and API server entry points with `server-only`. The browser Eden client may import `ApiApp` using `import type`; it must not import the Elysia instance at runtime.
+Use explicit imports and English identifiers, descriptive kebab-case filenames, and named exports except framework entry points. Do not introduce barrels mixing client and server modules. Guard credentials, authenticated Notion clients, repositories, loaders, and API server entry points with `import "server-only"`; SolidStart enforces this boundary during builds. Browser Eden imports `ApiApp` using `import type`, never the Elysia instance. UI may use erased type-only imports for loader result types.
 
-Use English identifiers, descriptive kebab-case filenames, and named exports except where framework or tooling entry points require defaults. Follow existing domain terminology, including `Certificate`, `certificateSchema`, and `fetchEducation`. Keep the Notion source key `educations` unchanged. Do not add code comments unless requested.
+Preserve terminology including `Certificate`, `certificateSchema`, and `fetchEducation`. Keep the Notion source key `educations`. Do not add code comments unless requested.
 
-## Rendering and client state
+## Rendering and state
 
-The home route declares `force-dynamic`, exports static metadata, emits JSON-LD, and composes `PortfolioPage`. Keep content fetching in the portfolio server repository.
+The home route preloads the portfolio query, reads it with `createAsync`, and emits static metadata and safely serialized JSON-LD. The query invokes the repository loader through a `"use server"` function. Never route these server reads through the public HTTP API.
 
-Start section requests concurrently and await all results before rendering portfolio content. The initial HTML must include every nonempty successful section and collapsed project descriptions. Omit empty sections; show a safe error for a failed section while preserving the others. Do not introduce section Suspense boundaries or a loading route that streams the portfolio into hidden replacement containers.
+`loadPortfolio` starts all section requests concurrently and resolves all results before returning. Failures are converted into safe section messages without dropping successful sections. Omit empty sections. Keep `createHandler` in `mode: "async"`: the initial HTML includes every successful section and all collapsed descriptions. The root Suspense boundary coordinates async data; do not introduce section-level streaming, loading routes, or hidden replacement containers.
 
-Main projects remain visible. Side projects use an initially closed native `details` element, and nested descriptions also use native `details`. Mouse and keyboard must expand existing markup without client fetching, conditional mounting, or `aria-hidden` on the content.
+Keep `Router` in `explicitLinks` mode so native anchors, including the skip link, retain browser focus behavior. Use reactive prop reads and `For`/`Show` where appropriate. Do not destructure reactive props or snapshot derived values outside accessors or memos. Native `createSignal`, `createStore`, and Context handle application state when needed; do not add Jotai or a React adapter. `QueryProvider` creates an isolated TanStack Solid Query client per app root with a 60-second stale time. The current portfolio still uses the server loader and needs no client query or global state. Never share a mutable server cache between requests.
 
-Jotai and TanStack Query currently provide infrastructure; the portfolio does not require atoms or client queries. Use Jotai only for genuine client state and TanStack Query for client API data when a feature needs them. Keep native disclosures state-free. Pass Server Components through provider `children` rather than importing server modules into Client Components.
-
-Each server render gets an isolated Jotai store and QueryClient. `createQueryClient` creates a new cache; `getQueryClient` reuses one only in the browser. The default query stale time is 60 seconds. Never share a mutable server cache between users.
+Main projects remain visible. Side projects use an initially closed native `details`; nested descriptions also use native `details`. Mouse and keyboard reveal existing markup without client requests, conditional mounting, or `aria-hidden` on its content.
 
 ## Elysia and Eden
 
-Keep `apiApp` in `src/server/api/app.ts` with the `/api` prefix and chained route definitions so Eden retains inferred route types. Export `ApiApp = typeof apiApp`. The Next.js adapter uses the Node.js runtime and exports only the HTTP methods implemented by the application.
+Keep `apiApp` in `src/lib/server/api/app.ts` with the `/api` prefix and chained routes so Eden retains inferred types. Export `ApiApp = typeof apiApp`. The SolidStart adapters pass `event.request` to `apiApp.fetch`.
 
-The current API exposes static public profile data at `/api` and application availability at `/api/health`. Neither endpoint queries Notion; the health endpoint is not a Notion connectivity check.
+`/api` returns static public profile data; `/api/health` reports application availability. Neither queries Notion; health is not a Notion connectivity check. Keep these endpoints independent of credentials.
 
-Use `createApiClient(origin, options)` for HTTP calls, passing the current browser origin for same-origin requests. Use `serverApi` from `src/server/api/client.ts` for direct server-side Eden calls without HTTP. Check Eden's `error` before consuming `data`; a TanStack Query query function must throw on failure rather than cache an Eden error result as successful data. Do not route existing server-rendered Notion reads through HTTP merely to use Eden.
+Use `createApiClient(origin, options)` for HTTP, with the browser origin for same-origin requests. Use `serverApi` for direct server calls. Check Eden's `error` before consuming `data`.
 
 ## Notion and content contracts
 
-Keep `NOTION_TOKEN` in ignored `.env.local`. Validate credentials lazily. Never expose tokens in client code, HTML, serialized state, logs, or user-facing errors.
+Keep `NOTION_TOKEN` in ignored `.env.local`; validate it lazily. Never expose tokens in browser code, HTML, serialized state, logs, or user-facing errors.
 
-Preserve these transport and repository guarantees:
-
-- API version `2025-09-03`, uncached requests, and a 15-second timeout covering response body consumption.
-- Three total attempts with 1-second and 2-second backoff for retryable failures. Treat HTTP 429 as transient.
-- Existing source IDs, property contracts, and sorting in `sources.ts`.
-- Complete cursor pagination with safe failures for missing or repeated cursors and malformed responses.
-- Raw page validation before mapping and domain validation after mapping.
+Preserve the API version `2025-09-03`, uncached requests, and 15-second timeout covering body consumption. Make three total attempts with 1-second and 2-second backoff for retryable failures, including HTTP 429. Preserve source IDs, properties, and sorting in `sources.ts`. Paginate completely, failing safely for missing/repeated cursors or malformed responses. Validate raw pages before mapping and domain data after mapping.
 
 Keep awards, certificates, and education separate. Ongoing date labels are opt-in for careers, experience, and education; projects and single-day activities retain date labels.
 
-Render Markdown synchronously with `react-markdown`. Preserve CommonMark, Unicode bullet normalization, and raw HTML as literal escaped text. Allow only HTTP, HTTPS, and mailto links. Do not add `rehype-raw`, client Markdown hooks, or unmanaged Markdown image loading. Add plugins only for a concrete content requirement.
+Markdown uses CommonMark with raw HTML disabled and Unicode bullet normalization. Render raw HTML as escaped literal text. Only HTTP, HTTPS, and mailto links are allowed; blocked links retain formatted labels. Open allowed links with `target="_blank"` and `rel="noopener noreferrer"`. Render image alt text without loading unmanaged images. CMS headings become paragraphs. Only the trusted renderer output and safely escaped static JSON-LD may enter `innerHTML`; never pass raw Notion text into it.
 
 ## Styling, accessibility, and metadata
 
-`src/app/styles/tokens.css` owns design tokens. `uno.config.ts` maps them to utilities and defines source scanning. `src/app/globals.css` owns document basics and loads the Tailwind v4-compatible reset; this is not a Tailwind compiler dependency. Component styles live in JSX utility classes.
+`src/tokens.css` owns tokens; `uno.config.ts` maps them to utilities and controls scanning. `src/app.css` owns document basics, accessibility, motion preferences, and the reset. Component styles live in statically extractable JSX utilities. Keep complete literal alternatives for dynamic classes.
 
-Use statically extractable UnoCSS utilities directly in JSX. Keep utilities visible on the elements by default. Use a shortcut only for a substantial repeated combination, such as `disclosure-summary`; keep per-instance spacing and sizing on the element. Do not create shortcuts for one-off styles or simple utility combinations. Keep global CSS limited to imports, document defaults, accessibility, motion preferences, and custom keyframes. Preserve complete literal utility alternatives for dynamic variants rather than constructing class names. OG image rendering uses inline styles because its image renderer does not consume the page stylesheet. Custom font sizes must inherit line height unless a component deliberately overrides it; UnoCSS's default line-height fallback previously compressed entry headings and captions.
+Use a shortcut only for substantial repetition, such as `disclosure-summary`; retain per-instance sizing and spacing on the element. Custom font sizes inherit line height unless deliberately overridden.
 
-Preserve `tools/postcss/config-dependencies.cjs` in the PostCSS pipeline so UnoCSS configuration changes invalidate CSS caches. Verify configuration changes against generated CSS and the running page; a passing build alone does not prove that cached styles refreshed.
+Keep UnoCSS's PostCSS integration and `tools/postcss/config-dependencies.cjs`. The Vite plugin failed to generate utility CSS with this SolidStart/Vite build configuration. Verify configuration changes against generated CSS and the running page; a passing build is insufficient.
 
-Respect system light/dark and reduced-motion preferences. Preserve skip links, visible keyboard focus, responsive layouts, and the security headers in `next.config.ts`, including CSP. Styling must remain build-generated and available before JavaScript executes.
+Respect system light/dark and reduced motion. Preserve skip links, visible keyboard focus, responsive layouts, and all headers in `src/lib/server/security-headers.ts`. Nitro route rules apply security headers to static assets, while middleware also covers dynamic responses. Styles must be available before JavaScript executes.
 
-Canonical URLs use `https://sspzoa.io`. Metadata and JSON-LD use static public configuration without querying Notion. Preserve safe JSON-LD serialization. OG generation uses the bundled, renamed Pretendard 1.3.9 subsets in `assets/fonts`; retain their OFL license and refresh glyph coverage when changing Korean OG copy. Image generation must work offline.
+Canonical URLs use `https://sspzoa.io`. Metadata, crawler routes, and JSON-LD use static configuration without Notion. Keep safe JSON-LD serialization. `/opengraph-image` generates and returns PNG bytes on each request. Bundle logo and font assets with the server; do not generate a static PNG during dev/build. Temporary font files required by resvg are isolated per request and removed after rendering. Use bundled renamed Pretendard 1.3.9 subsets in `assets/fonts`, retain their license, and refresh glyph coverage when changing copy. Image generation works offline without system fonts.
 
 ## Verification
 
-Tests use Bun with `tests/setup.ts` preloaded by `bunfig.toml`. The only globally mocked module is `server-only`. Use injected transports, local handlers, fixtures, or scoped spies for data tests; never call live Notion from tests. Restore modified environment values and spies after each test.
+Tests use Bun with `tests/setup.ts` preloaded. Its JSX transform uses the Solid SSR compiler. The only globally mocked module is `server-only`. Data tests use injected transports, local handlers, fixtures, or scoped spies, never live Notion. Restore environment values and spies.
 
-Keep unit tests beside their modules and cross-layer checks in `tests`. Add focused regression coverage for changed behavior rather than tests that only restate implementation details.
-
-For UI or CSS changes, verify the actual page at desktop and mobile widths, keyboard interaction, and relevant color or motion modes. Check initial response HTML when modifying rendering or providers. Verify API status codes, Eden error handling, and type inference when changing API contracts. Report the checks performed and any remaining limitations; do not claim browser validation from unit tests alone.
-
-<!-- BEGIN:nextjs-agent-rules -->
-
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
+Keep unit tests beside modules and cross-layer checks in `tests`. Add focused behavioral regressions. For UI/CSS, inspect desktop/mobile, keyboard disclosures and skip links, light/dark, and reduced motion. Check raw initial HTML when changing rendering. Check API status, Eden errors/types, metadata, OG output, and browser assets for server-code leakage. Report actual checks and limitations; do not claim browser validation from unit tests.

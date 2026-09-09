@@ -1,17 +1,17 @@
 import { expect, expectTypeOf, test } from "bun:test";
-import { GET } from "@/app/api/[[...slugs]]/route";
-import { createApiClient } from "@/client/api";
-import { profile } from "@/features/portfolio/config/profile";
-import { serverApi } from "@/server/api/client";
+import { createApiClient } from "~/lib/api-client";
+import { profile } from "~/lib/profile";
+import { serverApi } from "~/lib/server/api/client";
+import { GET } from "~/routes/api/[...slugs]";
 
-test("Eden HTTP client calls the prefixed Next.js route with inferred response types", async () => {
+test("Eden HTTP client calls the prefixed SolidStart route with inferred response types", async () => {
   const requests: string[] = [];
   const api = createApiClient("https://portfolio.example", {
     fetcher: Object.assign(
       async (input: Parameters<typeof fetch>[0], init?: Parameters<typeof fetch>[1]) => {
         const request = new Request(input, init);
         requests.push(request.url);
-        return GET(request);
+        return GET({ request });
       },
       { preconnect: fetch.preconnect },
     ),
