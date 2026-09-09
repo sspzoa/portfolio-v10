@@ -32,7 +32,7 @@ Keep the official create-solid basic layout and the built-in `~` alias. Do not a
 
 | Location | Responsibility |
 | --- | --- |
-| `src/app.tsx` | Router, metadata provider, skip link, error boundary, root Suspense, stylesheet imports |
+| `src/app.tsx` | Router, metadata provider, error boundary, root Suspense, stylesheet imports |
 | `src/entry-client.tsx` | Solid hydration |
 | `src/entry-server.tsx` | HTML document, viewport, theme color, icons, assets, async SSR |
 | `src/routes` | Page routes, thin API adapters, metadata routes, dynamic OG, 404 |
@@ -85,13 +85,13 @@ Use the standard `UnoCSS()` Vite plugin before SolidStart, with `virtual:uno.css
 
 Keep document styles in `src/app.css`, tokens in `src/tokens.css`, and component styles in statically extractable JSX utilities. Dynamic classes need complete literal alternatives. Shortcuts are for substantial repetition; instance spacing remains on the element. Font-size utilities inherit line height unless intentionally overridden.
 
-Preserve skip links, visible focus, semantic headings, accessible disclosures, reduced motion, print styles, and layouts without horizontal overflow. Keep the charcoal browser theme color. Nitro route rules apply security headers to static assets; middleware also covers dynamic responses. Dynamic responses use `Cache-Control: no-store`.
+The user removed the skip-to-content link; do not reintroduce it without a request. Preserve visible focus, semantic headings, accessible disclosures, reduced motion, print styles, and layouts without horizontal overflow. Keep the charcoal browser theme color. Nitro route rules apply security headers to static assets; middleware also covers dynamic responses. Dynamic responses use `Cache-Control: no-store`.
 
 Canonical URLs use `https://sspzoa.io`. Metadata, robots, sitemap, and JSON-LD use static configuration without Notion. `/opengraph-image` returns a freshly rendered 1200×630 PNG. Satori accepts plain element objects and bundled font buffers, emitting SVG paths; resvg renders the SVG asynchronously without system fonts. Use Nitro's `traceDeps: ["satori", "harfbuzzjs*"]` to package its Node/WASM dependencies without rebundling them. Keep generation offline and in memory: no temporary fonts, process cleanup hooks, or build-time PNG. Preserve bundled font licenses and glyph coverage when changing copy.
 
 ## Verification and delivery
 
-Inspect the diff and preserve earlier accepted UI changes. For styles or rendering, check desktop/mobile, light/dark, reduced motion, keyboard skip links/disclosures, initial HTML, and styles without JavaScript. For UnoCSS configuration, also verify a newly introduced utility through HMR and the production CSS output.
+Inspect the diff and preserve earlier accepted UI changes. For styles or rendering, check desktop/mobile, light/dark, reduced motion, keyboard disclosures, initial HTML, and styles without JavaScript. For UnoCSS configuration, also verify a newly introduced utility through HMR and the production CSS output.
 
 For API/content changes, check status codes, safe partial failures, retries with injected responses, pagination, and Eden behavior as relevant. Use local fixtures or temporary verification scripts rather than live Notion for failure cases. Do not add permanent test tooling without authorization.
 

@@ -12,11 +12,6 @@ export default function App() {
       explicitLinks
       root={(props) => (
         <MetaProvider>
-          <a
-            href="#main-content"
-            class="fixed top-4 left-4 z-10 border border-line bg-canvas px-4 py-2 text-ink [transform:translateY(calc(-100%_-_var(--space-8)))] focus:translate-y-0 print:hidden">
-            본문으로 바로가기
-          </a>
           <ErrorBoundary
             fallback={(_error, reset) => (
               <main id="main-content" tabindex={-1} class="mx-auto max-w-reading px-6 py-24">
