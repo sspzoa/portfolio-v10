@@ -10,7 +10,7 @@ export function PortfolioPage(props: { data: PortfolioData }) {
       <div
         aria-hidden="true"
         class="pointer-events-none fixed inset-0 -z-1 flex items-center justify-center overflow-hidden print:hidden">
-        <img src={character} alt="" class="w-[min(40vw,22rem)] max-w-none select-none opacity-[0.035]" />
+        <img src={character} alt="" class="w-[344px] max-w-none select-none opacity-[0.035] max-[40rem]:w-[50vw]" />
       </div>
       <header class="pb-16 max-[40rem]:pb-12">
         <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2">
