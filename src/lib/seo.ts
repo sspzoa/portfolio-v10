@@ -31,3 +31,10 @@ export const profileStructuredData = {
 } as const;
 
 export const profileStructuredDataJson = JSON.stringify(profileStructuredData).replace(/</g, "\\u003c");
+
+export const portfolioStructuredDataJson = JSON.stringify({
+  ...profileStructuredData,
+  "@id": `${siteUrl}/portfolio#profile`,
+  url: `${siteUrl}/portfolio`,
+  name: `${profile.name} · 포트폴리오`,
+}).replace(/</g, "\\u003c");
