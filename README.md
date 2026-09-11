@@ -17,25 +17,6 @@
 <h3 align="center">Tech Stack</h3>
 
 <p align="center">
-  <strong>Frontend</strong><br />
-  <br />
-  <img src="https://skillicons.dev/icons?i=ts,solidjs,unocss" alt="TypeScript, SolidJS, UnoCSS" /><br />
-  <br />
-  TypeScript · SolidStart · SolidJS · UnoCSS
-</p>
-
-<p align="center">
-  <strong>Backend & Content</strong><br />
-  <br />
-  <img src="https://skillicons.dev/icons?i=elysia,notion" alt="Elysia, Notion" /><br />
-  <br />
-  Nitro · Elysia · Eden · Zod · Notion API
-</p>
-
-<p align="center">
-  <strong>Tooling & Runtime</strong><br />
-  <br />
-  <img src="https://skillicons.dev/icons?i=vite,bun,nodejs" alt="Vite, Bun, Node.js" /><br />
-  <br />
-  Vite · Biome · Bun · Node.js
+  <img src="https://skillicons.dev/icons?i=ts,solidjs,elysia,notion,vite,bun,nodejs" alt="TypeScript, SolidJS, Elysia, Notion, Vite, Bun, Node.js" />
+  <img src="https://unocss.dev/logo.svg" alt="UnoCSS" width="48" height="48" />
 </p>
