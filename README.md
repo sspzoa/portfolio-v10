@@ -18,5 +18,4 @@
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=ts,solidjs,elysia,notion,vite,bun,nodejs" alt="TypeScript, SolidJS, Elysia, Notion, Vite, Bun, Node.js" />
-  <img src="https://unocss.dev/logo.svg" alt="UnoCSS" width="48" height="48" />
 </p>
