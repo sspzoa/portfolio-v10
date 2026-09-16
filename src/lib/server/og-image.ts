@@ -3,9 +3,9 @@ import { renderAsync } from "@resvg/resvg-js";
 import satori from "satori";
 import { profile } from "~/lib/profile";
 import { socialImage } from "~/lib/seo";
+import logo from "../../../assets/background-character.svg?inline";
 import boldFont from "../../../assets/fonts/portfolio-og-bold.ttf?inline";
 import regularFont from "../../../assets/fonts/portfolio-og-regular.ttf?inline";
-import logo from "../../../assets/og-logo.svg?inline";
 
 const fonts = [
   { name: "Portfolio OG Sans", data: Buffer.from(regularFont.split(",")[1]!, "base64"), weight: 400 as const },
@@ -27,14 +27,14 @@ export async function createPortfolioImage() {
           justifyContent: "center",
           gap: 96,
           padding: 80,
-          backgroundColor: "#ffe34d",
-          color: "#202322",
+          backgroundColor: "#eaf7fc",
+          color: "#20384e",
           fontFamily: "Portfolio OG Sans",
         },
         children: [
           {
             type: "img",
-            props: { src: logo, width: 224, height: 262, style: { objectFit: "contain", flexShrink: 0 } },
+            props: { src: logo, width: 224, height: 224, style: { objectFit: "contain", flexShrink: 0 } },
           },
           {
             type: "div",
@@ -51,7 +51,7 @@ export async function createPortfolioImage() {
                 {
                   type: "div",
                   props: {
-                    style: { marginTop: 20, fontSize: 38, lineHeight: 1.4, color: "#53564e" },
+                    style: { marginTop: 20, fontSize: 38, lineHeight: 1.4, color: "#4d657b" },
                     children: profile.role,
                   },
                 },
