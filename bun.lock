@@ -10,6 +10,7 @@
         "@solidjs/meta": "0.29.4",
         "@solidjs/router": "1.0.0",
         "@solidjs/start": "2.0.4",
+        "@vercel/analytics": "2.0.1",
         "elysia": "1.4.30",
         "markdown-it": "15.0.1",
         "satori": "0.33.4",
@@ -384,6 +385,8 @@
     "@unocss/transformer-variant-group": ["@unocss/transformer-variant-group@66.10.1", "", { "dependencies": { "@unocss/core": "66.10.1" } }, "sha512-5b/Y2wZvF2A+xfyO1DJisVnzwlmYIjlYU70PrVZzDSrvQx5nuiM+OIm9Pp8+RI5BrbAcPsTYxkZe2YgeTdN9Pg=="],
 
     "@unocss/vite": ["@unocss/vite@66.10.1", "", { "dependencies": { "@jridgewell/remapping": "^2.3.5", "@unocss/config": "66.10.1", "@unocss/core": "66.10.1", "@unocss/inspector": "66.10.1", "chokidar": "^5.0.0", "magic-string": "^1.2.2", "pathe": "^2.0.3", "tinyglobby": "^0.2.17", "unplugin-utils": "^0.3.2" }, "peerDependencies": { "vite": "^5.0.0-0 || ^6.0.0-0 || ^7.0.0-0 || ^8.0.0-0" } }, "sha512-r9xzRwbEGbez1uUmConCfKpEWKsvjF1xUePz8twk0mS4TH2zlhnwhDy/XCV6Ia4lPy+n7oRvei5AXhtHx35rXg=="],
+
+    "@vercel/analytics": ["@vercel/analytics@2.0.1", "", { "peerDependencies": { "@remix-run/react": "^2", "@sveltejs/kit": "^1 || ^2", "next": ">= 13", "nuxt": ">= 3", "react": "^18 || ^19 || ^19.0.0-rc", "svelte": ">= 4", "vue": "^3", "vue-router": "^4" }, "optionalPeers": ["@remix-run/react", "@sveltejs/kit", "next", "nuxt", "react", "svelte", "vue", "vue-router"] }, "sha512-MTQG6V9qQrt1tsDeF+2Uoo5aPjqbVPys1xvnIftXSJYG2SrwXRHnqEvVoYID7BTruDz4lCd2Z7rM1BdkUehk2g=="],
 
     "@vitejs/devtools-kit": ["@vitejs/devtools-kit@0.7.3", "", { "dependencies": { "@devframes/hub": "^0.9.16", "@devframes/json-render": "^0.9.16", "devframe": "^0.9.16", "local-pkg": "^1.2.1", "mlly": "^1.8.2", "nostics": "^1.2.0", "nypm": "^0.6.9" }, "peerDependencies": { "vite": "*" } }, "sha512-MsYO9EJ3fzanvS4FJ6C9Dh2iiR4ynhcp5C3lJEKHRZBr8wOyTBSbCP1ic81KHnm3Q5GbGt4lKBHTq7PZfpdmbg=="],
 

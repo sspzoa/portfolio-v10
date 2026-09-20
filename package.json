@@ -17,6 +17,7 @@
     "@solidjs/meta": "0.29.4",
     "@solidjs/router": "1.0.0",
     "@solidjs/start": "2.0.4",
+    "@vercel/analytics": "2.0.1",
     "elysia": "1.4.30",
     "markdown-it": "15.0.1",
     "satori": "0.33.4",
