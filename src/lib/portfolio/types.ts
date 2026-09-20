@@ -21,7 +21,7 @@ export type RenderedProject = Omit<Project, "description" | "shortDescription"> 
 type RenderedTimeline<T> = Omit<T, "description"> & { description: RenderedHtml | null };
 export interface RenderedPortfolioData
   extends Omit<PortfolioData, "about" | "careers" | "projects" | "experiences" | "education"> {
-  about: SectionResult<{ content: RenderedHtml } | null>;
+  about: SectionResult<(Omit<AboutMe, "content"> & { content: RenderedHtml }) | null>;
   careers: SectionResult<RenderedTimeline<Career>[]>;
   projects: SectionResult<RenderedProject[]>;
   experiences: SectionResult<RenderedTimeline<Experience>[]>;

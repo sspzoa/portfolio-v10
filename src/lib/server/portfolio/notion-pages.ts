@@ -15,13 +15,14 @@ import {
 const pageSchema = z.object({ id: z.string().min(1) });
 const timelineProperties = {
   organization: richTextPropertySchema,
+  url: richTextPropertySchema,
   description: richTextPropertySchema,
   date: datePropertySchema,
   logo: filesPropertySchema,
 };
 
 export const aboutMePageSchema = pageSchema.extend({
-  properties: z.object({ content: richTextPropertySchema }),
+  properties: z.object({ name: titlePropertySchema, content: richTextPropertySchema }),
 });
 
 export const rolePageSchema = pageSchema.extend({
@@ -62,6 +63,7 @@ export const awardPageSchema = pageSchema.extend({
 
 export const certificatePageSchema = pageSchema.extend({
   properties: z.object({
+    isMain: checkboxPropertySchema,
     name: titlePropertySchema,
     kind: richTextPropertySchema,
     institution: richTextPropertySchema,

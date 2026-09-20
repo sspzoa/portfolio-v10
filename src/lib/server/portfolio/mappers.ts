@@ -19,6 +19,7 @@ function mapTimeline(page: TimelinePage) {
   return {
     id: page.id,
     organization: readOptionalText(properties.organization.rich_text),
+    url: readOptionalText(properties.url.rich_text),
     description: readMarkdown(properties.description.rich_text),
     startDate: formatDate(properties.date.date?.start),
     endDate: formatDate(properties.date.date?.end),
@@ -27,7 +28,10 @@ function mapTimeline(page: TimelinePage) {
 }
 
 export function mapAboutMe(page: z.infer<typeof aboutMePageSchema>) {
-  return { content: readMarkdown(page.properties.content.rich_text) ?? "" };
+  return {
+    name: readPlainText(page.properties.name.title),
+    content: readMarkdown(page.properties.content.rich_text) ?? "",
+  };
 }
 
 export function mapRole(page: z.infer<typeof rolePageSchema>) {
@@ -80,6 +84,7 @@ export function mapAward(page: z.infer<typeof awardPageSchema>) {
 export function mapCertificate(page: z.infer<typeof certificatePageSchema>) {
   const { properties } = page;
   return {
+    isMain: properties.isMain.checkbox,
     id: page.id,
     name: readPlainText(properties.name.title),
     kind: readOptionalText(properties.kind.rich_text),

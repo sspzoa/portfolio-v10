@@ -13,7 +13,9 @@ function renderDescription<T extends { description: string | null }>(item: T) {
 export function renderPortfolio(data: PortfolioData): RenderedPortfolioData {
   return {
     ...data,
-    about: mapSection(data.about, (about) => (about === null ? null : { content: renderMarkdown(about.content) })),
+    about: mapSection(data.about, (about) =>
+      about === null ? null : { ...about, content: renderMarkdown(about.content) },
+    ),
     careers: mapSection(data.careers, (items) => items.map(renderDescription)),
     experiences: mapSection(data.experiences, (items) => items.map(renderDescription)),
     education: mapSection(data.education, (items) => items.map(renderDescription)),

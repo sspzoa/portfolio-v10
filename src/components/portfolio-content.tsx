@@ -2,6 +2,7 @@ import { For } from "solid-js";
 import { RecordEntry, TimelineEntry } from "~/components/entries";
 import { RichText } from "~/components/rich-text";
 import { Section } from "~/components/section";
+import { CertificatesContent } from "~/components/sections/certificates";
 import { ProjectsContent } from "~/components/sections/projects";
 import { SkillsContent } from "~/components/sections/skills";
 import { formatPeriod } from "~/lib/format-date";
@@ -59,19 +60,7 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
         )}
       </Section>
       <Section id="certificates" title="자격증" result={props.data.certificates}>
-        {(items) => (
-          <ul class="flex flex-col gap-5">
-            <For each={items}>
-              {(item) => (
-                <RecordEntry
-                  title={item.name}
-                  subtitle={[item.kind, item.institution].filter(Boolean).join(" · ")}
-                  period={item.date}
-                />
-              )}
-            </For>
-          </ul>
-        )}
+        {(items) => <CertificatesContent data={items} />}
       </Section>
       <Section id="skills" title="기술" result={props.data.skills}>
         {(items) => <SkillsContent data={items} />}

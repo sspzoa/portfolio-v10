@@ -32,6 +32,7 @@ export const experienceSchema = z.object({
   id: z.string(),
   role: z.string(),
   organization: z.string().nullable(),
+  url: z.string().url().nullable(),
   description: z.string().nullable(),
   startDate: dateStringSchema,
   endDate: dateStringSchema,
@@ -42,6 +43,7 @@ export const educationSchema = z.object({
   id: z.string(),
   department: z.string(),
   organization: z.string().nullable(),
+  url: z.string().url().nullable(),
   description: z.string().nullable(),
   startDate: dateStringSchema,
   endDate: dateStringSchema,
@@ -50,6 +52,7 @@ export const educationSchema = z.object({
 
 export const certificateSchema = z.object({
   id: z.string(),
+  isMain: z.boolean(),
   name: z.string(),
   kind: z.string().nullable(),
   institution: z.string().nullable(),
@@ -60,6 +63,7 @@ export const careerSchema = z.object({
   id: z.string(),
   role: z.string(),
   organization: z.string().nullable(),
+  url: z.string().url().nullable(),
   description: z.string().nullable(),
   startDate: dateStringSchema,
   endDate: dateStringSchema,
@@ -83,6 +87,7 @@ export const activitySchema = z.object({
 });
 
 export const aboutMeSchema = z.object({
+  name: z.string(),
   content: z.string().min(1, "AboutMe content cannot be empty"),
 });
 
