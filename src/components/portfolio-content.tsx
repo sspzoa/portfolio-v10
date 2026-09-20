@@ -5,9 +5,9 @@ import { Section } from "~/components/section";
 import { ProjectsContent } from "~/components/sections/projects";
 import { SkillsContent } from "~/components/sections/skills";
 import { formatPeriod } from "~/lib/format-date";
-import type { PortfolioData } from "~/lib/portfolio/types";
+import type { RenderedPortfolioData } from "~/lib/portfolio/types";
 
-export function PortfolioContent(props: { data: PortfolioData }) {
+export function PortfolioContent(props: { data: RenderedPortfolioData }) {
   return (
     <>
       <Section id="about" title="소개" result={props.data.about}>

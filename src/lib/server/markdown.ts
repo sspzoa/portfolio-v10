@@ -1,4 +1,6 @@
+import "server-only";
 import MarkdownIt from "markdown-it";
+import type { RenderedHtml } from "~/lib/portfolio/types";
 
 export function safeHref(value: string): string | undefined {
   try {
@@ -30,6 +32,6 @@ markdown.renderer.rules.image = (tokens, index, options, env, renderer) =>
 markdown.renderer.rules.heading_open = () => "<p>";
 markdown.renderer.rules.heading_close = () => "</p>\n";
 
-export function renderMarkdown(content: string): string {
-  return markdown.render(content.replace(/\r\n?/g, "\n").replace(/^([\t ]*)•[\t ]+/gm, "$1- "));
+export function renderMarkdown(content: string): RenderedHtml {
+  return markdown.render(content.replace(/\r\n?/g, "\n").replace(/^([\t ]*)•[\t ]+/gm, "$1- ")) as RenderedHtml;
 }

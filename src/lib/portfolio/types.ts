@@ -12,3 +12,18 @@ export interface PortfolioData {
   certificates: SectionResult<Certificate[]>;
   activities: SectionResult<Activity[]>;
 }
+
+export type RenderedHtml = string & { readonly __renderedHtml: unique symbol };
+export type RenderedProject = Omit<Project, "description" | "shortDescription"> & {
+  description: RenderedHtml | null;
+  shortDescription: RenderedHtml | null;
+};
+type RenderedTimeline<T> = Omit<T, "description"> & { description: RenderedHtml | null };
+export interface RenderedPortfolioData
+  extends Omit<PortfolioData, "about" | "careers" | "projects" | "experiences" | "education"> {
+  about: SectionResult<{ content: RenderedHtml } | null>;
+  careers: SectionResult<RenderedTimeline<Career>[]>;
+  projects: SectionResult<RenderedProject[]>;
+  experiences: SectionResult<RenderedTimeline<Experience>[]>;
+  education: SectionResult<RenderedTimeline<Education>[]>;
+}

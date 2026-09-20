@@ -5,5 +5,6 @@ export const getPortfolio = query(async () => {
   const { serverApi } = await import("~/lib/server/api/client");
   const { data, error } = await serverApi.portfolio.get();
   if (error) throw new Error("포트폴리오를 불러올 수 없습니다.");
-  return data;
+  const { renderPortfolio } = await import("~/lib/server/portfolio/render-portfolio");
+  return renderPortfolio(data);
 }, "portfolio");

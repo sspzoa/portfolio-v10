@@ -1,6 +1,7 @@
 import { Show } from "solid-js";
 import { RichText } from "~/components/rich-text";
 import { formatPeriod } from "~/lib/format-date";
+import type { RenderedHtml } from "~/lib/portfolio/types";
 
 export function Period(props: { start: string | null; end: string | null; ongoing?: boolean }) {
   const label = () => formatPeriod(props.start, props.end, { present: props.ongoing });
@@ -30,7 +31,7 @@ export function RecordEntry(props: { title: string; subtitle: string | null; per
 export function TimelineEntry(props: {
   title: string;
   subtitle: string | null;
-  description: string | null;
+  description: RenderedHtml | null;
   start: string | null;
   end: string | null;
   logo: string | null;

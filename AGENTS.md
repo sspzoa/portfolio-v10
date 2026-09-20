@@ -2,7 +2,7 @@
 
 ## Product
 
-This repository is Seungpyo Suh's Korean single-page portfolio at `https://sspzoa.io`. Notion supplies the content. Preserve the readable single column, restrained typography, whitespace, thin rules, responsive layout, and system light/dark themes.
+This repository is Seungpyo Suh's Korean portfolio at `https://sspzoa.io`. Notion supplies the content. Preserve the readable single column, restrained typography, whitespace, thin rules, responsive layout, and system light/dark themes.
 
 Implement actual product requirements. Do not add unused state libraries, endpoints, wrappers, or architectural layers. Preserve unrelated working-tree changes. Keep README as the short profile and portfolio link. Do not add code comments unless requested.
 
@@ -46,6 +46,8 @@ Keep the official create-solid basic layout and the built-in `~` alias. Do not a
 | `src/lib/api-client.ts` | Typed HTTP Eden client factory |
 | `src/lib/server/notion` | Notion HTTP transport, pagination, raw schemas, property readers, errors |
 | `src/lib/server/portfolio` | Source configuration, page schemas, mapping, repository, section loading |
+| `src/lib/server/markdown.ts` | Server-only CommonMark rendering and link safety |
+| `src/lib/server/portfolio/render-portfolio.ts` | Convert validated portfolio Markdown into typed presentation HTML |
 | `src/lib/server/og-image.ts` | In-memory dynamic social image generation |
 | `src/lib/server/env.ts` | Lazy credential validation |
 | `src/lib/server/security-headers.ts`, `src/middleware.ts` | Response security and dynamic cache policy |
@@ -57,7 +59,7 @@ Use descriptive kebab-case filenames, English identifiers, explicit imports, and
 
 ## Rendering and API
 
-The home route preloads `getPortfolio`, reads it with `createAsync`, and renders static metadata and safely serialized JSON-LD. Its `"use server"` query calls `serverApi.portfolio.get()`. The direct Eden client uses `treaty(apiApp)`; SSR must not make an HTTP request to itself. Elysia owns the portfolio endpoint and calls `loadPortfolio`.
+The home route (`/`) renders the static profile and a link to `/portfolio` without Notion access. The `/portfolio` route preloads `getPortfolio`, reads it with `createAsync`, and renders static metadata and safely serialized JSON-LD. Its `"use server"` query calls `serverApi.portfolio.get()` and then `renderPortfolio` to prepare HTML for presentation. The direct Eden client uses `treaty(apiApp)`; SSR must not make an HTTP request to itself. Elysia owns the portfolio endpoint and calls `loadPortfolio`.
 
 Keep `apiApp` prefixed with `/api`, chain its routes, and export `ApiApp = typeof apiApp` for inference. SolidStart route adapters pass `event.request` to `apiApp.fetch`. `/api` returns the static public profile; `/api/health` reports application availability. Neither requires Notion credentials. Check Eden's `error` before consuming `data`. Use `createApiClient(origin, options)` only for HTTP consumers.
 
@@ -78,6 +80,8 @@ Preserve source IDs, property names, and sorting in `sources.ts`. Validate raw p
 Log safe structured diagnostics: section, recognized error kind, HTTP status and retryability where available, and a bounded cause category. Never log arbitrary error messages, causes, stacks, or payloads that may contain credentials/content. User-facing messages remain separate from diagnostics.
 
 ## Content, styling, and metadata
+
+Keep `/api/portfolio` domain fields as Markdown. Convert Markdown only in the server query presentation step; components accept branded `RenderedHtml` through `RenderedPortfolioData` and never import the parser. The brand documents trusted renderer provenance; it is not a sanitizer. Never cast untrusted strings to `RenderedHtml`. Keep markdown-it and its dependencies out of client bundles.
 
 Markdown is synchronous CommonMark with raw HTML disabled and Unicode bullet normalization. Allow only HTTP, HTTPS, and mailto links; blocked links retain their formatted labels. Allowed links use `target="_blank"` and `rel="noopener noreferrer"`. Render unmanaged images as alt text and CMS headings as paragraphs. Only trusted renderer output and safely escaped static JSON-LD may enter `innerHTML`.
 

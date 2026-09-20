@@ -1,9 +1,9 @@
 import { createMemo, For, Show } from "solid-js";
 import { Period } from "~/components/entries";
 import { RichText } from "~/components/rich-text";
-import type { Project } from "~/lib/portfolio/schemas";
+import type { RenderedProject } from "~/lib/portfolio/types";
 
-function ProjectEntry(props: { project: Project }) {
+function ProjectEntry(props: { project: RenderedProject }) {
   const metadata = () =>
     [
       props.project.isSideProject ? "사이드 프로젝트" : null,
@@ -48,7 +48,7 @@ function ProjectEntry(props: { project: Project }) {
   );
 }
 
-export function ProjectsContent(props: { data: Project[] }) {
+export function ProjectsContent(props: { data: RenderedProject[] }) {
   const main = createMemo(() => props.data.filter((item) => !item.isSideProject));
   const side = createMemo(() => props.data.filter((item) => item.isSideProject));
   return (

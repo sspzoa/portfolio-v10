@@ -1,10 +1,10 @@
 import { For } from "solid-js";
 import { PortfolioContent } from "~/components/portfolio-content";
-import type { PortfolioData } from "~/lib/portfolio/types";
+import type { RenderedPortfolioData } from "~/lib/portfolio/types";
 import { profile } from "~/lib/profile";
 import character from "../../assets/background-character.svg";
 
-export function PortfolioPage(props: { data: PortfolioData }) {
+export function PortfolioPage(props: { data: RenderedPortfolioData }) {
   return (
     <div class="relative isolate mx-auto w-full max-w-reading px-6 pt-24 pb-10 max-[40rem]:px-5 max-[40rem]:pt-12 print:p-0">
       <div
