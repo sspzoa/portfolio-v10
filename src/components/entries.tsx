@@ -38,7 +38,7 @@ export function TimelineEntry(props: {
 }) {
   return (
     <li class="wrap-anywhere min-w-0 print:break-inside-avoid">
-      <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 max-[40rem]:flex-col max-[40rem]:items-start">
+      <div class="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4">
         <div class="flex min-w-0 items-center gap-3 [&>div]:min-w-0">
           <Show when={props.logo}>
             {(logo) => (
