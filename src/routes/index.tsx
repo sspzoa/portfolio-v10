@@ -2,7 +2,7 @@ import { For } from "solid-js";
 import { PageMetadata } from "~/components/page-metadata";
 import { profile } from "~/lib/profile";
 import { profileStructuredDataJson } from "~/lib/seo";
-import character from "../../assets/background-character.svg";
+import character from "../../assets/character-square.png";
 
 export default function Home() {
   return (

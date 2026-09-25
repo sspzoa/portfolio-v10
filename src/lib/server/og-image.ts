@@ -3,7 +3,7 @@ import { renderAsync } from "@resvg/resvg-js";
 import satori from "satori";
 import { profile } from "~/lib/profile";
 import { socialImage } from "~/lib/seo";
-import logo from "../../../assets/background-character.svg?inline";
+import logo from "../../../assets/character-square.png?inline";
 import boldFont from "../../../assets/fonts/portfolio-og-bold.ttf?inline";
 import regularFont from "../../../assets/fonts/portfolio-og-regular.ttf?inline";
 
