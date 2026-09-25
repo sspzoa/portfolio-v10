@@ -65,12 +65,10 @@ a:hover {
   :root {
     color-scheme: light;
     --canvas: #ffffff;
-    --ink: #202020;
-    --secondary: #525252;
-    --muted: #737373;
-    --line: #e5e5e5;
-    --surface: #f0f0f0;
-    --accent: #2563eb;
-    --selection: #dbeafe;
+    --ink: #202322;
+    --secondary: #4d657b;
+    --muted: #657d91;
+    --line: #dce7ef;
+    --accent: #356bb3;
   }
 }
