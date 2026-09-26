@@ -66,9 +66,9 @@ a:hover {
     color-scheme: light;
     --canvas: #ffffff;
     --ink: #202322;
-    --secondary: #4d657b;
-    --muted: #657d91;
-    --line: #dce7ef;
-    --accent: #356bb3;
+    --secondary: #55503f;
+    --muted: #75705f;
+    --line: #e4ded2;
+    --accent: #0e6e5c;
   }
 }

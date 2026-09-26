@@ -27,8 +27,8 @@ export async function createPortfolioImage() {
           justifyContent: "center",
           gap: 96,
           padding: 80,
-          backgroundColor: "#eaf7fc",
-          color: "#20384e",
+          backgroundColor: "#f4efe4",
+          color: "#2e2a24",
           fontFamily: "Portfolio OG Sans",
         },
         children: [
@@ -51,7 +51,7 @@ export async function createPortfolioImage() {
                 {
                   type: "div",
                   props: {
-                    style: { marginTop: 20, fontSize: 38, lineHeight: 1.4, color: "#4d657b" },
+                    style: { marginTop: 20, fontSize: 38, lineHeight: 1.4, color: "#55503f" },
                     children: profile.role,
                   },
                 },
