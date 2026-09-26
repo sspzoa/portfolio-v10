@@ -2,6 +2,7 @@ import { Show } from "solid-js";
 import { RichText } from "~/components/rich-text";
 import { formatPeriod } from "~/lib/format-date";
 import type { RenderedHtml } from "~/lib/portfolio/types";
+import { safeExternalUrl } from "~/lib/safe-external-url";
 
 export function Period(props: { start: string | null; end: string | null; ongoing?: boolean }) {
   const label = () => formatPeriod(props.start, props.end, { present: props.ongoing });
@@ -12,11 +13,24 @@ export function Period(props: { start: string | null; end: string | null; ongoin
   );
 }
 
-export function RecordEntry(props: { title: string; subtitle: string | null; period: string | null }) {
+export function RecordEntry(props: {
+  title: string;
+  subtitle: string | null;
+  period: string | null;
+  url?: string | null;
+}) {
   return (
     <li class="wrap-anywhere flex min-w-0 items-baseline justify-between gap-x-4 gap-y-1 max-[40rem]:flex-col print:break-inside-avoid [&>p]:shrink-0">
       <div>
-        <h3 class="wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]">{props.title}</h3>
+        <h3 class="wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]">
+          <Show when={safeExternalUrl(props.url ?? null)} fallback={props.title}>
+            {(url) => (
+              <a href={url()} target="_blank" rel="noopener noreferrer">
+                {props.title}
+              </a>
+            )}
+          </Show>
+        </h3>
         <Show when={props.subtitle}>
           <p class="mt-1 text-caption text-secondary">{props.subtitle}</p>
         </Show>
@@ -35,6 +49,7 @@ export function TimelineEntry(props: {
   start: string | null;
   end: string | null;
   logo: string | null;
+  url: string | null;
 }) {
   return (
     <li class="wrap-anywhere min-w-0 print:break-inside-avoid">
@@ -55,7 +70,15 @@ export function TimelineEntry(props: {
             )}
           </Show>
           <div>
-            <h3 class="wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]">{props.title}</h3>
+            <h3 class="wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]">
+              <Show when={safeExternalUrl(props.url)} fallback={props.title}>
+                {(url) => (
+                  <a href={url()} target="_blank" rel="noopener noreferrer">
+                    {props.title}
+                  </a>
+                )}
+              </Show>
+            </h3>
             <Show when={props.subtitle}>
               <p class="mt-1 text-caption text-secondary">{props.subtitle}</p>
             </Show>

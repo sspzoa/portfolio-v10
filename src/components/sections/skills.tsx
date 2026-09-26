@@ -1,5 +1,6 @@
 import { createMemo, For, Show } from "solid-js";
 import type { Skill } from "~/lib/portfolio/schemas";
+import { safeExternalUrl } from "~/lib/safe-external-url";
 
 export function SkillsContent(props: { data: Skill[] }) {
   const groups = createMemo(() => {
@@ -23,7 +24,7 @@ export function SkillsContent(props: { data: Skill[] }) {
             <For each={group.skills}>
               {(skill) => (
                 <li class="flex items-center gap-1">
-                  <Show when={skill.isMain} fallback={skill.name}>
+                  <Show when={skill.isMain}>
                     <Show when={skill.icon}>
                       {(icon) => (
                         <img
@@ -38,7 +39,15 @@ export function SkillsContent(props: { data: Skill[] }) {
                         />
                       )}
                     </Show>
-                    <strong>{skill.name}</strong>
+                  </Show>
+                  <Show
+                    when={safeExternalUrl(skill.url)}
+                    fallback={skill.isMain ? <strong>{skill.name}</strong> : skill.name}>
+                    {(url) => (
+                      <a href={url()} target="_blank" rel="noopener noreferrer">
+                        {skill.isMain ? <strong>{skill.name}</strong> : skill.name}
+                      </a>
+                    )}
                   </Show>
                 </li>
               )}

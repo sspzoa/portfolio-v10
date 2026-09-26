@@ -67,7 +67,7 @@ Load all portfolio sections concurrently and resolve them before returning. Conv
 
 Keep Router `explicitLinks` so normal anchors retain browser focus behavior. Use reactive prop reads, `For`, `Show`, and memos where needed. Do not destructure reactive props or snapshot derived state. Native Solid signals/stores are sufficient when client state is needed. Never share mutable user data or a QueryClient across server requests.
 
-Main projects stay visible. Side projects and descriptions use initially closed native `details`. Preserve keyboard operation and existing DOM content. Experience entries do not display logos. Career and education logos remain visible. Only main skills display icons; main skills come first within each category. Display logos and icons in their original colors.
+Main projects stay visible. Side projects and descriptions use initially closed native `details`. Preserve keyboard operation and existing DOM content. Career, experience, and education logos remain visible, and projects show their Notion page icons when set. Only main skills display icons; main skills come first within each category. Display logos and icons in their original colors.
 
 ## Notion and errors
 

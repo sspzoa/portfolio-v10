@@ -26,6 +26,7 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
                   start={item.startDate}
                   end={item.endDate}
                   logo={item.logo}
+                  url={item.url}
                 />
               )}
             </For>
@@ -44,6 +45,7 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
                   start={item.startDate}
                   end={item.endDate}
                   logo={item.logo}
+                  url={item.url}
                 />
               )}
             </For>
@@ -54,7 +56,7 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
         {(items) => (
           <ul class="flex flex-col gap-5">
             <For each={items}>
-              {(item) => <RecordEntry title={item.name} subtitle={item.tier} period={item.date} />}
+              {(item) => <RecordEntry title={item.name} subtitle={item.tier} period={item.date} url={item.url} />}
             </For>
           </ul>
         )}
@@ -76,7 +78,8 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
                   description={item.description}
                   start={item.startDate}
                   end={item.endDate}
-                  logo={null}
+                  logo={item.logo}
+                  url={item.url}
                 />
               )}
             </For>

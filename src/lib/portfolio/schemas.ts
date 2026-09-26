@@ -75,6 +75,7 @@ export const awardSchema = z.object({
   name: z.string(),
   tier: z.string().nullable(),
   date: dateStringSchema,
+  url: z.string().url().nullable(),
 });
 
 export const activitySchema = z.object({

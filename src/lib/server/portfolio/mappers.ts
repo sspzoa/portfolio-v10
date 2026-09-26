@@ -78,6 +78,7 @@ export function mapAward(page: z.infer<typeof awardPageSchema>) {
     name: readPlainText(properties.name.title),
     tier: readOptionalText(properties.tier.rich_text),
     date: formatDate(properties.date.date?.start),
+    url: page.public_url,
   };
 }
 
