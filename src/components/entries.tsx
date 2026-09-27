@@ -49,7 +49,6 @@ export function TimelineEntry(props: {
   start: string | null;
   end: string | null;
   logo: string | null;
-  url: string | null;
 }) {
   return (
     <li class="wrap-anywhere min-w-0 print:break-inside-avoid">
@@ -70,15 +69,7 @@ export function TimelineEntry(props: {
             )}
           </Show>
           <div>
-            <h3 class="wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]">
-              <Show when={safeExternalUrl(props.url)} fallback={props.title}>
-                {(url) => (
-                  <a href={url()} target="_blank" rel="noopener noreferrer">
-                    {props.title}
-                  </a>
-                )}
-              </Show>
-            </h3>
+            <h3 class="wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]">{props.title}</h3>
             <Show when={props.subtitle}>
               <p class="mt-1 text-caption text-secondary">{props.subtitle}</p>
             </Show>

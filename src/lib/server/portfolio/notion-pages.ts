@@ -15,7 +15,6 @@ import {
 const pageSchema = z.object({ id: z.string().min(1) });
 const timelineProperties = {
   organization: richTextPropertySchema,
-  url: richTextPropertySchema,
   description: richTextPropertySchema,
   date: datePropertySchema,
   logo: filesPropertySchema,

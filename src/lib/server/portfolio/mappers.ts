@@ -19,7 +19,6 @@ function mapTimeline(page: TimelinePage) {
   return {
     id: page.id,
     organization: readOptionalText(properties.organization.rich_text),
-    url: readOptionalText(properties.url.rich_text),
     description: readMarkdown(properties.description.rich_text),
     startDate: formatDate(properties.date.date?.start),
     endDate: formatDate(properties.date.date?.end),
