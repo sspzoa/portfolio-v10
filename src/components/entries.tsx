@@ -1,16 +1,28 @@
 import { Show } from "solid-js";
+import { EntryIcon } from "~/components/entry-icon";
 import { RichText } from "~/components/rich-text";
 import { formatPeriod } from "~/lib/format-date";
 import type { RenderedHtml } from "~/lib/portfolio/types";
 import { safeExternalUrl } from "~/lib/safe-external-url";
 
-export function Period(props: { start: string | null; end: string | null; ongoing?: boolean }) {
-  const label = () => formatPeriod(props.start, props.end, { present: props.ongoing });
+function EntrySubtitle(props: { value: string | null }) {
   return (
-    <Show when={label()}>
-      <p class="whitespace-nowrap text-caption text-muted tabular-nums">{label()}</p>
+    <Show when={props.value}>
+      <p class="text-caption text-secondary">{props.value}</p>
     </Show>
   );
+}
+
+function DateLabel(props: { value: string | null }) {
+  return (
+    <Show when={props.value}>
+      <p class="whitespace-nowrap text-caption text-muted tabular-nums">{props.value}</p>
+    </Show>
+  );
+}
+
+export function Period(props: { start: string | null; end: string | null; ongoing?: boolean }) {
+  return <DateLabel value={formatPeriod(props.start, props.end, { present: props.ongoing })} />;
 }
 
 export function RecordEntry(props: {
@@ -31,13 +43,9 @@ export function RecordEntry(props: {
             )}
           </Show>
         </h3>
-        <Show when={props.subtitle}>
-          <p class="text-caption text-secondary">{props.subtitle}</p>
-        </Show>
+        <EntrySubtitle value={props.subtitle} />
       </div>
-      <Show when={props.period}>
-        <p class="whitespace-nowrap text-caption text-muted tabular-nums">{props.period}</p>
-      </Show>
+      <DateLabel value={props.period} />
     </li>
   );
 }
@@ -49,38 +57,15 @@ export function TimelineEntry(props: {
   start: string | null;
   end: string | null;
   logo: string | null;
-  stackPeriodOnMobile?: boolean;
 }) {
   return (
     <li class="wrap-anywhere min-w-0 print:break-inside-avoid">
-      <div
-        class={
-          props.stackPeriodOnMobile
-            ? "grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 max-[40rem]:grid-cols-1 max-[40rem]:gap-y-1"
-            : "grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4"
-        }>
+      <div class="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 max-[40rem]:grid-cols-1 max-[40rem]:gap-y-1">
         <div class="flex min-w-0 items-center gap-3 [&>div]:min-w-0">
-          <Show when={props.logo}>
-            {(logo) => (
-              <div class="media-tile size-10 p-1">
-                <img
-                  src={logo()}
-                  alt=""
-                  width={30}
-                  height={30}
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
-                  class="size-full rounded-ui object-contain"
-                />
-              </div>
-            )}
-          </Show>
+          <Show when={props.logo}>{(logo) => <EntryIcon src={logo()} />}</Show>
           <div class="flex min-w-0 flex-col gap-1">
             <h3 class="entry-title">{props.title}</h3>
-            <Show when={props.subtitle}>
-              <p class="text-caption text-secondary">{props.subtitle}</p>
-            </Show>
+            <EntrySubtitle value={props.subtitle} />
           </div>
         </div>
         <Period start={props.start} end={props.end} ongoing />

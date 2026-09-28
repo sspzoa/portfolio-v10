@@ -1,10 +1,10 @@
-import { For } from "solid-js";
-import { RecordEntry, TimelineEntry } from "~/components/entries";
+import { RecordEntries } from "~/components/record-entries";
 import { RichText } from "~/components/rich-text";
 import { Section } from "~/components/section";
 import { CertificatesContent } from "~/components/sections/certificates";
 import { ProjectsContent } from "~/components/sections/projects";
 import { SkillsContent } from "~/components/sections/skills";
+import { TimelineEntries } from "~/components/timeline-entries";
 import { formatPeriod } from "~/lib/format-date";
 import type { RenderedPortfolioData } from "~/lib/portfolio/types";
 
@@ -16,49 +16,30 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
       </Section>
       <Section id="education" title="학력" result={props.data.education}>
         {(items) => (
-          <ul class="flex flex-col gap-10">
-            <For each={items}>
-              {(item) => (
-                <TimelineEntry
-                  title={item.organization || item.department}
-                  subtitle={item.organization ? item.department : null}
-                  description={item.description}
-                  start={item.startDate}
-                  end={item.endDate}
-                  logo={item.logo}
-                  stackPeriodOnMobile
-                />
-              )}
-            </For>
-          </ul>
+          <TimelineEntries
+            items={items}
+            title={(item) => item.organization || item.department}
+            subtitle={(item) => (item.organization ? item.department : null)}
+          />
         )}
       </Section>
       <Section id="careers" title="경력" result={props.data.careers}>
         {(items) => (
-          <ul class="flex flex-col gap-10">
-            <For each={items}>
-              {(item) => (
-                <TimelineEntry
-                  title={item.organization || item.role}
-                  subtitle={item.organization ? item.role : null}
-                  description={item.description}
-                  start={item.startDate}
-                  end={item.endDate}
-                  logo={item.logo}
-                  stackPeriodOnMobile
-                />
-              )}
-            </For>
-          </ul>
+          <TimelineEntries
+            items={items}
+            title={(item) => item.organization || item.role}
+            subtitle={(item) => (item.organization ? item.role : null)}
+          />
         )}
       </Section>
       <Section id="awards" title="수상" result={props.data.awards}>
         {(items) => (
-          <ul class="flex flex-col gap-5">
-            <For each={items}>
-              {(item) => <RecordEntry title={item.name} subtitle={item.tier} period={item.date} url={item.url} />}
-            </For>
-          </ul>
+          <RecordEntries
+            items={items}
+            subtitle={(item) => item.tier}
+            period={(item) => item.date}
+            url={(item) => item.url}
+          />
         )}
       </Section>
       <Section id="certificates" title="자격증" result={props.data.certificates}>
@@ -69,21 +50,11 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
       </Section>
       <Section id="experiences" title="경험" result={props.data.experiences}>
         {(items) => (
-          <ul class="flex flex-col gap-10">
-            <For each={items}>
-              {(item) => (
-                <TimelineEntry
-                  title={item.organization || item.role}
-                  subtitle={item.organization ? item.role : null}
-                  description={item.description}
-                  start={item.startDate}
-                  end={item.endDate}
-                  logo={item.logo}
-                  stackPeriodOnMobile
-                />
-              )}
-            </For>
-          </ul>
+          <TimelineEntries
+            items={items}
+            title={(item) => item.organization || item.role}
+            subtitle={(item) => (item.organization ? item.role : null)}
+          />
         )}
       </Section>
       <Section id="projects" title="프로젝트" result={props.data.projects}>
@@ -91,17 +62,11 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
       </Section>
       <Section id="activities" title="활동" result={props.data.activities}>
         {(items) => (
-          <ul class="flex flex-col gap-5">
-            <For each={items}>
-              {(item) => (
-                <RecordEntry
-                  title={item.name}
-                  subtitle={[item.role, ...item.hosts].filter(Boolean).join(" · ")}
-                  period={formatPeriod(item.startDate, item.endDate)}
-                />
-              )}
-            </For>
-          </ul>
+          <RecordEntries
+            items={items}
+            subtitle={(item) => [item.role, ...item.hosts].filter(Boolean).join(" · ")}
+            period={(item) => formatPeriod(item.startDate, item.endDate)}
+          />
         )}
       </Section>
     </>

@@ -1,5 +1,6 @@
-import { For } from "solid-js";
 import { PageMetadata } from "~/components/page-metadata";
+import { ProfileHeading } from "~/components/profile-heading";
+import { ProfileLinks } from "~/components/profile-links";
 import { profile } from "~/lib/profile";
 import { profileStructuredDataJson } from "~/lib/seo";
 import character from "../../assets/character-square.png";
@@ -12,11 +13,7 @@ export default function Home() {
       <div class="relative isolate mx-auto flex min-h-[100svh] w-full max-w-reading flex-col px-6 max-[40rem]:px-5">
         <main class="flex flex-1 items-center justify-between gap-8 py-24 max-[40rem]:flex-col max-[40rem]:items-stretch max-[40rem]:justify-center">
           <header class="min-w-0 flex-1 max-[40rem]:w-full max-[40rem]:flex-none">
-            <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2">
-              <h1 class="font-bold text-profile leading-[1.35] tracking-[-0.025em]">{profile.name}</h1>
-              <span class="text-caption text-muted">{profile.englishName}</span>
-            </div>
-            <p class="mt-2 text-secondary">{profile.role}</p>
+            <ProfileHeading />
             <p class="wrap-anywhere mt-6 whitespace-pre-line break-keep text-secondary">
               {profile.introduction.replace(", ", ",\n")}
             </p>
@@ -24,17 +21,7 @@ export default function Home() {
               <a href="/portfolio" class="inline-flex min-h-9 items-center py-1 transition-none">
                 포트폴리오
               </a>
-              <For each={profile.links}>
-                {(link) => (
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex min-h-9 items-center py-1 transition-none">
-                    {link.label}
-                  </a>
-                )}
-              </For>
+              <ProfileLinks class="inline-flex min-h-9 items-center py-1 transition-none" />
             </nav>
           </header>
           <img

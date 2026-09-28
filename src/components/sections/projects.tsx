@@ -1,5 +1,6 @@
 import { createMemo, For, Show } from "solid-js";
 import { Period } from "~/components/entries";
+import { EntryIcon } from "~/components/entry-icon";
 import { RichText } from "~/components/rich-text";
 import type { RenderedProject } from "~/lib/portfolio/types";
 
@@ -15,22 +16,7 @@ function ProjectEntry(props: { project: RenderedProject }) {
     <li class="wrap-anywhere min-w-0 print:break-inside-avoid">
       <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1 max-[40rem]:flex-col">
         <div class="flex min-w-0 items-center gap-3">
-          <Show when={props.project.iconImage}>
-            {(icon) => (
-              <div class="media-tile size-10 p-1">
-                <img
-                  src={icon()}
-                  alt=""
-                  width={30}
-                  height={30}
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
-                  class="size-full rounded-ui object-contain"
-                />
-              </div>
-            )}
-          </Show>
+          <Show when={props.project.iconImage}>{(icon) => <EntryIcon src={icon()} />}</Show>
           <div class="flex min-w-0 flex-col gap-1">
             <h3 class="entry-title">{props.project.name}</h3>
             <Show when={metadata()}>

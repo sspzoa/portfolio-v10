@@ -1,20 +1,14 @@
-import { createMemo, For, Show } from "solid-js";
-import { RecordEntry } from "~/components/entries";
+import { createMemo, Show } from "solid-js";
+import { RecordEntries } from "~/components/record-entries";
 import type { Certificate } from "~/lib/portfolio/schemas";
 
 function CertificateList(props: { data: Certificate[] }) {
   return (
-    <ul class="flex flex-col gap-5">
-      <For each={props.data}>
-        {(item) => (
-          <RecordEntry
-            title={item.name}
-            subtitle={[item.kind, item.institution].filter(Boolean).join(" · ")}
-            period={item.date}
-          />
-        )}
-      </For>
-    </ul>
+    <RecordEntries
+      items={props.data}
+      subtitle={(item) => [item.kind, item.institution].filter(Boolean).join(" · ")}
+      period={(item) => item.date}
+    />
   );
 }
 
