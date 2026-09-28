@@ -30,7 +30,7 @@ export function PortfolioPage(props: { data: RenderedPortfolioData }) {
       <main>
         <PortfolioContent data={props.data} />
       </main>
-      <footer class="mt-8 flex flex-wrap items-center justify-between gap-3 border-line border-t pt-6 text-caption text-muted print:hidden">
+      <footer class="mt-8 border-line border-t pt-6 text-caption text-muted print:hidden">
         <span class="inline-flex items-center gap-2">
           © {new Date().getFullYear()} {profile.englishName}
         </span>

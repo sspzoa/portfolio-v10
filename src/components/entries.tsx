@@ -21,18 +21,18 @@ export function RecordEntry(props: {
 }) {
   return (
     <li class="wrap-anywhere flex min-w-0 items-baseline justify-between gap-x-4 gap-y-1 max-[40rem]:flex-col print:break-inside-avoid [&>p]:shrink-0">
-      <div>
-        <h3 class="wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]">
+      <div class="flex min-w-0 flex-col gap-1">
+        <h3 class="entry-title">
           <Show when={safeExternalUrl(props.url ?? null)} fallback={props.title}>
             {(url) => (
-              <a href={url()} target="_blank" rel="noopener noreferrer">
-                {props.title}
+              <a href={url()} target="_blank" rel="noopener noreferrer" class="text-ink hover:text-ink">
+                {props.title} ↗
               </a>
             )}
           </Show>
         </h3>
         <Show when={props.subtitle}>
-          <p class="mt-1 text-caption text-secondary">{props.subtitle}</p>
+          <p class="text-caption text-secondary">{props.subtitle}</p>
         </Show>
       </div>
       <Show when={props.period}>
@@ -56,22 +56,24 @@ export function TimelineEntry(props: {
         <div class="flex min-w-0 items-center gap-3 [&>div]:min-w-0">
           <Show when={props.logo}>
             {(logo) => (
-              <img
-                src={logo()}
-                alt=""
-                width={40}
-                height={40}
-                loading="lazy"
-                decoding="async"
-                draggable={false}
-                class="block size-10 shrink-0 rounded-ui object-contain p-1"
-              />
+              <div class="media-tile size-10 p-1">
+                <img
+                  src={logo()}
+                  alt=""
+                  width={30}
+                  height={30}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  class="size-full rounded-ui object-contain"
+                />
+              </div>
             )}
           </Show>
-          <div>
-            <h3 class="wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]">{props.title}</h3>
+          <div class="flex min-w-0 flex-col gap-1">
+            <h3 class="entry-title">{props.title}</h3>
             <Show when={props.subtitle}>
-              <p class="mt-1 text-caption text-secondary">{props.subtitle}</p>
+              <p class="text-caption text-secondary">{props.subtitle}</p>
             </Show>
           </div>
         </div>

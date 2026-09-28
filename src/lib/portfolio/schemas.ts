@@ -11,7 +11,6 @@ export const skillSchema = z.object({
   category: z.string(),
   isMain: z.boolean(),
   icon: z.string().url().nullable(),
-  url: z.string().url().nullable(),
 });
 
 export const projectSchema = z.object({

@@ -33,10 +33,13 @@ a {
   color: var(--accent);
   text-decoration: underline transparent;
   text-underline-offset: 4px;
-  transition: text-decoration-color var(--duration-fast);
+  transition:
+    color var(--duration-fast),
+    text-decoration-color var(--duration-fast);
 }
 
 a:hover {
+  color: var(--accent-hover);
   text-decoration-color: currentColor;
 }
 
@@ -70,5 +73,6 @@ a:hover {
     --muted: #75705f;
     --line: #e4ded2;
     --accent: #0e6e5c;
+    --accent-hover: #0e6e5c;
   }
 }

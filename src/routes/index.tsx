@@ -21,7 +21,7 @@ export default function Home() {
               {profile.introduction.replace(", ", ",\n")}
             </p>
             <nav aria-label="연락처 및 소셜 링크" class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-caption">
-              <a href="/portfolio" class="inline-flex min-h-9 items-center py-1">
+              <a href="/portfolio" class="inline-flex min-h-9 items-center py-1 transition-none">
                 포트폴리오
               </a>
               <For each={profile.links}>
@@ -30,7 +30,7 @@ export default function Home() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex min-h-9 items-center py-1">
+                    class="inline-flex min-h-9 items-center py-1 transition-none">
                     {link.label}
                   </a>
                 )}
@@ -40,7 +40,7 @@ export default function Home() {
           <img
             src={character}
             alt=""
-            class="pointer-events-none w-[35vw] max-w-[344px] shrink-0 select-none max-[40rem]:w-[40vw] max-[40rem]:self-end print:hidden"
+            class="pointer-events-none w-[35vw] max-w-[344px] shrink-0 select-none rounded-ui border border-line max-[40rem]:w-[40vw] max-[40rem]:self-end print:hidden"
           />
         </main>
         <footer class="border-line border-t py-6 text-caption">

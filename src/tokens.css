@@ -7,6 +7,7 @@
   --line: #e4ded2;
   --surface: #f1ece2;
   --accent: #0e6e5c;
+  --accent-hover: #0a5a4b;
   --selection: #cfe7dd;
   --font-body: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-code: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -40,6 +41,7 @@
     --line: #3a352c;
     --surface: #24211a;
     --accent: #7fd0b8;
+    --accent-hover: #a4e0cd;
     --selection: #24483d;
   }
 }

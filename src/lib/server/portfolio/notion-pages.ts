@@ -47,7 +47,6 @@ export const projectPageSchema = pageSchema.extend({
 });
 
 export const skillPageSchema = pageSchema.extend({
-  public_url: z.url().nullable(),
   properties: z.object({
     name: titlePropertySchema,
     category: selectPropertySchema,

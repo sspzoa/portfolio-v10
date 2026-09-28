@@ -66,7 +66,6 @@ export function mapSkill(page: z.infer<typeof skillPageSchema>) {
     category: properties.category.select?.name ?? "",
     isMain: properties.isMain.checkbox,
     icon: readFileUrl(properties.icon.files[0]),
-    url: page.public_url,
   };
 }
 

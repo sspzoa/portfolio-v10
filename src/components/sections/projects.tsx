@@ -17,24 +17,24 @@ function ProjectEntry(props: { project: RenderedProject }) {
         <div class="flex min-w-0 items-center gap-3">
           <Show when={props.project.iconImage}>
             {(icon) => (
-              <img
-                src={icon()}
-                alt=""
-                width={40}
-                height={40}
-                loading="lazy"
-                decoding="async"
-                draggable={false}
-                class="block size-10 shrink-0 rounded-ui object-contain p-1"
-              />
+              <div class="media-tile size-10 p-1">
+                <img
+                  src={icon()}
+                  alt=""
+                  width={30}
+                  height={30}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  class="size-full rounded-ui object-contain"
+                />
+              </div>
             )}
           </Show>
-          <div class="min-w-0">
-            <h3 class="wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]">
-              {props.project.name}
-            </h3>
+          <div class="flex min-w-0 flex-col gap-1">
+            <h3 class="entry-title">{props.project.name}</h3>
             <Show when={metadata()}>
-              <p class="mt-1 text-caption text-secondary">{metadata()}</p>
+              <p class="text-caption text-secondary">{metadata()}</p>
             </Show>
           </div>
         </div>
@@ -48,9 +48,11 @@ function ProjectEntry(props: { project: RenderedProject }) {
         )}
       </Show>
       <Show when={props.project.tags.length}>
-        <div class="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-caption text-muted">
-          <For each={props.project.tags}>{(tag) => <span>{tag}</span>}</For>
-        </div>
+        <ul class="mt-3 flex flex-wrap gap-2">
+          <For each={props.project.tags}>
+            {(tag) => <li class="rounded-ui border border-line px-2 py-0.5 text-caption text-muted">{tag}</li>}
+          </For>
+        </ul>
       </Show>
       <Show when={props.project.description || props.project.coverImage}>
         <details class="mt-3 [&[open]>summary::before]:[transform:translateY(-2px)_rotate(45deg)] [&[open]>summary]:mb-3 [&[open]>summary]:text-ink">
@@ -66,7 +68,7 @@ function ProjectEntry(props: { project: RenderedProject }) {
                   alt={`${props.project.name} 커버 이미지`}
                   loading="lazy"
                   decoding="async"
-                  class="mt-4 block h-auto max-w-full rounded-ui"
+                  class="mt-4 block h-auto max-w-full rounded-ui border border-line"
                 />
               )}
             </Show>

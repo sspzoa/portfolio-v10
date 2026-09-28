@@ -1,6 +1,5 @@
 import { createMemo, For, Show } from "solid-js";
 import type { Skill } from "~/lib/portfolio/schemas";
-import { safeExternalUrl } from "~/lib/safe-external-url";
 
 export function SkillsContent(props: { data: Skill[] }) {
   const groups = createMemo(() => {
@@ -19,36 +18,30 @@ export function SkillsContent(props: { data: Skill[] }) {
     <For each={groups()}>
       {(group) => (
         <div class="[&+div]:mt-5">
-          <h3 class="mt-1 mb-1 font-medium text-caption text-muted">{group.name}</h3>
-          <ul class="flex flex-wrap gap-x-4 gap-y-1">
+          <h3 class="mt-1 mb-1 font-medium text-caption text-muted tracking-[0.01em]">{group.name}</h3>
+          <ul class="flex flex-wrap gap-x-4 gap-y-2">
             <For each={group.skills}>
               {(skill) => (
                 <li class="flex items-center gap-1">
                   <Show when={skill.isMain}>
                     <Show when={skill.icon}>
                       {(icon) => (
-                        <img
-                          src={icon()}
-                          alt=""
-                          width={24}
-                          height={24}
-                          loading="lazy"
-                          decoding="async"
-                          draggable={false}
-                          class="block size-6 shrink-0 rounded-ui object-contain p-0.5"
-                        />
+                        <div class="media-tile size-6 p-0.5">
+                          <img
+                            src={icon()}
+                            alt=""
+                            width={18}
+                            height={18}
+                            loading="lazy"
+                            decoding="async"
+                            draggable={false}
+                            class="size-full object-contain"
+                          />
+                        </div>
                       )}
                     </Show>
                   </Show>
-                  <Show
-                    when={safeExternalUrl(skill.url)}
-                    fallback={skill.isMain ? <strong>{skill.name}</strong> : skill.name}>
-                    {(url) => (
-                      <a href={url()} target="_blank" rel="noopener noreferrer">
-                        {skill.isMain ? <strong>{skill.name}</strong> : skill.name}
-                      </a>
-                    )}
-                  </Show>
+                  {skill.isMain ? <strong>{skill.name}</strong> : skill.name}
                 </li>
               )}
             </For>

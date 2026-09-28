@@ -12,6 +12,8 @@ export default defineConfig({
       "before:shrink-0 before:border-current before:border-r before:border-b before:content-empty hover:text-ink",
       "before:[transform:rotate(-45deg)] before:[transition:transform_var(--duration-fast)] [&::-webkit-details-marker]:hidden",
     ],
+    "entry-title": ["wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]"],
+    "media-tile": ["block shrink-0 rounded-ui border border-line bg-surface"],
   },
   theme: {
     colors: {
