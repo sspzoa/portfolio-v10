@@ -26,6 +26,7 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
                   start={item.startDate}
                   end={item.endDate}
                   logo={item.logo}
+                  stackPeriodOnMobile
                 />
               )}
             </For>
@@ -44,6 +45,7 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
                   start={item.startDate}
                   end={item.endDate}
                   logo={item.logo}
+                  stackPeriodOnMobile
                 />
               )}
             </For>
@@ -77,6 +79,7 @@ export function PortfolioContent(props: { data: RenderedPortfolioData }) {
                   start={item.startDate}
                   end={item.endDate}
                   logo={item.logo}
+                  stackPeriodOnMobile
                 />
               )}
             </For>
