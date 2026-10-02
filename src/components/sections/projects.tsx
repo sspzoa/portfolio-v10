@@ -41,11 +41,11 @@ function ProjectEntry(props: { project: RenderedProject }) {
         </ul>
       </Show>
       <Show when={props.project.description || props.project.coverImage}>
-        <details class="mt-3 [&[open]>summary::before]:[transform:translateY(-2px)_rotate(45deg)] [&[open]>summary]:mb-3 [&[open]>summary]:text-ink">
+        <details class="disclosure mt-3 [&[open]>summary]:mb-3">
           <summary class="disclosure-summary min-h-9 py-1" aria-label={`${props.project.name} 자세히 보기`}>
             자세히 보기
           </summary>
-          <div class="border-line border-l pl-4">
+          <div class="before:node relative border-line border-l pl-4 before:absolute before:top-0 before:left-[-4px] before:content-empty">
             <Show when={props.project.description}>{(text) => <RichText>{text()}</RichText>}</Show>
             <Show when={props.project.coverImage}>
               {(cover) => (
@@ -76,7 +76,7 @@ export function ProjectsContent(props: { data: RenderedProject[] }) {
         </ul>
       </Show>
       <Show when={side().length}>
-        <details class="mt-8 border-line border-t pt-5 [&[open]>summary::before]:[transform:translateY(-2px)_rotate(45deg)] [&[open]>summary]:mb-6 [&[open]>summary]:text-ink">
+        <details class="disclosure mt-8 border-line border-t pt-5 [&[open]>summary]:mb-6">
           <summary class="disclosure-summary min-h-10 py-2">
             <span>사이드 프로젝트</span>
             <span class="text-muted tabular-nums">{side().length}개</span>

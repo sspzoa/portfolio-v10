@@ -30,6 +30,9 @@
   --text-title: clamp(2rem, 1.75rem + 1vw, 2.5rem);
   --radius-control: 0.25rem;
   --duration-fast: 150ms;
+  --duration-base: 240ms;
+  --duration-slow: 500ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -53,6 +53,20 @@ a:hover {
   html {
     scroll-behavior: smooth;
   }
+
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 200ms;
+  }
+
+  ::view-transition-group(profile-name) {
+    animation-duration: 360ms;
+    animation-timing-function: var(--ease-out);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -74,5 +88,12 @@ a:hover {
     --line: #e4ded2;
     --accent: #0e6e5c;
     --accent-hover: #0e6e5c;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }

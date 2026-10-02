@@ -37,8 +37,12 @@ export function RecordEntry(props: {
         <h3 class="entry-title">
           <Show when={safeExternalUrl(props.url ?? null)} fallback={props.title}>
             {(url) => (
-              <a href={url()} target="_blank" rel="noopener noreferrer" class="text-ink hover:text-ink">
-                {props.title} ↗
+              <a href={url()} target="_blank" rel="noopener noreferrer" class="group text-ink hover:text-ink">
+                {props.title}
+                {"\u00a0"}
+                <span class="inline-block [transition:transform_var(--duration-fast)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5">
+                  ↗
+                </span>
               </a>
             )}
           </Show>

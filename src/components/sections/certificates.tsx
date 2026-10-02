@@ -21,7 +21,7 @@ export function CertificatesContent(props: { data: Certificate[] }) {
         <CertificateList data={main()} />
       </Show>
       <Show when={other().length}>
-        <details class="mt-8 border-line border-t pt-5 [&[open]>summary::before]:[transform:translateY(-2px)_rotate(45deg)] [&[open]>summary]:mb-6 [&[open]>summary]:text-ink">
+        <details class="disclosure mt-8 border-line border-t pt-5 [&[open]>summary]:mb-6">
           <summary class="disclosure-summary min-h-10 py-2">
             <span>기타 자격증</span>
             <span class="text-muted tabular-nums">{other().length}개</span>

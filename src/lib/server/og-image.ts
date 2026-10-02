@@ -3,7 +3,6 @@ import { renderAsync } from "@resvg/resvg-js";
 import satori from "satori";
 import { profile } from "~/lib/profile";
 import { socialImage } from "~/lib/seo";
-import logo from "../../../assets/character-square.png?inline";
 import boldFont from "../../../assets/fonts/portfolio-og-bold.ttf?inline";
 import regularFont from "../../../assets/fonts/portfolio-og-regular.ttf?inline";
 
@@ -27,14 +26,40 @@ export async function createPortfolioImage() {
           justifyContent: "center",
           gap: 96,
           padding: 80,
-          backgroundColor: "#f4efe4",
+          backgroundColor: "#fbf9f5",
           color: "#2e2a24",
           fontFamily: "Portfolio OG Sans",
         },
         children: [
           {
-            type: "img",
-            props: { src: logo, width: 224, height: 224, style: { objectFit: "contain", flexShrink: 0 } },
+            type: "svg",
+            props: {
+              width: 224,
+              height: 224,
+              viewBox: "8 8 48 48",
+              style: { flexShrink: 0 },
+              children: [
+                {
+                  type: "path",
+                  props: {
+                    d: "M20 20L46 26L29 46Z",
+                    fill: "none",
+                    stroke: "#75705f",
+                    strokeWidth: 1.5,
+                    strokeLinejoin: "round",
+                  },
+                },
+                {
+                  type: "circle",
+                  props: { cx: 46, cy: 26, r: 6.5, fill: "#fbf9f5", stroke: "#55503f", strokeWidth: 1.75 },
+                },
+                {
+                  type: "circle",
+                  props: { cx: 29, cy: 46, r: 6.5, fill: "#fbf9f5", stroke: "#55503f", strokeWidth: 1.75 },
+                },
+                { type: "circle", props: { cx: 20, cy: 20, r: 9.5, fill: "#0e6e5c" } },
+              ],
+            },
           },
           {
             type: "div",
