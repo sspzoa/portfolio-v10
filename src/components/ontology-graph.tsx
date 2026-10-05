@@ -1,7 +1,7 @@
 import { For } from "solid-js";
 import { profile } from "~/lib/profile";
 
-type NodeId = "person" | "role" | "company" | "university" | "school" | "service";
+type NodeId = "person" | "role" | "company" | "university" | "school";
 
 interface GraphNode {
   x: number;
@@ -15,12 +15,11 @@ interface GraphNode {
 }
 
 const nodes: Record<NodeId, GraphNode> = {
-  person: { x: 170, y: 130, radius: 7, label: profile.name, labelX: -16, labelY: 0, anchor: "end", primary: true },
-  role: { x: 246, y: 38, radius: 5, label: profile.role, labelX: 0, labelY: -20, anchor: "middle" },
-  company: { x: 274, y: 130, radius: 5, label: "호랑에듀", labelX: 0, labelY: 20, anchor: "middle" },
-  university: { x: 246, y: 222, radius: 5, label: "동국대 경영대학", labelX: 0, labelY: 20, anchor: "middle" },
-  school: { x: 94, y: 38, radius: 5, label: "디미고 해킹방어과", labelX: 0, labelY: -20, anchor: "middle" },
-  service: { x: 94, y: 222, radius: 6, label: "웹·앱 서비스", labelX: 0, labelY: 20, anchor: "middle" },
+  person: { x: 66, y: 58, radius: 7, label: profile.name, labelX: 0, labelY: -21, anchor: "middle", primary: true },
+  role: { x: 240, y: 50, radius: 5, label: profile.role, labelX: 0, labelY: -19, anchor: "middle" },
+  company: { x: 254, y: 142, radius: 5, label: "호랑에듀", labelX: 0, labelY: 20, anchor: "middle" },
+  university: { x: 180, y: 218, radius: 5, label: "동국대 경영대학", labelX: 0, labelY: 20, anchor: "middle" },
+  school: { x: 66, y: 198, radius: 5, label: "디미고 해킹방어과", labelX: 0, labelY: 20, anchor: "middle" },
 };
 
 const triples: [NodeId, string, NodeId][] = [
@@ -28,12 +27,12 @@ const triples: [NodeId, string, NodeId][] = [
   ["person", "일한다", "company"],
   ["person", "다닌다", "university"],
   ["person", "졸업했다", "school"],
-  ["person", "만든다", "service"],
 ];
 
 const nodeGap = 5;
 const introDuration = 1.6;
-const pulseStagger = 1;
+const pulseLoop = 7;
+const pulseStagger = pulseLoop / triples.length;
 const pulseTravel = 1.4;
 
 const round = (value: number) => Math.round(value * 100) / 100;
