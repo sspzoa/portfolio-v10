@@ -17,9 +17,9 @@ interface GraphNode {
 const nodes: Record<NodeId, GraphNode> = {
   person: { x: 66, y: 58, radius: 7, label: profile.name, labelX: 0, labelY: -21, anchor: "middle", primary: true },
   role: { x: 240, y: 50, radius: 5, label: profile.role, labelX: 0, labelY: -19, anchor: "middle" },
-  company: { x: 254, y: 142, radius: 5, label: "호랑에듀", labelX: 0, labelY: 20, anchor: "middle" },
-  university: { x: 180, y: 218, radius: 5, label: "동국대 경영대학", labelX: 0, labelY: 20, anchor: "middle" },
-  school: { x: 66, y: 198, radius: 5, label: "디미고 해킹방어과", labelX: 0, labelY: 20, anchor: "middle" },
+  company: { x: 240, y: 140, radius: 5, label: "HORANG EDU Corp.", labelX: 0, labelY: 20, anchor: "middle" },
+  university: { x: 192, y: 214, radius: 5, label: "DGU Business School", labelX: 0, labelY: 20, anchor: "middle" },
+  school: { x: 66, y: 196, radius: 5, label: "KDMHS HD 22nd", labelX: 0, labelY: 20, anchor: "middle" },
 };
 
 const triples: [NodeId, string, NodeId][] = [
