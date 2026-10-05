@@ -1,14 +1,14 @@
 import "server-only";
 import type { z } from "zod";
 import {
+  type AboutMe,
   aboutMeSchema,
   activitySchema,
   awardSchema,
-  careerSchema,
   certificateSchema,
   educationSchema,
-  experienceSchema,
   projectSchema,
+  roleSchema,
   skillSchema,
 } from "~/lib/portfolio/schemas";
 import { queryDataSource } from "~/lib/server/notion/query";
@@ -35,29 +35,26 @@ import {
 } from "~/lib/server/portfolio/notion-pages";
 import { type PortfolioSourceKey, portfolioSources } from "~/lib/server/portfolio/sources";
 
-async function fetchCollection<Raw, Entity>(
+async function fetchCollection<PageSchema extends z.ZodType, EntitySchema extends z.ZodType>(
   key: PortfolioSourceKey,
-  pageSchema: z.ZodType<Raw>,
-  mapPage: (page: Raw) => unknown,
-  entitySchema: z.ZodType<Entity>,
-): Promise<Entity[]> {
+  pageSchema: PageSchema,
+  mapPage: (page: z.output<PageSchema>) => z.input<EntitySchema>,
+  entitySchema: EntitySchema,
+): Promise<z.output<EntitySchema>[]> {
   const source = portfolioSources[key];
   const pages = await queryDataSource(source.id, pageSchema, source.sorts);
-
-  try {
-    return entitySchema.array().parse(pages.map(mapPage));
-  } catch (cause) {
-    throw new PortfolioValidationError(key, { cause });
-  }
+  const entities = entitySchema.array().safeParse(pages.map(mapPage));
+  if (!entities.success) throw new PortfolioValidationError(key, { cause: entities.error });
+  return entities.data;
 }
 
-export async function fetchAboutMe(): Promise<z.infer<typeof aboutMeSchema> | null> {
+export async function fetchAboutMe(): Promise<AboutMe | null> {
   const entries = await fetchCollection("aboutMe", aboutMePageSchema, mapAboutMe, aboutMeSchema);
   return entries[0] ?? null;
 }
 
 export function fetchCareers() {
-  return fetchCollection("careers", rolePageSchema, mapRole, careerSchema);
+  return fetchCollection("careers", rolePageSchema, mapRole, roleSchema);
 }
 
 export function fetchProjects() {
@@ -65,7 +62,7 @@ export function fetchProjects() {
 }
 
 export function fetchExperiences() {
-  return fetchCollection("experiences", rolePageSchema, mapRole, experienceSchema);
+  return fetchCollection("experiences", rolePageSchema, mapRole, roleSchema);
 }
 
 export function fetchEducation() {

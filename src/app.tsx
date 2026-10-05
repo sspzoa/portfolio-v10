@@ -1,9 +1,10 @@
-import { MetaProvider } from "@solidjs/meta";
+import { Link, MetaProvider } from "@solidjs/meta";
 import { Router } from "@solidjs/router";
 import { HttpStatusCode } from "@solidjs/start";
 import { FileRoutes } from "@solidjs/start/router";
-import { ErrorBoundary, Suspense } from "solid-js";
+import { ErrorBoundary, Show, Suspense } from "solid-js";
 import { StatusPage } from "~/components/status-page";
+import { canonicalUrl } from "~/lib/seo";
 import "./app.css";
 import "virtual:uno.css";
 
@@ -13,18 +14,16 @@ export default function App() {
       explicitLinks
       root={(props) => (
         <MetaProvider>
+          <Show when={canonicalUrl(props.location.pathname)}>{(url) => <Link rel="canonical" href={url()} />}</Show>
           <ErrorBoundary
-            fallback={(_error, reset) => (
+            fallback={
               <StatusPage title="페이지를 표시하지 못했어요." description="잠시 후 다시 시도해 주세요.">
                 <HttpStatusCode code={500} />
-                <button
-                  type="button"
-                  class="mt-6 inline-flex min-h-9 w-fit cursor-pointer items-center py-1 text-accent underline decoration-transparent underline-offset-4 hover:decoration-current"
-                  onClick={reset}>
+                <a href={`${props.location.pathname}${props.location.search}`} class="tap-target mt-6 w-fit">
                   다시 시도
-                </button>
+                </a>
               </StatusPage>
-            )}>
+            }>
             <Suspense>{props.children}</Suspense>
           </ErrorBoundary>
         </MetaProvider>

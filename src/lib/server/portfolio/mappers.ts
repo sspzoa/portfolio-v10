@@ -54,7 +54,7 @@ export function mapProject(page: z.infer<typeof projectPageSchema>) {
     isSideProject: properties.isSideProject.checkbox,
     tags: properties.tags.multi_select.map((tag) => tag.name),
     coverImage: readFileUrl(page.cover),
-    iconImage: page.icon?.type === "emoji" ? null : readFileUrl(page.icon),
+    iconImage: readFileUrl(page.icon),
   };
 }
 
@@ -83,8 +83,8 @@ export function mapAward(page: z.infer<typeof awardPageSchema>) {
 export function mapCertificate(page: z.infer<typeof certificatePageSchema>) {
   const { properties } = page;
   return {
-    isMain: properties.isMain.checkbox,
     id: page.id,
+    isMain: properties.isMain.checkbox,
     name: readPlainText(properties.name.title),
     kind: readOptionalText(properties.kind.rich_text),
     institution: readOptionalText(properties.institution.rich_text),

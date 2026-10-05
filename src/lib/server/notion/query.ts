@@ -9,27 +9,32 @@ export interface NotionSort {
   direction: "ascending" | "descending";
 }
 
-export async function queryDataSource<T>(
+export async function queryDataSource<Schema extends z.ZodType>(
   sourceId: string,
-  pageSchema: z.ZodType<T>,
-  sorts: readonly NotionSort[] = [],
+  pageSchema: Schema,
+  sorts: readonly NotionSort[],
   request: NotionRequest = notionRequest,
-): Promise<T[]> {
-  const pages: T[] = [];
+): Promise<z.output<Schema>[]> {
+  const pages: z.output<Schema>[] = [];
   const cursors = new Set<string>();
   let cursor: string | undefined;
 
   while (true) {
     const raw = await request(`/data_sources/${sourceId}/query`, {
-      method: "POST",
-      body: { page_size: 100, sorts, ...(cursor ? { start_cursor: cursor } : {}) },
+      page_size: 100,
+      sorts,
+      ...(cursor ? { start_cursor: cursor } : {}),
     });
     const response = queryResponseSchema.safeParse(raw);
     if (!response.success) throw new NotionPayloadError("Notion query response has an invalid shape");
+    if (response.data.request_status?.type === "incomplete") {
+      throw new NotionPayloadError("Notion query returned an incomplete result");
+    }
 
     const parsedPages = pageSchema.array().safeParse(response.data.results);
-    if (!parsedPages.success)
+    if (!parsedPages.success) {
       throw new NotionPayloadError(`Notion data source ${sourceId} has invalid page properties`);
+    }
     pages.push(...parsedPages.data);
 
     if (!response.data.has_more) return pages;

@@ -13,7 +13,7 @@ import {
   fetchSkills,
 } from "~/lib/server/portfolio/repository";
 
-export async function loadSection<T>(name: string, load: () => Promise<T>): Promise<SectionResult<T>> {
+async function loadSection<T>(name: string, load: () => Promise<T>): Promise<SectionResult<T>> {
   try {
     return { data: await load(), error: null };
   } catch (error) {

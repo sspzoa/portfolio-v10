@@ -1,23 +1,27 @@
-import { defineConfig, presetWind3 } from "unocss";
+import { cssIdRE, defineConfig, presetWind3 } from "unocss";
+
+const fillBoth = { "animation-fill-mode": "both" };
 
 export default defineConfig({
   content: {
-    filesystem: ["./src/**/*.{html,js,ts,jsx,tsx}"],
+    filesystem: ["./src/**/*.tsx"],
+    pipeline: { exclude: [cssIdRE, /node_modules/] },
   },
   presets: [presetWind3()],
   shortcuts: {
-    "disclosure-summary": [
-      "flex w-fit cursor-pointer items-center gap-2 rounded-ui",
-      "text-caption text-secondary [transition:color_var(--duration-fast)] before:mr-1 before:block before:size-1.5",
-      "before:shrink-0 before:border-current before:border-r before:border-b before:content-empty hover:text-ink",
-      "before:[transform:rotate(-45deg)] before:[transition:transform_var(--duration-fast)] [&::-webkit-details-marker]:hidden",
-    ],
-    "entry-title": ["wrap-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]"],
-    "media-tile": ["block shrink-0 rounded-ui border border-line bg-surface"],
-    node: ["block size-[7px] shrink-0 rounded-full border-[1.5px] border-secondary bg-canvas"],
+    "page-column": "mx-auto w-full max-w-reading px-6 max-sm:px-5",
+    "tap-target": "inline-flex min-h-9 items-center py-1",
+    "entry-title": "break-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]",
+    node: "block size-[7px] shrink-0 rounded-full border-[1.5px] border-secondary bg-canvas",
     disclosure: [
       "[&[open]>summary::before]:[transform:translateY(-2px)_rotate(45deg)] [&[open]>summary]:text-ink",
       "motion-safe:[&[open]>:not(summary)]:animate-disclosure-in",
+    ],
+    "disclosure-summary": [
+      "flex w-fit cursor-pointer items-center gap-2 text-caption text-secondary hover:text-ink",
+      "[transition:color_var(--duration-fast)] [&::-webkit-details-marker]:hidden",
+      "before:mr-1 before:block before:size-1.5 before:shrink-0 before:border-current before:border-r before:border-b",
+      "before:content-empty before:[transform:rotate(-45deg)] before:[transition:transform_var(--duration-fast)]",
     ],
   },
   theme: {
@@ -29,22 +33,18 @@ export default defineConfig({
       line: "var(--line)",
       surface: "var(--surface)",
       accent: "var(--accent)",
-      selection: "var(--selection)",
     },
-    fontFamily: {
-      sans: "var(--font-body)",
-      mono: "var(--font-code)",
-    },
+    fontFamily: { mono: "var(--font-code)" },
     fontSize: {
-      profile: ["var(--text-title)", "inherit"],
+      profile: ["var(--text-title)", "1.35", "-0.025em"],
       section: ["var(--text-heading)", "inherit"],
       copy: ["var(--text-body)", "inherit"],
       caption: ["var(--text-small)", "inherit"],
     },
-    spacing: Object.fromEntries(
-      [1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24].map((space) => [space, `var(--space-${space})`]),
-    ),
+    spacing: Object.fromEntries([1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 24].map((space) => [space, `var(--space-${space})`])),
     borderRadius: { ui: "var(--radius-control)" },
+    maxWidth: { reading: "var(--content-width)" },
+    breakpoints: { sm: "40rem" },
     supports: { timeline: "(animation-timeline: view())" },
     animation: {
       keyframes: {
@@ -83,26 +83,22 @@ export default defineConfig({
         "graph-ripple": "infinite",
       },
       properties: {
-        "graph-draw": { "animation-fill-mode": "both" },
-        "graph-fade": { "animation-fill-mode": "both" },
+        "graph-draw": fillBoth,
+        "graph-fade": fillBoth,
         "section-rule": {
-          "animation-fill-mode": "both",
+          ...fillBoth,
           "animation-timeline": "--section",
           "animation-range": "cover 32px cover min(240px, 60svh)",
         },
         "section-ripple": {
-          "animation-fill-mode": "both",
+          ...fillBoth,
           "animation-timeline": "--section",
           "animation-range": "cover 32px cover min(200px, 50svh)",
         },
-        rise: { "animation-fill-mode": "both" },
-        "disclosure-in": { "animation-fill-mode": "both" },
+        rise: fillBoth,
+        "disclosure-in": fillBoth,
       },
     },
-    maxWidth: { reading: "var(--content-width)" },
   },
-  rules: [
-    ["wrap-anywhere", { "overflow-wrap": "anywhere" }],
-    ["section-timeline", { "view-timeline": "--section block" }],
-  ],
+  rules: [["section-timeline", { "view-timeline": "--section block" }]],
 });

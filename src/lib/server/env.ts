@@ -2,7 +2,7 @@ import "server-only";
 import { z } from "zod";
 
 const serverEnvSchema = z.object({
-  NOTION_TOKEN: z.string().regex(/^(secret|ntn)_[A-Za-z0-9_-]+$/),
+  NOTION_TOKEN: z.string().regex(/^[\x21-\x7E]+$/),
 });
 
 export class EnvironmentError extends Error {

@@ -2,15 +2,25 @@ import { profile } from "~/lib/profile";
 
 export const siteUrl = "https://sspzoa.io";
 export const siteTitle = `${profile.name} · ${profile.role}`;
+export const portfolioTitle = `${profile.name} · 포트폴리오`;
+
+const sitePaths = ["", "/portfolio"];
+
+export const sitemapUrls = sitePaths.map((path) => `${siteUrl}${path}`);
+
+export function canonicalUrl(pathname: string): string | undefined {
+  const path = pathname.replace(/\/+$/, "").toLowerCase();
+  return sitePaths.includes(path) ? `${siteUrl}${path}` : undefined;
+}
 
 export const socialImage = {
-  path: "/opengraph-image",
+  url: `${siteUrl}/opengraph-image`,
   width: 1200,
   height: 630,
   alt: `${siteTitle} 포트폴리오`,
 } as const;
 
-export const profileStructuredData = {
+const profileStructuredData = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   "@id": `${siteUrl}/#profile`,
@@ -28,13 +38,17 @@ export const profileStructuredData = {
     url: siteUrl,
     sameAs: profile.links.filter(({ href }) => href.startsWith("https://")).map(({ href }) => href),
   },
-} as const;
+};
 
-export const profileStructuredDataJson = JSON.stringify(profileStructuredData).replace(/</g, "\\u003c");
+function serializeJsonLd(data: object) {
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
 
-export const portfolioStructuredDataJson = JSON.stringify({
+export const profileStructuredDataJson = serializeJsonLd(profileStructuredData);
+
+export const portfolioStructuredDataJson = serializeJsonLd({
   ...profileStructuredData,
   "@id": `${siteUrl}/portfolio#profile`,
   url: `${siteUrl}/portfolio`,
-  name: `${profile.name} · 포트폴리오`,
-}).replace(/</g, "\\u003c");
+  name: portfolioTitle,
+});

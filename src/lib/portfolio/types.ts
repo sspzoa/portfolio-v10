@@ -1,11 +1,12 @@
-import type { AboutMe, Activity, Award, Career, Certificate, Education, Experience, Project, Skill } from "./schemas";
+import type { AboutMe, Activity, Award, Certificate, Education, Project, Role, Skill } from "~/lib/portfolio/schemas";
 
 export type SectionResult<T> = { data: T; error: null } | { data: null; error: string };
+
 export interface PortfolioData {
   about: SectionResult<AboutMe | null>;
-  careers: SectionResult<Career[]>;
+  careers: SectionResult<Role[]>;
   projects: SectionResult<Project[]>;
-  experiences: SectionResult<Experience[]>;
+  experiences: SectionResult<Role[]>;
   education: SectionResult<Education[]>;
   skills: SectionResult<Skill[]>;
   awards: SectionResult<Award[]>;
@@ -14,16 +15,19 @@ export interface PortfolioData {
 }
 
 export type RenderedHtml = string & { readonly __renderedHtml: unique symbol };
-export type RenderedProject = Omit<Project, "description" | "shortDescription"> & {
-  description: RenderedHtml | null;
-  shortDescription: RenderedHtml | null;
+
+type Rendered<T, K extends keyof T> = Omit<T, K> & {
+  [P in K]: null extends T[P] ? RenderedHtml | null : RenderedHtml;
 };
-type RenderedTimeline<T> = Omit<T, "description"> & { description: RenderedHtml | null };
-export interface RenderedPortfolioData
-  extends Omit<PortfolioData, "about" | "careers" | "projects" | "experiences" | "education"> {
-  about: SectionResult<(Omit<AboutMe, "content"> & { content: RenderedHtml }) | null>;
-  careers: SectionResult<RenderedTimeline<Career>[]>;
+
+export type RenderedProject = Rendered<Project, "description" | "shortDescription">;
+
+interface RenderedSections {
+  about: SectionResult<Rendered<AboutMe, "content"> | null>;
+  careers: SectionResult<Rendered<Role, "description">[]>;
   projects: SectionResult<RenderedProject[]>;
-  experiences: SectionResult<RenderedTimeline<Experience>[]>;
-  education: SectionResult<RenderedTimeline<Education>[]>;
+  experiences: SectionResult<Rendered<Role, "description">[]>;
+  education: SectionResult<Rendered<Education, "description">[]>;
 }
+
+export type RenderedPortfolioData = Omit<PortfolioData, keyof RenderedSections> & RenderedSections;

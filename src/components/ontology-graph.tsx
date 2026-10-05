@@ -1,9 +1,9 @@
 import { For } from "solid-js";
 import { profile } from "~/lib/profile";
 
-type NodeId = "person" | "role" | "problem" | "product" | "user" | "feedback";
+type NodeId = "person" | "role" | "company" | "university" | "school" | "security" | "service";
 
-type GraphNode = {
+interface GraphNode {
   x: number;
   y: number;
   radius: number;
@@ -11,25 +11,27 @@ type GraphNode = {
   labelX: number;
   labelY: number;
   anchor: "start" | "middle" | "end";
-};
+  primary?: boolean;
+}
 
 const nodes: Record<NodeId, GraphNode> = {
-  person: { x: 70, y: 64, radius: 7, label: profile.name, labelX: 0, labelY: -20, anchor: "middle" },
-  role: { x: 250, y: 40, radius: 5, label: profile.role, labelX: 0, labelY: -17, anchor: "middle" },
-  problem: { x: 48, y: 210, radius: 5, label: "문제", labelX: 0, labelY: 20, anchor: "middle" },
-  product: { x: 214, y: 154, radius: 6, label: "제품", labelX: 12, labelY: -12, anchor: "start" },
-  user: { x: 304, y: 220, radius: 5, label: "사용자", labelX: 0, labelY: 20, anchor: "middle" },
-  feedback: { x: 176, y: 244, radius: 5, label: "피드백", labelX: -13, labelY: 1, anchor: "end" },
+  person: { x: 170, y: 130, radius: 7, label: profile.name, labelX: -16, labelY: 0, anchor: "end", primary: true },
+  role: { x: 246, y: 38, radius: 5, label: profile.role, labelX: 0, labelY: -20, anchor: "middle" },
+  company: { x: 274, y: 130, radius: 5, label: "호랑에듀", labelX: 0, labelY: 20, anchor: "middle" },
+  university: { x: 246, y: 222, radius: 5, label: "동국대 경영대학", labelX: 0, labelY: 20, anchor: "middle" },
+  school: { x: 94, y: 38, radius: 5, label: "디미고 해킹방어과", labelX: 0, labelY: -20, anchor: "middle" },
+  security: { x: 50, y: 130, radius: 5, label: "보안", labelX: -12, labelY: 0, anchor: "end" },
+  service: { x: 94, y: 222, radius: 6, label: "웹·앱 서비스", labelX: 0, labelY: 20, anchor: "middle" },
 };
 
 const triples: [NodeId, string, NodeId][] = [
   ["person", "is a", "role"],
-  ["person", "고민한다", "problem"],
-  ["person", "만든다", "product"],
-  ["product", "해결한다", "problem"],
-  ["user", "사용한다", "product"],
-  ["user", "남긴다", "feedback"],
-  ["feedback", "다듬는다", "product"],
+  ["person", "일한다", "company"],
+  ["person", "다닌다", "university"],
+  ["person", "졸업했다", "school"],
+  ["school", "가르쳤다", "security"],
+  ["security", "지킨다", "service"],
+  ["person", "만든다", "service"],
 ];
 
 const nodeGap = 5;
@@ -38,6 +40,7 @@ const pulseStagger = 1;
 const pulseTravel = 1.4;
 
 const round = (value: number) => Math.round(value * 100) / 100;
+const seconds = (value: number) => `${round(value)}s`;
 
 const edges = triples.map(([from, label, to], index) => {
   const source = nodes[from];
@@ -51,28 +54,27 @@ const edges = triples.map(([from, label, to], index) => {
   const startY = round(source.y + unitY * (source.radius + nodeGap));
   const endX = round(target.x - unitX * (target.radius + nodeGap));
   const endY = round(target.y - unitY * (target.radius + nodeGap));
+  const pulseStart = introDuration + index * pulseStagger;
 
   return {
     label,
+    target,
     path: `M${startX} ${startY}L${endX} ${endY}`,
     arrow: `translate(${endX} ${endY}) rotate(${round((Math.atan2(deltaY, deltaX) * 180) / Math.PI)})`,
     labelX: round((startX + endX) / 2),
     labelY: round((startY + endY) / 2),
-    targetX: target.x,
-    targetY: target.y,
-    targetRadius: target.radius,
-    drawDelay: `${round(index * 0.12)}s`,
-    labelDelay: `${round(index * 0.12 + 0.5)}s`,
-    pulseDelay: `${round(introDuration + index * pulseStagger)}s`,
-    rippleDelay: `${round(introDuration + index * pulseStagger + pulseTravel)}s`,
+    drawDelay: seconds(index * 0.12),
+    labelDelay: seconds(index * 0.12 + 0.5),
+    pulseDelay: seconds(pulseStart),
+    rippleDelay: seconds(pulseStart + pulseTravel),
   };
 });
 
-const nodeList = Object.values(nodes).map((node, index) => ({ ...node, delay: `${round(index * 0.1)}s` }));
+const nodeList = Object.values(nodes).map((node, index) => ({ ...node, delay: seconds(index * 0.1) }));
 
 export function OntologyGraph(props: { class: string }) {
   return (
-    <svg viewBox="24 8 312 250" fill="none" aria-hidden="true" class={props.class}>
+    <svg viewBox="0 0 312 260" fill="none" aria-hidden="true" class={props.class}>
       <For each={edges}>
         {(edge) => (
           <>
@@ -125,9 +127,9 @@ export function OntologyGraph(props: { class: string }) {
       <For each={edges}>
         {(edge) => (
           <circle
-            cx={edge.targetX}
-            cy={edge.targetY}
-            r={edge.targetRadius}
+            cx={edge.target.x}
+            cy={edge.target.y}
+            r={edge.target.radius}
             vector-effect="non-scaling-stroke"
             class="origin-center stroke-accent opacity-0 [transform-box:fill-box] motion-safe:animate-graph-ripple"
             style={{ "animation-delay": edge.rippleDelay }}
@@ -135,14 +137,14 @@ export function OntologyGraph(props: { class: string }) {
         )}
       </For>
       <For each={nodeList}>
-        {(node, index) => (
+        {(node) => (
           <g class="motion-safe:animate-graph-fade" style={{ "animation-delay": node.delay }}>
             <circle
               cx={node.x}
               cy={node.y}
               r={node.radius}
               stroke-width="1.5"
-              class={index() === 0 ? "fill-accent stroke-accent" : "fill-canvas stroke-secondary"}
+              class={node.primary ? "fill-accent stroke-accent" : "fill-canvas stroke-secondary"}
             />
             <text
               x={node.x + node.labelX}
@@ -153,7 +155,7 @@ export function OntologyGraph(props: { class: string }) {
               paint-order="stroke"
               stroke-width="6"
               stroke-linejoin="round"
-              class={index() === 0 ? "fill-ink stroke-canvas font-bold" : "fill-ink stroke-canvas"}>
+              class={node.primary ? "fill-ink stroke-canvas font-bold" : "fill-ink stroke-canvas"}>
               {node.label}
             </text>
           </g>

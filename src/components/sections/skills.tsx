@@ -1,13 +1,13 @@
 import { createMemo, For, Show } from "solid-js";
+import { EntryIcon } from "~/components/entry";
 import type { Skill } from "~/lib/portfolio/schemas";
 
-export function SkillsContent(props: { data: Skill[] }) {
+export function SkillsContent(props: { items: Skill[] }) {
   const groups = createMemo(() => {
     const categories = new Map<string, Skill[]>();
-    for (const skill of props.data) {
+    for (const skill of props.items) {
       const category = skill.category || "기타";
-      if (!categories.has(category)) categories.set(category, []);
-      categories.get(category)!.push(skill);
+      categories.set(category, [...(categories.get(category) ?? []), skill]);
     }
     return Array.from(categories, ([name, skills]) => ({
       name,
@@ -18,30 +18,15 @@ export function SkillsContent(props: { data: Skill[] }) {
     <For each={groups()}>
       {(group) => (
         <div class="[&+div]:mt-5">
-          <h3 class="mt-1 mb-1 font-medium text-caption text-muted tracking-[0.01em]">{group.name}</h3>
-          <ul class="flex flex-wrap gap-x-4 gap-y-2">
+          <h3 class="my-1 text-caption text-muted tracking-[0.01em]">{group.name}</h3>
+          <ul role="list" class="flex flex-wrap gap-x-4 gap-y-2">
             <For each={group.skills}>
               {(skill) => (
                 <li class="flex items-center gap-1">
-                  <Show when={skill.isMain}>
-                    <Show when={skill.icon}>
-                      {(icon) => (
-                        <div class="media-tile size-6 p-0.5">
-                          <img
-                            src={icon()}
-                            alt=""
-                            width={18}
-                            height={18}
-                            loading="lazy"
-                            decoding="async"
-                            draggable={false}
-                            class="size-full object-contain"
-                          />
-                        </div>
-                      )}
-                    </Show>
+                  <Show when={skill.isMain} fallback={skill.name}>
+                    <Show when={skill.icon}>{(icon) => <EntryIcon src={icon()} variant="skill" />}</Show>
+                    <strong>{skill.name}</strong>
                   </Show>
-                  {skill.isMain ? <strong>{skill.name}</strong> : skill.name}
                 </li>
               )}
             </For>

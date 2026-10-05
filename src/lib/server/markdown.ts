@@ -1,26 +1,19 @@
 import "server-only";
 import MarkdownIt from "markdown-it";
 import type { RenderedHtml } from "~/lib/portfolio/types";
+import { safeUrl } from "~/lib/safe-url";
 
-export function safeHref(value: string): string | undefined {
-  try {
-    const url = new URL(value.trim());
-    return ["https:", "http:", "mailto:"].includes(url.protocol) ? url.href : undefined;
-  } catch {
-    return undefined;
-  }
-}
+const linkProtocols = ["https:", "http:", "mailto:"];
 
 const markdown = new MarkdownIt("commonmark", { html: false });
 markdown.validateLink = () => true;
 markdown.renderer.rules.link_open = (tokens, index) => {
-  const token = tokens[index];
-  const href = safeHref(String(token.attrGet("href") ?? ""));
+  const href = safeUrl(String(tokens[index].attrGet("href") ?? ""), linkProtocols);
   let depth = 1;
   for (let end = index + 1; end < tokens.length; end++) {
     if (tokens[end].type === "link_open") depth++;
     if (tokens[end].type === "link_close" && --depth === 0) {
-      tokens[end].meta = { allowed: Boolean(href) };
+      tokens[end].meta = { allowed: href !== null };
       break;
     }
   }
@@ -33,5 +26,5 @@ markdown.renderer.rules.heading_open = () => "<p>";
 markdown.renderer.rules.heading_close = () => "</p>\n";
 
 export function renderMarkdown(content: string): RenderedHtml {
-  return markdown.render(content.replace(/\r\n?/g, "\n").replace(/^([\t ]*)•[\t ]+/gm, "$1- ")) as RenderedHtml;
+  return markdown.render(content.replace(/^([\t ]*)•[\t ]+/gm, "$1- ")) as RenderedHtml;
 }

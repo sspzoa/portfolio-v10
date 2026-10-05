@@ -1,50 +1,57 @@
 import { z } from "zod";
 
-const dateStringSchema = z
+const dateSchema = z
   .string()
   .regex(/^\d{4}\.\d{2}$/, "Date must be in YYYY.MM format")
   .nullable();
 
-export const skillSchema = z.object({
-  id: z.string(),
+const imageSchema = z.url().nullable();
+
+const timelineFields = {
+  organization: z.string().nullable(),
+  description: z.string().nullable(),
+  startDate: dateSchema,
+  endDate: dateSchema,
+  logo: imageSchema,
+};
+
+export const aboutMeSchema = z.object({
   name: z.string(),
-  category: z.string(),
-  isMain: z.boolean(),
-  icon: z.string().url().nullable(),
+  content: z.string().min(1, "AboutMe content cannot be empty"),
 });
+
+export const roleSchema = z.object({ id: z.string(), role: z.string(), ...timelineFields });
+
+export const educationSchema = z.object({ id: z.string(), department: z.string(), ...timelineFields });
 
 export const projectSchema = z.object({
   id: z.string(),
   name: z.string(),
   shortDescription: z.string().nullable(),
   description: z.string().nullable(),
-  startDate: dateStringSchema,
-  endDate: dateStringSchema,
-  teamSize: z.number().int().nonnegative().nullable(),
+  startDate: dateSchema,
+  endDate: dateSchema,
+  teamSize: z.int().nonnegative().nullable(),
   isSideProject: z.boolean(),
   tags: z.array(z.string()),
-  coverImage: z.string().url().nullable(),
-  iconImage: z.string().url().nullable(),
+  coverImage: imageSchema,
+  iconImage: imageSchema,
 });
 
-export const experienceSchema = z.object({
+export const skillSchema = z.object({
   id: z.string(),
-  role: z.string(),
-  organization: z.string().nullable(),
-  description: z.string().nullable(),
-  startDate: dateStringSchema,
-  endDate: dateStringSchema,
-  logo: z.string().url().nullable(),
+  name: z.string(),
+  category: z.string(),
+  isMain: z.boolean(),
+  icon: imageSchema,
 });
 
-export const educationSchema = z.object({
+export const awardSchema = z.object({
   id: z.string(),
-  department: z.string(),
-  organization: z.string().nullable(),
-  description: z.string().nullable(),
-  startDate: dateStringSchema,
-  endDate: dateStringSchema,
-  logo: z.string().url().nullable(),
+  name: z.string(),
+  tier: z.string().nullable(),
+  date: dateSchema,
+  url: z.url().nullable(),
 });
 
 export const certificateSchema = z.object({
@@ -53,25 +60,7 @@ export const certificateSchema = z.object({
   name: z.string(),
   kind: z.string().nullable(),
   institution: z.string().nullable(),
-  date: dateStringSchema,
-});
-
-export const careerSchema = z.object({
-  id: z.string(),
-  role: z.string(),
-  organization: z.string().nullable(),
-  description: z.string().nullable(),
-  startDate: dateStringSchema,
-  endDate: dateStringSchema,
-  logo: z.string().url().nullable(),
-});
-
-export const awardSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  tier: z.string().nullable(),
-  date: dateStringSchema,
-  url: z.string().url().nullable(),
+  date: dateSchema,
 });
 
 export const activitySchema = z.object({
@@ -79,21 +68,15 @@ export const activitySchema = z.object({
   name: z.string(),
   role: z.string(),
   hosts: z.array(z.string()),
-  startDate: dateStringSchema,
-  endDate: dateStringSchema,
+  startDate: dateSchema,
+  endDate: dateSchema,
 });
 
-export const aboutMeSchema = z.object({
-  name: z.string(),
-  content: z.string().min(1, "AboutMe content cannot be empty"),
-});
-
-export type Skill = z.infer<typeof skillSchema>;
-export type Project = z.infer<typeof projectSchema>;
-export type Experience = z.infer<typeof experienceSchema>;
-export type Education = z.infer<typeof educationSchema>;
-export type Certificate = z.infer<typeof certificateSchema>;
-export type Career = z.infer<typeof careerSchema>;
-export type Award = z.infer<typeof awardSchema>;
-export type Activity = z.infer<typeof activitySchema>;
 export type AboutMe = z.infer<typeof aboutMeSchema>;
+export type Role = z.infer<typeof roleSchema>;
+export type Education = z.infer<typeof educationSchema>;
+export type Project = z.infer<typeof projectSchema>;
+export type Skill = z.infer<typeof skillSchema>;
+export type Award = z.infer<typeof awardSchema>;
+export type Certificate = z.infer<typeof certificateSchema>;
+export type Activity = z.infer<typeof activitySchema>;

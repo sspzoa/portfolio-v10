@@ -5,12 +5,12 @@ export function formatDate(value: string | null | undefined): string | null {
 }
 
 export function formatPeriod(
-  start: string | null | undefined,
-  end: string | null | undefined,
-  { present = false }: { present?: boolean } = {},
-): string {
-  if (!start) return end ?? "";
+  start: string | null,
+  end: string | null,
+  { ongoing = false }: { ongoing?: boolean } = {},
+): string | null {
+  if (!start) return end;
   if (start === end) return start;
   if (end) return `${start} – ${end}`;
-  return present ? `${start} – 현재` : start;
+  return ongoing ? `${start} – 현재` : start;
 }

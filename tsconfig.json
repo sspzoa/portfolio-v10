@@ -18,6 +18,5 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": true
   },
-  "include": ["src", "tools", "*.ts"],
-  "exclude": ["node_modules", ".output", ".nitro"]
+  "include": ["src", "*.ts"]
 }

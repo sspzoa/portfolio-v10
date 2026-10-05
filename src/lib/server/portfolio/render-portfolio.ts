@@ -6,24 +6,25 @@ function mapSection<T, U>(result: SectionResult<T>, render: (data: T) => U): Sec
   return result.error !== null ? result : { data: render(result.data), error: null };
 }
 
-function renderDescription<T extends { description: string | null }>(item: T) {
-  return { ...item, description: item.description === null ? null : renderMarkdown(item.description) };
+function renderOptional(markdown: string | null) {
+  return markdown === null ? null : renderMarkdown(markdown);
+}
+
+function renderDescriptions<T extends { description: string | null }>(result: SectionResult<T[]>) {
+  return mapSection(result, (items) =>
+    items.map((item) => ({ ...item, description: renderOptional(item.description) })),
+  );
 }
 
 export function renderPortfolio(data: PortfolioData): RenderedPortfolioData {
   return {
     ...data,
-    about: mapSection(data.about, (about) =>
-      about === null ? null : { ...about, content: renderMarkdown(about.content) },
-    ),
-    careers: mapSection(data.careers, (items) => items.map(renderDescription)),
-    experiences: mapSection(data.experiences, (items) => items.map(renderDescription)),
-    education: mapSection(data.education, (items) => items.map(renderDescription)),
-    projects: mapSection(data.projects, (items) =>
-      items.map((item) => ({
-        ...renderDescription(item),
-        shortDescription: item.shortDescription === null ? null : renderMarkdown(item.shortDescription),
-      })),
+    about: mapSection(data.about, (about) => about && { ...about, content: renderMarkdown(about.content) }),
+    careers: renderDescriptions(data.careers),
+    experiences: renderDescriptions(data.experiences),
+    education: renderDescriptions(data.education),
+    projects: mapSection(renderDescriptions(data.projects), (items) =>
+      items.map((item) => ({ ...item, shortDescription: renderOptional(item.shortDescription) })),
     ),
   };
 }

@@ -4,7 +4,6 @@ import {
   datePropertySchema,
   fileSchema,
   filesPropertySchema,
-  iconSchema,
   multiSelectPropertySchema,
   numberPropertySchema,
   richTextPropertySchema,
@@ -34,7 +33,7 @@ export const educationPageSchema = pageSchema.extend({
 
 export const projectPageSchema = pageSchema.extend({
   cover: fileSchema.nullable(),
-  icon: iconSchema.nullable(),
+  icon: fileSchema.nullable().catch(null),
   properties: z.object({
     name: titlePropertySchema,
     shortDescription: richTextPropertySchema,

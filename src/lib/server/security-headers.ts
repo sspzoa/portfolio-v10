@@ -1,18 +1,4 @@
 export const securityHeaders = {
-  "Content-Security-Policy": [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com",
-    "style-src 'self' 'unsafe-inline' cdn.jsdelivr.net",
-    "img-src 'self' data: https://prod-files-secure.s3.us-west-2.amazonaws.com",
-    "font-src 'self' cdn.jsdelivr.net",
-    "connect-src 'self' va.vercel-scripts.com https://vitals.vercel-insights.com",
-    "manifest-src 'self'",
-    "object-src 'none'",
-    "frame-src 'none'",
-    "frame-ancestors 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-  ].join("; "),
   "X-DNS-Prefetch-Control": "on",
   "X-Permitted-Cross-Domain-Policies": "none",
   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
@@ -21,3 +7,19 @@ export const securityHeaders = {
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
 };
+
+export function contentSecurityPolicy(nonce: string) {
+  return [
+    "default-src 'self'",
+    `script-src 'nonce-${nonce}' 'strict-dynamic'`,
+    "style-src 'self' 'unsafe-inline' cdn.jsdelivr.net",
+    "img-src 'self' data: https:",
+    "font-src 'self' cdn.jsdelivr.net",
+    "connect-src 'self'",
+    "object-src 'none'",
+    "frame-src 'none'",
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+  ].join("; ");
+}

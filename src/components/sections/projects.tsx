@@ -1,6 +1,6 @@
 import { createMemo, For, Show } from "solid-js";
-import { Period } from "~/components/entries";
-import { EntryIcon } from "~/components/entry-icon";
+import { EntryDescription, EntryHeading, EntryList, Period } from "~/components/entry";
+import { GroupDisclosure } from "~/components/group-disclosure";
 import { RichText } from "~/components/rich-text";
 import type { RenderedProject } from "~/lib/portfolio/types";
 
@@ -13,28 +13,14 @@ function ProjectEntry(props: { project: RenderedProject }) {
       .filter(Boolean)
       .join(" · ");
   return (
-    <li class="wrap-anywhere min-w-0 print:break-inside-avoid">
-      <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1 max-[40rem]:flex-col">
-        <div class="flex min-w-0 items-center gap-3">
-          <Show when={props.project.iconImage}>{(icon) => <EntryIcon src={icon()} />}</Show>
-          <div class="flex min-w-0 flex-col gap-1">
-            <h3 class="entry-title">{props.project.name}</h3>
-            <Show when={metadata()}>
-              <p class="text-caption text-secondary">{metadata()}</p>
-            </Show>
-          </div>
-        </div>
+    <li class="break-anywhere print:break-inside-avoid">
+      <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1 max-sm:flex-col">
+        <EntryHeading icon={props.project.iconImage} title={props.project.name} subtitle={metadata()} />
         <Period start={props.project.startDate} end={props.project.endDate} />
       </div>
-      <Show when={props.project.shortDescription}>
-        {(text) => (
-          <div class="mt-3">
-            <RichText>{text()}</RichText>
-          </div>
-        )}
-      </Show>
+      <EntryDescription html={props.project.shortDescription} />
       <Show when={props.project.tags.length}>
-        <ul class="mt-3 flex flex-wrap gap-2">
+        <ul role="list" class="mt-3 flex flex-wrap gap-2">
           <For each={props.project.tags}>
             {(tag) => <li class="rounded-ui border border-line px-2 py-0.5 text-caption text-muted">{tag}</li>}
           </For>
@@ -54,7 +40,7 @@ function ProjectEntry(props: { project: RenderedProject }) {
                   alt={`${props.project.name} 커버 이미지`}
                   loading="lazy"
                   decoding="async"
-                  class="mt-4 block h-auto max-w-full rounded-ui border border-line"
+                  class="mt-4 rounded-ui border border-line"
                 />
               )}
             </Show>
@@ -65,26 +51,26 @@ function ProjectEntry(props: { project: RenderedProject }) {
   );
 }
 
-export function ProjectsContent(props: { data: RenderedProject[] }) {
-  const main = createMemo(() => props.data.filter((item) => !item.isSideProject));
-  const side = createMemo(() => props.data.filter((item) => item.isSideProject));
+function ProjectList(props: { items: RenderedProject[] }) {
+  return (
+    <EntryList items={props.items} spacing="wide">
+      {(project) => <ProjectEntry project={project} />}
+    </EntryList>
+  );
+}
+
+export function ProjectsContent(props: { items: RenderedProject[] }) {
+  const main = createMemo(() => props.items.filter((item) => !item.isSideProject));
+  const side = createMemo(() => props.items.filter((item) => item.isSideProject));
   return (
     <>
       <Show when={main().length}>
-        <ul class="flex flex-col gap-10">
-          <For each={main()}>{(project) => <ProjectEntry project={project} />}</For>
-        </ul>
+        <ProjectList items={main()} />
       </Show>
       <Show when={side().length}>
-        <details class="disclosure mt-8 border-line border-t pt-5 [&[open]>summary]:mb-6">
-          <summary class="disclosure-summary min-h-10 py-2">
-            <span>사이드 프로젝트</span>
-            <span class="text-muted tabular-nums">{side().length}개</span>
-          </summary>
-          <ul class="flex flex-col gap-10">
-            <For each={side()}>{(project) => <ProjectEntry project={project} />}</For>
-          </ul>
-        </details>
+        <GroupDisclosure label="사이드 프로젝트" count={side().length}>
+          <ProjectList items={side()} />
+        </GroupDisclosure>
       </Show>
     </>
   );

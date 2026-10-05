@@ -2,12 +2,7 @@ import { NotionPayloadError, NotionRequestError } from "~/lib/server/notion/erro
 
 type Fetch = (input: string, init: RequestInit) => Promise<Response>;
 
-export interface NotionRequestOptions {
-  method?: "GET" | "POST";
-  body?: Record<string, unknown>;
-}
-
-export type NotionRequest = (endpoint: string, options?: NotionRequestOptions) => Promise<unknown>;
+export type NotionRequest = (endpoint: string, body: Record<string, unknown>) => Promise<unknown>;
 
 interface NotionTransportOptions {
   token: string;
@@ -16,44 +11,42 @@ interface NotionTransportOptions {
   timeoutMs?: number;
 }
 
+const maxAttempts = 3;
+const maxRetryDelay = 5_000;
+
 export function createNotionRequest({
   token,
   fetch: fetchRequest = globalThis.fetch,
   sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)),
   timeoutMs = 15_000,
 }: NotionTransportOptions): NotionRequest {
-  return async (endpoint, options = {}) => {
-    const body = options.body === undefined ? undefined : JSON.stringify(options.body);
+  return async (endpoint, body) => {
+    const payload = JSON.stringify(body);
 
-    for (let attempt = 0; attempt < 3; attempt++) {
-      let retryDelay = 1_000 * 2 ** attempt;
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), timeoutMs);
+    for (let attempt = 1; ; attempt++) {
+      let retryDelay = 1_000 * 2 ** (attempt - 1);
 
       try {
         let response: Response;
         try {
           response = await fetchRequest(`https://api.notion.com/v1${endpoint}`, {
-            method: options.method ?? "GET",
+            method: "POST",
             headers: {
               Authorization: `Bearer ${token}`,
               "Notion-Version": "2025-09-03",
               "Content-Type": "application/json",
             },
-            body,
+            body: payload,
             cache: "no-store",
-            signal: controller.signal,
+            signal: AbortSignal.timeout(timeoutMs),
           });
         } catch (cause) {
           throw new NotionRequestError(null, { cause });
         }
 
         if (!response.ok) {
-          const retryAfter = response.headers.get("Retry-After");
-          if (retryAfter !== null && /^\d+$/.test(retryAfter.trim())) {
-            const milliseconds = Number(retryAfter) * 1_000;
-            if (Number.isSafeInteger(milliseconds)) retryDelay = Math.max(retryDelay, milliseconds);
-          }
+          const retryAfter = response.headers.get("Retry-After")?.trim();
+          if (retryAfter && /^\d+$/.test(retryAfter)) retryDelay = Math.max(retryDelay, Number(retryAfter) * 1_000);
           await response.body?.cancel().catch(() => undefined);
           throw new NotionRequestError(response.status);
         }
@@ -71,14 +64,11 @@ export function createNotionRequest({
           throw new NotionPayloadError("Notion returned invalid JSON");
         }
       } catch (error) {
-        if (!(error instanceof NotionRequestError) || !error.retryable || attempt === 2) throw error;
-      } finally {
-        clearTimeout(timeout);
+        const retry = error instanceof NotionRequestError && error.retryable && attempt < maxAttempts;
+        if (!retry || retryDelay > maxRetryDelay) throw error;
       }
 
       await sleep(retryDelay);
     }
-
-    throw new NotionRequestError(null);
   };
 }
