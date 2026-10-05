@@ -1,7 +1,7 @@
 import { For } from "solid-js";
 import { profile } from "~/lib/profile";
 
-type NodeId = "person" | "role" | "company" | "university" | "school" | "security" | "service";
+type NodeId = "person" | "role" | "company" | "university" | "school" | "service";
 
 interface GraphNode {
   x: number;
@@ -20,7 +20,6 @@ const nodes: Record<NodeId, GraphNode> = {
   company: { x: 274, y: 130, radius: 5, label: "호랑에듀", labelX: 0, labelY: 20, anchor: "middle" },
   university: { x: 246, y: 222, radius: 5, label: "동국대 경영대학", labelX: 0, labelY: 20, anchor: "middle" },
   school: { x: 94, y: 38, radius: 5, label: "디미고 해킹방어과", labelX: 0, labelY: -20, anchor: "middle" },
-  security: { x: 50, y: 130, radius: 5, label: "보안", labelX: -12, labelY: 0, anchor: "end" },
   service: { x: 94, y: 222, radius: 6, label: "웹·앱 서비스", labelX: 0, labelY: 20, anchor: "middle" },
 };
 
@@ -29,8 +28,6 @@ const triples: [NodeId, string, NodeId][] = [
   ["person", "일한다", "company"],
   ["person", "다닌다", "university"],
   ["person", "졸업했다", "school"],
-  ["school", "가르쳤다", "security"],
-  ["security", "지킨다", "service"],
   ["person", "만든다", "service"],
 ];
 
