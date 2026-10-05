@@ -24,9 +24,9 @@ const nodes: Record<NodeId, GraphNode> = {
 
 const triples: [NodeId, string, NodeId][] = [
   ["person", "is a", "role"],
-  ["person", "일한다", "company"],
-  ["person", "다닌다", "university"],
-  ["person", "졸업했다", "school"],
+  ["person", "works at", "company"],
+  ["person", "attends", "university"],
+  ["person", "graduated from", "school"],
 ];
 
 const nodeGap = 5;
