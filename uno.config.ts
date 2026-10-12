@@ -50,9 +50,6 @@ export default defineConfig({
       keyframes: {
         "graph-draw": "{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}",
         "graph-fade": "{from{opacity:0}to{opacity:1}}",
-        "graph-pulse":
-          "{0%{stroke-dashoffset:10;opacity:0}2%{opacity:1}18%{opacity:1}20%,100%{stroke-dashoffset:-100;opacity:0}}",
-        "graph-ripple": "{0%{transform:scale(1);opacity:0.7}14%,100%{transform:scale(3);opacity:0}}",
         "section-rule": "{from{transform:scaleX(0)}to{transform:scaleX(1)}}",
         "section-ripple": "{0%{transform:scale(1);opacity:0}15%{opacity:0.7}100%{transform:scale(3);opacity:0}}",
         rise: "{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}",
@@ -61,8 +58,6 @@ export default defineConfig({
       durations: {
         "graph-draw": "0.9s",
         "graph-fade": "0.6s",
-        "graph-pulse": "7s",
-        "graph-ripple": "7s",
         "section-rule": "1ms",
         "section-ripple": "1ms",
         rise: "var(--duration-slow)",
@@ -71,16 +66,10 @@ export default defineConfig({
       timingFns: {
         "graph-draw": "ease-out",
         "graph-fade": "ease-out",
-        "graph-pulse": "ease-in-out",
-        "graph-ripple": "ease-out",
         "section-rule": "linear",
         "section-ripple": "linear",
         rise: "var(--ease-out)",
         "disclosure-in": "var(--ease-out)",
-      },
-      counts: {
-        "graph-pulse": "infinite",
-        "graph-ripple": "infinite",
       },
       properties: {
         "graph-draw": fillBoth,

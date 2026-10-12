@@ -21,7 +21,7 @@ body {
 }
 
 a {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: underline transparent;
   text-underline-offset: 4px;
   transition:
@@ -74,7 +74,7 @@ a:hover {
     color-scheme: light;
     --canvas: #ffffff;
     --ink: #202322;
-    --accent-hover: var(--accent);
+    --accent-hover: var(--accent-text);
   }
 
   *,

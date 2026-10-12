@@ -1,4 +1,4 @@
-import { OntologyGraph } from "~/components/ontology-graph";
+import { LogoMark } from "~/components/logo-mark";
 import { PageMetadata } from "~/components/page-metadata";
 import { ProfileHeader, ProfileLinks } from "~/components/profile-header";
 import { SiteFooter } from "~/components/site-footer";
@@ -20,7 +20,7 @@ export default function Home() {
               <ProfileLinks class="tap-target transition-none" />
             </ProfileHeader>
           </header>
-          <OntologyGraph class="pointer-events-none w-[clamp(280px,35vw,344px)] shrink-0 select-none max-sm:w-full max-sm:max-w-[344px] max-sm:self-center print:hidden" />
+          <LogoMark class="size-[clamp(160px,24vw,224px)] shrink-0 text-ink max-sm:order-first max-sm:size-24 print:hidden" />
         </main>
         <SiteFooter class="border-line border-t py-6 text-caption" />
       </div>

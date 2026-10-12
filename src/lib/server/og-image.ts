@@ -7,7 +7,7 @@ import { socialImage } from "~/lib/seo";
 import boldFont from "../../../assets/fonts/portfolio-og-bold.otf?inline";
 import regularFont from "../../../assets/fonts/portfolio-og-regular.otf?inline";
 
-const palette = { canvas: "#fbf9f5", ink: "#2e2a24", secondary: "#55503f", accent: "#0e6e5c" };
+const palette = { canvas: "#ffffff", ink: "#000000", secondary: "#555555", accent: "#f9423a" };
 
 function decodeFont(dataUrl: string) {
   return Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64");
@@ -22,12 +22,11 @@ function element(type: string, props: Record<string, unknown>, children?: unknow
   return { type, props: children === undefined ? props : { ...props, children } };
 }
 
-const mark = element("svg", { width: 224, height: 224, viewBox: logoMark.viewBox, style: { flexShrink: 0 } }, [
-  ...logoMark.strokes.map((d) =>
-    element("path", { d, fill: "none", stroke: palette.ink, strokeWidth: 1.75, strokeLinecap: "round" }),
-  ),
-  element("circle", { ...logoMark.node, r: 2.75, fill: palette.accent }),
-]);
+const mark = element(
+  "svg",
+  { width: 224, height: 224, viewBox: logoMark.viewBox, style: { flexShrink: 0 } },
+  logoMark.strokes.map((stroke) => element("path", { d: stroke.d, fill: palette[stroke.tone] })),
+);
 
 const heading = element("div", { style: { display: "flex", flexDirection: "column", justifyContent: "center" } }, [
   element(

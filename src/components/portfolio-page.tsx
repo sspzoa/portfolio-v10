@@ -16,7 +16,7 @@ export function PortfolioPage(props: { data: RenderedPortfolioData }) {
   return (
     <div class="page-column pt-24 pb-10 max-sm:pt-12 print:p-0!">
       <header class="pb-16 max-sm:pb-12">
-        <LogoMark draw class="mb-6 size-7 text-ink print:hidden" />
+        <LogoMark class="mb-6 size-7 text-ink print:hidden" />
         <ProfileHeader introduction={profile.introduction}>
           <ProfileLinks class="tap-target" />
         </ProfileHeader>
