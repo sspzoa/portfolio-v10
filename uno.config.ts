@@ -48,7 +48,7 @@ export default defineConfig({
     supports: { timeline: "(animation-timeline: view())" },
     animation: {
       keyframes: {
-        "graph-draw": "{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}",
+        "logo-cut": "{from{transform:translate(var(--logo-cut-x),var(--logo-cut-y))}to{transform:none}}",
         "graph-fade": "{from{opacity:0}to{opacity:1}}",
         "section-rule": "{from{transform:scaleX(0)}to{transform:scaleX(1)}}",
         "section-ripple": "{0%{transform:scale(1);opacity:0}15%{opacity:0.7}100%{transform:scale(3);opacity:0}}",
@@ -56,7 +56,7 @@ export default defineConfig({
         "disclosure-in": "{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}",
       },
       durations: {
-        "graph-draw": "0.9s",
+        "logo-cut": "0.7s",
         "graph-fade": "0.6s",
         "section-rule": "1ms",
         "section-ripple": "1ms",
@@ -64,7 +64,7 @@ export default defineConfig({
         "disclosure-in": "var(--duration-base)",
       },
       timingFns: {
-        "graph-draw": "ease-out",
+        "logo-cut": "var(--ease-out)",
         "graph-fade": "ease-out",
         "section-rule": "linear",
         "section-ripple": "linear",
@@ -72,7 +72,7 @@ export default defineConfig({
         "disclosure-in": "var(--ease-out)",
       },
       properties: {
-        "graph-draw": fillBoth,
+        "logo-cut": fillBoth,
         "graph-fade": fillBoth,
         "section-rule": {
           ...fillBoth,

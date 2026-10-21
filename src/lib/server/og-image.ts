@@ -22,11 +22,10 @@ function element(type: string, props: Record<string, unknown>, children?: unknow
   return { type, props: children === undefined ? props : { ...props, children } };
 }
 
-const mark = element(
-  "svg",
-  { width: 224, height: 224, viewBox: logoMark.viewBox, style: { flexShrink: 0 } },
-  logoMark.strokes.map((stroke) => element("path", { d: stroke.d, fill: palette[stroke.tone] })),
-);
+const mark = element("svg", { width: 224, height: 224, viewBox: logoMark.viewBox, style: { flexShrink: 0 } }, [
+  element("path", { d: logoMark.body, fill: palette.ink }),
+  element("path", { d: logoMark.piece, fill: palette.accent }),
+]);
 
 const heading = element("div", { style: { display: "flex", flexDirection: "column", justifyContent: "center" } }, [
   element(
