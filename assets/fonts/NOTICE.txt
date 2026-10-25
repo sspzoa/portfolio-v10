@@ -1,8 +1,8 @@
-The fonts in this directory are subsets of LINE Seed Sans KR 1.000 Regular and Bold.
-Copyright (c) LY Corporation. LINE Seed KR is a registered trademark of LY Corporation.
+The fonts in this directory are subsets of Wanted Sans 1.0.3 Regular and Bold.
+Copyright 2024 The Wanted Sans Project Authors (https://github.com/wanteddev/wanted-sans).
 Licensed under the SIL Open Font License, Version 1.1. See OFL.txt.
 
-Source: https://seed.line.me, as packaged in @kfonts/line-seed-sans-kr 0.1.0 (src/LINESeedKR-Rg.otf, src/LINESeedKR-Bd.otf)
+Source: https://github.com/wanteddev/wanted-sans, tag v1.0.3 (packages/wanted-sans/fonts/otf/WantedSans-Regular.otf, WantedSans-Bold.otf)
 Subset coverage: printable ASCII, static profile text, and common punctuation.
-Changes: glyphs outside the subset, hinting, and the digital signature were removed with HarfBuzz hb-subset.
+Changes: glyphs outside the subset and hinting were removed with HarfBuzz hb-subset.
 Font names are unchanged; the license declares no Reserved Font Name.

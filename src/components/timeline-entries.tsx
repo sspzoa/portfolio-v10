@@ -20,7 +20,7 @@ export function TimelineEntries<T extends TimelineItem>(props: { items: T[]; lab
               title={item.organization || props.label(item)}
               subtitle={item.organization ? props.label(item) : null}
             />
-            <Period start={item.startDate} end={item.endDate} ongoing />
+            <Period start={item.startDate} end={item.endDate} ongoing class={item.logo ? "max-sm:pl-13" : undefined} />
           </div>
           <EntryDescription html={item.description} />
         </li>

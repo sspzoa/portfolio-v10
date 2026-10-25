@@ -9,7 +9,11 @@ function RecordEntry(props: { title: string; subtitle: string | null; period: st
         <h3 class="entry-title">
           <Show when={safeUrl(props.url)} fallback={props.title}>
             {(url) => (
-              <a href={url()} target="_blank" rel="noopener noreferrer" class="group text-ink hover:text-ink">
+              <a
+                href={url()}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group decoration-transparent hover:decoration-accent">
                 {props.title}
                 {"\u00a0"}
                 <span

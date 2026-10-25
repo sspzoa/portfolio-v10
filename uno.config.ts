@@ -11,8 +11,7 @@ export default defineConfig({
   shortcuts: {
     "page-column": "mx-auto w-full max-w-reading px-6 max-sm:px-5",
     "tap-target": "inline-flex min-h-9 items-center py-1",
-    "entry-title": "break-anywhere break-keep font-bold text-copy text-ink tracking-[-0.01em]",
-    node: "block size-[7px] shrink-0 rounded-full border-[1.5px] border-secondary bg-canvas",
+    "entry-title": "break-anywhere break-keep font-semibold text-copy text-ink tracking-[-0.015em]",
     disclosure: [
       "[&[open]>summary::before]:[transform:translateY(-2px)_rotate(45deg)] [&[open]>summary]:text-ink",
       "motion-safe:[&[open]>:not(summary)]:animate-disclosure-in",
@@ -36,7 +35,7 @@ export default defineConfig({
     },
     fontFamily: { mono: "var(--font-code)" },
     fontSize: {
-      profile: ["var(--text-title)", "1.35", "-0.025em"],
+      profile: ["var(--text-title)", "1.3", "-0.03em"],
       section: ["var(--text-heading)", "inherit"],
       copy: ["var(--text-body)", "inherit"],
       caption: ["var(--text-small)", "inherit"],
@@ -48,41 +47,29 @@ export default defineConfig({
     supports: { timeline: "(animation-timeline: view())" },
     animation: {
       keyframes: {
-        "logo-cut": "{from{transform:translate(var(--logo-cut-x),var(--logo-cut-y))}to{transform:none}}",
-        "graph-fade": "{from{opacity:0}to{opacity:1}}",
+        "logo-refine": "{from{transform:scale(1.4142)}to{transform:none}}",
         "section-rule": "{from{transform:scaleX(0)}to{transform:scaleX(1)}}",
-        "section-ripple": "{0%{transform:scale(1);opacity:0}15%{opacity:0.7}100%{transform:scale(3);opacity:0}}",
         rise: "{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}",
         "disclosure-in": "{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}",
       },
       durations: {
-        "logo-cut": "0.7s",
-        "graph-fade": "0.6s",
+        "logo-refine": "0.9s",
         "section-rule": "1ms",
-        "section-ripple": "1ms",
         rise: "var(--duration-slow)",
         "disclosure-in": "var(--duration-base)",
       },
       timingFns: {
-        "logo-cut": "var(--ease-out)",
-        "graph-fade": "ease-out",
+        "logo-refine": "var(--ease-out)",
         "section-rule": "linear",
-        "section-ripple": "linear",
         rise: "var(--ease-out)",
         "disclosure-in": "var(--ease-out)",
       },
       properties: {
-        "logo-cut": fillBoth,
-        "graph-fade": fillBoth,
+        "logo-refine": fillBoth,
         "section-rule": {
           ...fillBoth,
           "animation-timeline": "--section",
           "animation-range": "cover 32px cover min(240px, 60svh)",
-        },
-        "section-ripple": {
-          ...fillBoth,
-          "animation-timeline": "--section",
-          "animation-range": "cover 32px cover min(200px, 50svh)",
         },
         rise: fillBoth,
         "disclosure-in": fillBoth,

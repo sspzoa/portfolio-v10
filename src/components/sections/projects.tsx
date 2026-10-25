@@ -16,13 +16,17 @@ function ProjectEntry(props: { project: RenderedProject }) {
     <li class="break-anywhere print:break-inside-avoid">
       <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1 max-sm:flex-col">
         <EntryHeading icon={props.project.iconImage} title={props.project.name} subtitle={metadata()} />
-        <Period start={props.project.startDate} end={props.project.endDate} />
+        <Period
+          start={props.project.startDate}
+          end={props.project.endDate}
+          class={props.project.iconImage ? "max-sm:pl-13" : undefined}
+        />
       </div>
       <EntryDescription html={props.project.shortDescription} />
       <Show when={props.project.tags.length}>
         <ul role="list" class="mt-3 flex flex-wrap gap-2">
           <For each={props.project.tags}>
-            {(tag) => <li class="rounded-ui border border-line px-2 py-0.5 text-caption text-muted">{tag}</li>}
+            {(tag) => <li class="rounded-ui bg-surface px-2 py-0.5 text-caption text-secondary">{tag}</li>}
           </For>
         </ul>
       </Show>
@@ -31,7 +35,7 @@ function ProjectEntry(props: { project: RenderedProject }) {
           <summary class="disclosure-summary min-h-9 py-1" aria-label={`${props.project.name} 자세히 보기`}>
             자세히 보기
           </summary>
-          <div class="before:node relative border-line border-l pl-4 before:absolute before:top-0 before:left-[-4px] before:content-empty">
+          <div class="border-line border-l pl-4">
             <Show when={props.project.description}>{(text) => <RichText>{text()}</RichText>}</Show>
             <Show when={props.project.coverImage}>
               {(cover) => (

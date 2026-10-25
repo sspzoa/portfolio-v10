@@ -7,15 +7,15 @@ import { socialImage } from "~/lib/seo";
 import boldFont from "../../../assets/fonts/portfolio-og-bold.otf?inline";
 import regularFont from "../../../assets/fonts/portfolio-og-regular.otf?inline";
 
-const palette = { canvas: "#ffffff", ink: "#000000", secondary: "#555555", accent: "#f9423a" };
+const palette = { canvas: "#ffffff", ink: "#000000", secondary: "#555555", accent: "#f5b300" };
 
 function decodeFont(dataUrl: string) {
   return Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64");
 }
 
 const fonts: Font[] = [
-  { name: "LINE Seed Sans KR", data: decodeFont(regularFont), weight: 400 },
-  { name: "LINE Seed Sans KR", data: decodeFont(boldFont), weight: 700 },
+  { name: "Wanted Sans", data: decodeFont(regularFont), weight: 400 },
+  { name: "Wanted Sans", data: decodeFont(boldFont), weight: 700 },
 ];
 
 function element(type: string, props: Record<string, unknown>, children?: unknown) {
@@ -23,8 +23,8 @@ function element(type: string, props: Record<string, unknown>, children?: unknow
 }
 
 const mark = element("svg", { width: 224, height: 224, viewBox: logoMark.viewBox, style: { flexShrink: 0 } }, [
-  element("path", { d: logoMark.body, fill: palette.ink }),
-  element("path", { d: logoMark.piece, fill: palette.accent }),
+  element("path", { d: logoMark.ink, fill: palette.ink }),
+  element("path", { d: logoMark.corner.d, fill: palette.accent }),
 ]);
 
 const heading = element("div", { style: { display: "flex", flexDirection: "column", justifyContent: "center" } }, [
@@ -49,7 +49,7 @@ const card = element(
       padding: 80,
       backgroundColor: palette.canvas,
       color: palette.ink,
-      fontFamily: "LINE Seed Sans KR",
+      fontFamily: "Wanted Sans",
     },
   },
   [mark, heading],

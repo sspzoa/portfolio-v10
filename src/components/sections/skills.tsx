@@ -25,7 +25,7 @@ export function SkillsContent(props: { items: Skill[] }) {
                 <li class="flex items-center gap-1">
                   <Show when={skill.isMain} fallback={skill.name}>
                     <Show when={skill.icon}>{(icon) => <EntryIcon src={icon()} variant="skill" />}</Show>
-                    <strong>{skill.name}</strong>
+                    <strong class="font-semibold">{skill.name}</strong>
                   </Show>
                 </li>
               )}

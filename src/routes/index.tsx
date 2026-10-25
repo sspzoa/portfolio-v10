@@ -14,7 +14,7 @@ export default function Home() {
         <main class="flex flex-1 items-center justify-between gap-8 py-24 max-sm:flex-col max-sm:items-stretch max-sm:justify-center">
           <header class="min-w-0 flex-1 max-sm:flex-none">
             <ProfileHeader introduction={profile.introduction.replace(", ", ",\n")}>
-              <a href="/portfolio" class="tap-target font-bold transition-none">
+              <a href="/portfolio" class="tap-target font-semibold transition-none">
                 포트폴리오
               </a>
               <ProfileLinks class="tap-target transition-none" />

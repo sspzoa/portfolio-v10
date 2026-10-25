@@ -2,7 +2,7 @@ import type { RenderedHtml } from "~/lib/portfolio/types";
 
 const richTextClass = [
   "break-anywhere break-keep text-secondary [&>*+*]:mt-3",
-  "[&_p]:whitespace-pre-line [&_strong]:font-bold [&_strong]:text-ink",
+  "[&_p]:whitespace-pre-line [&_strong]:font-semibold [&_strong]:text-ink",
   "[&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li+li]:mt-1 [&_li::marker]:text-muted",
   "[&_blockquote]:border-line [&_blockquote]:border-l [&_blockquote]:pl-4",
   "[&_hr]:my-5 [&_hr]:border-line",

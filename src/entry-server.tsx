@@ -16,7 +16,7 @@ export default createHandler(
             <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
             <link
               rel="stylesheet"
-              href="https://cdn.jsdelivr.net/npm/@kfonts/line-seed-sans-kr@0.1.0/index.css"
+              href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css"
               crossorigin="anonymous"
             />
             {props.assets}

@@ -74,14 +74,14 @@ export function EntryDescription(props: { html: RenderedHtml | null }) {
   );
 }
 
-export function DateLabel(props: { value: string | null }) {
+export function DateLabel(props: { value: string | null; class?: string }) {
   return (
     <Show when={props.value}>
-      <p class="whitespace-nowrap text-caption text-muted tabular-nums">{props.value}</p>
+      <p class={`whitespace-nowrap text-caption text-muted tabular-nums ${props.class ?? ""}`}>{props.value}</p>
     </Show>
   );
 }
 
-export function Period(props: { start: string | null; end: string | null; ongoing?: boolean }) {
-  return <DateLabel value={formatPeriod(props.start, props.end, { ongoing: props.ongoing })} />;
+export function Period(props: { start: string | null; end: string | null; ongoing?: boolean; class?: string }) {
+  return <DateLabel value={formatPeriod(props.start, props.end, { ongoing: props.ongoing })} class={props.class} />;
 }

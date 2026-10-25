@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="3 3 58 58">
-  <style>.i{fill:#000}.a{fill:#f9423a}@media (prefers-color-scheme:dark){.i{fill:#fff}}</style>
-  <path class="i" d="M54.03 18.93A26 26 0 0 0 12.62 12.62A26 26 0 0 0 18.93 54.03Z"/>
-  <path class="a" d="M57.26 23.47A26 26 0 0 1 51.51 51.51A26 26 0 0 1 23.47 57.26Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="4.57 4.57 54.86 54.86">
+  <style>.i{fill:#000}.a{fill:#f5b300}@media (prefers-color-scheme:dark){.i{fill:#fff}}</style>
+  <path class="i" d="M8 8H32V32H56V56H8Z"/>
+  <path class="a" d="M35.43 28.57V8A20.57 20.57 0 0 1 56 28.57Z"/>
 </svg>
