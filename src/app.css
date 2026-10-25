@@ -4,6 +4,7 @@
 
 html {
   scroll-padding-top: var(--space-8);
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -11,10 +12,22 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--text-body);
-  line-height: 1.7;
+  line-height: var(--leading-body);
   letter-spacing: var(--tracking-body);
+  font-synthesis-weight: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
 }
 
 ::selection {
@@ -26,6 +39,7 @@ a {
   text-decoration: underline 2px var(--accent);
   text-underline-offset: 5px;
   transition: text-decoration-color var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
 }
 
 a:hover {

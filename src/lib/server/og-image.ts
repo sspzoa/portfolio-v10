@@ -22,7 +22,7 @@ function element(type: string, props: Record<string, unknown>, children?: unknow
   return { type, props: children === undefined ? props : { ...props, children } };
 }
 
-const mark = element("svg", { width: 224, height: 224, viewBox: logoMark.viewBox, style: { flexShrink: 0 } }, [
+const mark = element("svg", { width: 168, height: 168, viewBox: logoMark.viewBox, style: { flexShrink: 0 } }, [
   element("path", { d: logoMark.ink, fill: palette.ink }),
   element("path", { d: logoMark.corner.d, fill: palette.accent }),
 ]);

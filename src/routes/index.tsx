@@ -20,7 +20,7 @@ export default function Home() {
               <ProfileLinks class="tap-target transition-none" />
             </ProfileHeader>
           </header>
-          <LogoMark class="size-[clamp(160px,24vw,224px)] shrink-0 text-ink max-sm:order-first max-sm:size-24 print:hidden" />
+          <LogoMark class="size-[168px] shrink-0 text-ink max-sm:order-first max-sm:size-[84px] print:hidden" />
         </main>
         <SiteFooter class="border-line border-t py-6 text-caption" />
       </div>

@@ -77,7 +77,10 @@ export function EntryDescription(props: { html: RenderedHtml | null }) {
 export function DateLabel(props: { value: string | null; class?: string }) {
   return (
     <Show when={props.value}>
-      <p class={`whitespace-nowrap text-caption text-muted tabular-nums ${props.class ?? ""}`}>{props.value}</p>
+      <p
+        class={`whitespace-nowrap text-caption text-muted tabular-nums leading-[calc(var(--text-body)*var(--leading-body))] ${props.class ?? ""}`}>
+        {props.value}
+      </p>
     </Show>
   );
 }

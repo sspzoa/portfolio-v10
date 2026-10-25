@@ -38,7 +38,7 @@ export default defineConfig({
       profile: ["var(--text-title)", "1.3", "-0.03em"],
       section: ["var(--text-heading)", "inherit"],
       copy: ["var(--text-body)", "inherit"],
-      caption: ["var(--text-small)", "inherit"],
+      caption: ["var(--text-small)", "inherit", "0"],
     },
     spacing: Object.fromEntries([1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 24].map((space) => [space, `var(--space-${space})`])),
     borderRadius: { ui: "var(--radius-control)" },

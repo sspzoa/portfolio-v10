@@ -28,6 +28,7 @@
   --text-heading: 1.125rem;
   --text-title: clamp(2rem, 1.75rem + 1vw, 2.5rem);
   --tracking-body: -0.01em;
+  --leading-body: 1.7;
   --radius-control: 0.25rem;
   --duration-fast: 150ms;
   --duration-base: 240ms;
