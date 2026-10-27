@@ -1,4 +1,4 @@
-import { EntryDescription, EntryHeading, EntryList, Period } from "~/components/entry";
+import { EntryDescription, EntryList, IconEntry, Period } from "~/components/entry";
 import type { RenderedHtml } from "~/lib/portfolio/types";
 
 interface TimelineItem {
@@ -13,17 +13,13 @@ export function TimelineEntries<T extends TimelineItem>(props: { items: T[]; lab
   return (
     <EntryList items={props.items} spacing="wide">
       {(item) => (
-        <li class="break-anywhere print:break-inside-avoid">
-          <div class="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 max-sm:grid-cols-1 max-sm:gap-y-1">
-            <EntryHeading
-              icon={item.logo}
-              title={item.organization || props.label(item)}
-              subtitle={item.organization ? props.label(item) : null}
-            />
-            <Period start={item.startDate} end={item.endDate} ongoing class={item.logo ? "max-sm:pl-13" : undefined} />
-          </div>
+        <IconEntry
+          icon={item.logo}
+          title={item.organization || props.label(item)}
+          subtitle={item.organization ? props.label(item) : null}
+          period={<Period start={item.startDate} end={item.endDate} ongoing />}>
           <EntryDescription html={item.description} />
-        </li>
+        </IconEntry>
       )}
     </EntryList>
   );

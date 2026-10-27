@@ -6,12 +6,17 @@
   --muted: #707070;
   --line: #e5e5e5;
   --surface: #f5f5f5;
+  --tile: #ffffff;
+  --tile-line: #e5e5e5;
   --accent: #f5b300;
   --accent-text: #8f6400;
+  --on-accent: #000000;
   --selection: #ffefb3;
   --font-body: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-code: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --content-width: 46rem;
+  --rail-width: 10rem;
+  --wide-width: calc(var(--content-width) + var(--rail-width) + var(--space-12));
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -25,11 +30,14 @@
   --space-24: 6rem;
   --text-small: 0.875rem;
   --text-body: 1rem;
+  --text-lead: 1.25rem;
   --text-heading: 1.125rem;
   --text-title: clamp(2rem, 1.75rem + 1vw, 2.5rem);
+  --text-display: clamp(2.75rem, 2rem + 3vw, 4.25rem);
   --tracking-body: -0.01em;
   --leading-body: 1.7;
   --radius-control: 0.25rem;
+  --radius-tile: 0.625rem;
   --duration-fast: 150ms;
   --duration-base: 240ms;
   --duration-slow: 500ms;
@@ -44,6 +52,7 @@
     --muted: #999999;
     --line: #2b2b2b;
     --surface: #161616;
+    --tile-line: #ffffff;
     --accent-text: #f5b300;
     --selection: #4d3a00;
   }

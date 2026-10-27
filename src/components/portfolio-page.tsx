@@ -14,18 +14,20 @@ import { profile } from "~/lib/profile";
 
 export function PortfolioPage(props: { data: RenderedPortfolioData }) {
   return (
-    <div class="page-column pt-24 pb-10 max-sm:pt-12 print:p-0!">
-      <header class="pb-16 max-sm:pb-12">
-        <a href="/" aria-label="홈" class="mb-6 block w-fit print:hidden">
-          <LogoMark class="block size-7 text-ink" />
+    <div class="page-column pt-24 pb-10 max-sm:pt-12 lg:max-w-wide print:p-0!">
+      <header class="rail-grid pb-20 max-sm:pb-12">
+        <a href="/" aria-label="홈" class="mb-8 block w-fit lg:mt-2 lg:mb-0 print:hidden">
+          <LogoMark class="view-transition-logo-mark block size-[42px] text-ink" />
         </a>
-        <ProfileHeader introduction={profile.introduction}>
-          <ProfileLinks class="tap-target" />
-        </ProfileHeader>
+        <div class="min-w-0">
+          <ProfileHeader size="title" introduction={profile.introduction}>
+            <ProfileLinks class="tap-target" />
+          </ProfileHeader>
+        </div>
       </header>
       <main>
         <Section id="about" title="소개" result={props.data.about}>
-          {(about) => <RichText>{about.content}</RichText>}
+          {(about) => <RichText lead>{about.content}</RichText>}
         </Section>
         <Section id="education" title="학력" result={props.data.education}>
           {(items) => <TimelineEntries items={items} label={(item) => item.department} />}
@@ -65,7 +67,7 @@ export function PortfolioPage(props: { data: RenderedPortfolioData }) {
           )}
         </Section>
       </main>
-      <SiteFooter class="mt-8 border-line border-t pt-6 text-caption print:hidden" />
+      <SiteFooter backToTop class="border-line border-t pt-4 text-caption print:hidden" />
     </div>
   );
 }

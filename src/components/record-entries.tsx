@@ -4,8 +4,8 @@ import { safeUrl } from "~/lib/safe-url";
 
 function RecordEntry(props: { title: string; subtitle: string | null; period: string | null; url?: string | null }) {
   return (
-    <li class="break-anywhere flex items-baseline justify-between gap-x-4 gap-y-1 max-sm:flex-col print:break-inside-avoid">
-      <div class="flex min-w-0 flex-col gap-1">
+    <li class="break-anywhere reveal flex items-baseline justify-between gap-x-6 gap-y-1 border-line border-t py-4 first:border-t-0 first:pt-0 last:pb-0 max-sm:flex-col print:break-inside-avoid">
+      <div class="flex min-w-0 flex-col gap-0.5">
         <h3 class="entry-title">
           <Show when={safeUrl(props.url)} fallback={props.title}>
             {(url) => (
@@ -18,7 +18,7 @@ function RecordEntry(props: { title: string; subtitle: string | null; period: st
                 {"\u00a0"}
                 <span
                   aria-hidden="true"
-                  class="inline-block [transition:transform_var(--duration-fast)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5">
+                  class="inline-block text-muted [transition:transform_var(--duration-fast),color_var(--duration-fast)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5">
                   ↗
                 </span>
               </a>
@@ -39,7 +39,7 @@ export function RecordEntries<T extends { name: string }>(props: {
   url?: (item: T) => string | null;
 }) {
   return (
-    <EntryList items={props.items} spacing="compact">
+    <EntryList items={props.items} spacing="ruled">
       {(item) => (
         <RecordEntry
           title={item.name}

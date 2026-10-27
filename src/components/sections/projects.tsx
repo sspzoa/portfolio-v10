@@ -1,5 +1,5 @@
 import { createMemo, For, Show } from "solid-js";
-import { EntryDescription, EntryHeading, EntryList, Period } from "~/components/entry";
+import { EntryDescription, EntryList, IconEntry, Period } from "~/components/entry";
 import { GroupDisclosure } from "~/components/group-disclosure";
 import { RichText } from "~/components/rich-text";
 import type { RenderedProject } from "~/lib/portfolio/types";
@@ -13,29 +13,31 @@ function ProjectEntry(props: { project: RenderedProject }) {
       .filter(Boolean)
       .join(" · ");
   return (
-    <li class="break-anywhere print:break-inside-avoid">
-      <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1 max-sm:flex-col">
-        <EntryHeading icon={props.project.iconImage} title={props.project.name} subtitle={metadata()} />
-        <Period
-          start={props.project.startDate}
-          end={props.project.endDate}
-          class={props.project.iconImage ? "max-sm:pl-13" : undefined}
-        />
-      </div>
+    <IconEntry
+      icon={props.project.iconImage}
+      title={props.project.name}
+      subtitle={metadata()}
+      period={<Period start={props.project.startDate} end={props.project.endDate} />}>
       <EntryDescription html={props.project.shortDescription} />
       <Show when={props.project.tags.length}>
-        <ul role="list" class="mt-3 flex flex-wrap gap-2">
+        <ul role="list" class="mt-3 flex flex-wrap gap-1.5">
           <For each={props.project.tags}>
-            {(tag) => <li class="rounded-ui bg-surface px-2 py-0.5 text-caption text-secondary">{tag}</li>}
+            {(tag) => (
+              <li class="rounded-ui border border-line px-2 text-caption text-secondary leading-6 tracking-normal">
+                {tag}
+              </li>
+            )}
           </For>
         </ul>
       </Show>
       <Show when={props.project.description || props.project.coverImage}>
-        <details class="disclosure mt-3 [&[open]>summary]:mb-3">
-          <summary class="disclosure-summary min-h-9 py-1" aria-label={`${props.project.name} 자세히 보기`}>
+        <details class="disclosure mt-3 [&[open]>summary]:mb-4">
+          <summary
+            class="disclosure-summary min-h-9 w-fit py-1 text-caption"
+            aria-label={`${props.project.name} 자세히 보기`}>
             자세히 보기
           </summary>
-          <div class="border-line border-l pl-4">
+          <div class="flex flex-col gap-5 border-line border-l pl-5">
             <Show when={props.project.description}>{(text) => <RichText>{text()}</RichText>}</Show>
             <Show when={props.project.coverImage}>
               {(cover) => (
@@ -44,14 +46,14 @@ function ProjectEntry(props: { project: RenderedProject }) {
                   alt={`${props.project.name} 커버 이미지`}
                   loading="lazy"
                   decoding="async"
-                  class="mt-4 rounded-ui border border-line"
+                  class="rounded-tile border border-line"
                 />
               )}
             </Show>
           </div>
         </details>
       </Show>
-    </li>
+    </IconEntry>
   );
 }
 
@@ -72,7 +74,7 @@ export function ProjectsContent(props: { items: RenderedProject[] }) {
         <ProjectList items={main()} />
       </Show>
       <Show when={side().length}>
-        <GroupDisclosure label="사이드 프로젝트" count={side().length}>
+        <GroupDisclosure label="사이드 프로젝트" count={side().length} class="mt-12 max-sm:mt-10">
           <ProjectList items={side()} />
         </GroupDisclosure>
       </Show>

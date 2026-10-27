@@ -19,7 +19,7 @@ export default function App() {
             fallback={
               <StatusPage title="페이지를 표시하지 못했어요." description="잠시 후 다시 시도해 주세요.">
                 <HttpStatusCode code={500} />
-                <a href={`${props.location.pathname}${props.location.search}`} class="tap-target mt-6 w-fit">
+                <a href={`${props.location.pathname}${props.location.search}`} class="button-primary mt-10 w-fit">
                   다시 시도
                 </a>
               </StatusPage>

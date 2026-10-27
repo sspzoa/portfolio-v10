@@ -9,8 +9,8 @@ export default function NotFound() {
       <HttpStatusCode code={404} />
       <Title>{`페이지를 찾을 수 없습니다 · ${profile.name}`}</Title>
       <Meta name="robots" content="noindex" />
-      <a href="/" class="tap-target mt-6 w-fit">
-        ← 홈으로 돌아가기
+      <a href="/" class="button-primary mt-10 w-fit">
+        홈으로 돌아가기
       </a>
     </StatusPage>
   );

@@ -22,7 +22,7 @@ export function CertificatesContent(props: { items: Certificate[] }) {
         <CertificateList items={main()} />
       </Show>
       <Show when={other().length}>
-        <GroupDisclosure label="기타 자격증" count={other().length}>
+        <GroupDisclosure label="기타 자격증" count={other().length} class="mt-4">
           <CertificateList items={other()} />
         </GroupDisclosure>
       </Show>

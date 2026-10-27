@@ -11,6 +11,11 @@ const richTextClass = [
   "[&_pre_code]:bg-transparent [&_pre_code]:px-0",
 ].join(" ");
 
-export function RichText(props: { children: RenderedHtml }) {
-  return <div class={richTextClass} innerHTML={props.children} />;
+const leadClass = [
+  "[&>p:first-child]:mb-6 [&>p:first-child]:text-lead [&>p:first-child]:text-ink",
+  "[&>p:first-child]:tracking-[-0.02em] [&>p:first-child]:[text-wrap:balance]",
+].join(" ");
+
+export function RichText(props: { children: RenderedHtml; lead?: boolean }) {
+  return <div class={props.lead ? `${richTextClass} ${leadClass}` : richTextClass} innerHTML={props.children} />;
 }
