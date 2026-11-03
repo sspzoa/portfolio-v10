@@ -13,7 +13,7 @@ export default defineConfig({
     "rail-grid": "lg:grid lg:grid-cols-rail lg:gap-x-12",
     "tap-target": "inline-flex min-h-9 items-center py-1",
     "button-primary": [
-      "group inline-flex min-h-12 items-center gap-2 rounded-ui bg-ink px-5 font-semibold text-canvas no-underline",
+      "inline-flex min-h-12 items-center rounded-ui bg-ink px-5 font-semibold text-canvas no-underline",
       "[transition:background-color_var(--duration-fast),color_var(--duration-fast)] hover:bg-accent hover:text-on-accent",
     ],
     "entry-title": "break-anywhere break-keep font-semibold text-copy text-ink tracking-[-0.015em]",
