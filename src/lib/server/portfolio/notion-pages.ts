@@ -55,8 +55,12 @@ export const skillPageSchema = pageSchema.extend({
 });
 
 export const awardPageSchema = pageSchema.extend({
-  public_url: z.url().nullable(),
-  properties: z.object({ name: titlePropertySchema, tier: richTextPropertySchema, date: datePropertySchema }),
+  properties: z.object({
+    name: titlePropertySchema,
+    tier: richTextPropertySchema,
+    date: datePropertySchema,
+    photos: filesPropertySchema.default({ files: [] }),
+  }),
 });
 
 export const certificatePageSchema = pageSchema.extend({

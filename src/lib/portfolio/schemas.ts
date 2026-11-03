@@ -51,7 +51,7 @@ export const awardSchema = z.object({
   name: z.string(),
   tier: z.string().nullable(),
   date: dateSchema,
-  url: z.url().nullable(),
+  photos: z.array(z.url()),
 });
 
 export const certificateSchema = z.object({

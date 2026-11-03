@@ -76,7 +76,7 @@ export function mapAward(page: z.infer<typeof awardPageSchema>) {
     name: readPlainText(properties.name.title),
     tier: readOptionalText(properties.tier.rich_text),
     date: formatDate(properties.date.date?.start),
-    url: page.public_url,
+    photos: properties.photos.files.map(readFileUrl).filter((url): url is string => url !== null),
   };
 }
 

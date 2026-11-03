@@ -3,6 +3,7 @@ import { ProfileHeader, ProfileLinks } from "~/components/profile-header";
 import { RecordEntries } from "~/components/record-entries";
 import { RichText } from "~/components/rich-text";
 import { Section } from "~/components/section";
+import { AwardsContent } from "~/components/sections/awards";
 import { CertificatesContent } from "~/components/sections/certificates";
 import { ProjectsContent } from "~/components/sections/projects";
 import { SkillsContent } from "~/components/sections/skills";
@@ -29,33 +30,26 @@ export function PortfolioPage(props: { data: RenderedPortfolioData }) {
         <Section id="about" title="소개" result={props.data.about}>
           {(about) => <RichText lead>{about.content}</RichText>}
         </Section>
-        <Section id="education" title="학력" result={props.data.education}>
-          {(items) => <TimelineEntries items={items} label={(item) => item.department} />}
+        <Section id="projects" title="프로젝트" result={props.data.projects} align="start">
+          {(items) => <ProjectsContent items={items} />}
         </Section>
         <Section id="careers" title="경력" result={props.data.careers}>
           {(items) => <TimelineEntries items={items} label={(item) => item.role} />}
         </Section>
-        <Section id="awards" title="수상" result={props.data.awards}>
-          {(items) => (
-            <RecordEntries
-              items={items}
-              subtitle={(item) => item.tier}
-              period={(item) => item.date}
-              url={(item) => item.url}
-            />
-          )}
-        </Section>
-        <Section id="certificates" title="자격증" result={props.data.certificates}>
-          {(items) => <CertificatesContent items={items} />}
-        </Section>
         <Section id="skills" title="기술" result={props.data.skills}>
           {(items) => <SkillsContent items={items} />}
+        </Section>
+        <Section id="awards" title="수상" result={props.data.awards}>
+          {(items) => <AwardsContent items={items} />}
         </Section>
         <Section id="experiences" title="경험" result={props.data.experiences}>
           {(items) => <TimelineEntries items={items} label={(item) => item.role} />}
         </Section>
-        <Section id="projects" title="프로젝트" result={props.data.projects} align="start">
-          {(items) => <ProjectsContent items={items} />}
+        <Section id="education" title="학력" result={props.data.education}>
+          {(items) => <TimelineEntries items={items} label={(item) => item.department} />}
+        </Section>
+        <Section id="certificates" title="자격증" result={props.data.certificates}>
+          {(items) => <CertificatesContent items={items} />}
         </Section>
         <Section id="activities" title="활동" result={props.data.activities}>
           {(items) => (

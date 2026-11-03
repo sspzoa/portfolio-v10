@@ -1,4 +1,5 @@
 import { createMemo, For, Show } from "solid-js";
+import { DetailDialog } from "~/components/detail-dialog";
 import { EntryIcon } from "~/components/entry";
 import { GroupDisclosure } from "~/components/group-disclosure";
 import { RichText } from "~/components/rich-text";
@@ -38,68 +39,37 @@ function ProjectDialog(props: {
   ref: HTMLDialogElement | ((element: HTMLDialogElement) => void);
 }) {
   return (
-    <dialog
+    <DetailDialog
       ref={props.ref}
       id={props.id}
-      aria-labelledby={`${props.id}-title`}
-      closedby="any"
-      onPointerDown={(event) => {
-        if (event.target !== event.currentTarget) return;
-        event.preventDefault();
-        event.currentTarget.close();
-      }}
-      class="m-auto max-h-[calc(100dvh-4rem)] w-[min(100%-2.5rem,44rem)] max-w-none overflow-y-auto overscroll-contain rounded-tile border border-line bg-canvas text-ink max-sm:max-h-[calc(100dvh-2rem)] max-sm:w-[calc(100%-2rem)] [&::backdrop]:bg-black/60 motion-safe:[&[open]::backdrop]:animate-fade-in motion-safe:[&[open]]:animate-dialog-in">
-      <div>
-        <div class="sticky top-0 z-1 flex items-center gap-3 bg-canvas px-6 pt-6 pb-4 max-sm:px-5 max-sm:pt-5">
-          <EntryIcon src={props.project.iconImage} label={props.project.name} />
-          <div class="flex min-w-0 flex-1 flex-col gap-0.5">
-            <h3
-              id={`${props.id}-title`}
-              class="break-anywhere break-keep font-semibold text-ink text-section tracking-[-0.02em]">
-              {props.project.name}
-            </h3>
-            <p class="text-caption text-secondary">{projectMetadata(props.project)}</p>
+      title={props.project.name}
+      metadata={projectMetadata(props.project)}
+      icon={props.project.iconImage}>
+      <Show when={props.project.coverImage}>
+        {(cover) => (
+          <img
+            src={cover()}
+            alt={`${props.project.name} 커버 이미지`}
+            loading="lazy"
+            decoding="async"
+            class="aspect-video w-full rounded-tile border border-line bg-surface object-cover"
+          />
+        )}
+      </Show>
+      <Show when={props.project.shortDescription || props.project.tags.length}>
+        <div class="flex flex-col gap-3">
+          <Show when={props.project.shortDescription}>{(html) => <RichText>{html()}</RichText>}</Show>
+          <ProjectTags tags={props.project.tags} />
+        </div>
+      </Show>
+      <Show when={props.project.description}>
+        {(html) => (
+          <div class="border-line border-t pt-6">
+            <RichText>{html()}</RichText>
           </div>
-          <button
-            type="button"
-            commandfor={props.id}
-            command="close"
-            onClick={(event) => event.currentTarget.closest("dialog")?.close()}
-            aria-label="닫기"
-            class="-mr-2 grid size-9 shrink-0 cursor-pointer place-items-center self-start rounded-full text-secondary [transition:color_var(--duration-fast),background-color_var(--duration-fast)] hover:bg-surface hover:text-ink focus-visible:rounded-full">
-            <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" class="size-4">
-              <path d="M3 3l10 10M13 3 3 13" stroke-width="1.5" stroke-linecap="round" />
-            </svg>
-          </button>
-        </div>
-        <div class="flex flex-col gap-6 px-6 pb-8 max-sm:px-5 max-sm:pb-6">
-          <Show when={props.project.coverImage}>
-            {(cover) => (
-              <img
-                src={cover()}
-                alt={`${props.project.name} 커버 이미지`}
-                loading="lazy"
-                decoding="async"
-                class="aspect-video w-full rounded-tile border border-line bg-surface object-cover"
-              />
-            )}
-          </Show>
-          <Show when={props.project.shortDescription || props.project.tags.length}>
-            <div class="flex flex-col gap-3">
-              <Show when={props.project.shortDescription}>{(html) => <RichText>{html()}</RichText>}</Show>
-              <ProjectTags tags={props.project.tags} />
-            </div>
-          </Show>
-          <Show when={props.project.description}>
-            {(html) => (
-              <div class="border-line border-t pt-6">
-                <RichText>{html()}</RichText>
-              </div>
-            )}
-          </Show>
-        </div>
-      </div>
-    </dialog>
+        )}
+      </Show>
+    </DetailDialog>
   );
 }
 
