@@ -144,7 +144,7 @@ function ProjectCard(props: { project: RenderedProject }) {
       />
       <div
         aria-hidden="true"
-        class="pointer-events-none absolute inset-px flex flex-col justify-end gap-3 rounded-[calc(var(--radius-tile)-1px)] bg-[color-mix(in_srgb,var(--canvas)_85%,transparent)] p-5 opacity-0 backdrop-blur-md [transition:opacity_var(--duration-base)_var(--ease-out)] group-hover:opacity-100 peer-focus-visible:opacity-100 max-sm:p-4 print:static print:mt-3 print:rounded-none print:bg-transparent print:p-0 print:opacity-100 print:backdrop-blur-none">
+        class="pointer-events-none absolute inset-px flex flex-col gap-3 rounded-[calc(var(--radius-tile)-1px)] bg-[color-mix(in_srgb,var(--canvas)_85%,transparent)] p-5 opacity-0 backdrop-blur-md [transition:opacity_var(--duration-base)_var(--ease-out)] group-hover:opacity-100 peer-focus-visible:opacity-100 max-sm:p-4 sm:group-[:first-child:nth-last-child(odd)]:justify-end print:static print:mt-3 print:rounded-none print:bg-transparent print:p-0 print:opacity-100 print:backdrop-blur-none">
         <div class="flex items-center gap-3">
           <EntryIcon src={props.project.iconImage} label={props.project.name} />
           <div class="flex min-w-0 flex-col gap-0.5">
