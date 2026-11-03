@@ -20,13 +20,13 @@ function AwardEntry(props: { award: Award }) {
                   if (!dialog.open) dialog.showModal();
                 }}
                 aria-haspopup="dialog"
-                class="group cursor-pointer text-left underline decoration-2 decoration-transparent underline-offset-4 hover:decoration-accent">
+                class="group cursor-pointer text-left text-ink underline decoration-2 decoration-transparent underline-offset-[5px] [-webkit-tap-highlight-color:transparent] [transition:text-decoration-color_var(--duration-fast)] hover:decoration-accent">
                 {props.award.name}
                 {"\u00a0"}
                 <span
                   aria-hidden="true"
-                  class="inline-block text-muted [transition:transform_var(--duration-fast),color_var(--duration-fast)] group-hover:translate-x-0.5 group-hover:text-ink group-focus-visible:text-ink">
-                  ›
+                  class="inline-block text-muted [transition:transform_var(--duration-fast),color_var(--duration-fast)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5">
+                  ↗
                 </span>
               </button>
             </Show>
