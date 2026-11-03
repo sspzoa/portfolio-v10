@@ -43,7 +43,6 @@ export default defineConfig({
     },
     fontFamily: { mono: "var(--font-code)" },
     fontSize: {
-      display: ["var(--text-display)", "1.1", "-0.045em"],
       profile: ["var(--text-title)", "1.3", "-0.03em"],
       lead: ["var(--text-lead)", "1.6"],
       section: ["var(--text-heading)", "inherit"],

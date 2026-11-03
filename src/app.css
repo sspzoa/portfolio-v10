@@ -69,11 +69,6 @@ a:hover {
   ::view-transition-new(root) {
     animation-duration: 200ms;
   }
-
-  ::view-transition-group(profile-name) {
-    animation-duration: 360ms;
-    animation-timing-function: var(--ease-out);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

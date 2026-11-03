@@ -1,4 +1,4 @@
-import { ProfileHeader, ProfileLinks } from "~/components/profile-header";
+import { ProfileHeader } from "~/components/profile-header";
 import { RecordEntries } from "~/components/record-entries";
 import { RichText } from "~/components/rich-text";
 import { Section } from "~/components/section";
@@ -10,14 +10,11 @@ import { SiteFooter } from "~/components/site-footer";
 import { TimelineEntries } from "~/components/timeline-entries";
 import { formatPeriod } from "~/lib/format-date";
 import type { RenderedPortfolioData } from "~/lib/portfolio/types";
-import { profile } from "~/lib/profile";
 
 export function PortfolioPage(props: { data: RenderedPortfolioData }) {
   return (
     <div class="page-column pt-24 pb-10 max-sm:pt-12 lg:max-w-wide print:p-0!">
-      <ProfileHeader size="title" introduction={profile.introduction} class="pb-20 max-sm:pb-12">
-        <ProfileLinks class="tap-target" />
-      </ProfileHeader>
+      <ProfileHeader class="pb-20 max-sm:pb-12" />
       <main>
         <Section id="about" title="소개" result={props.data.about}>
           {(about) => <RichText lead>{about.content}</RichText>}

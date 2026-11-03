@@ -2,9 +2,8 @@ import { profile } from "~/lib/profile";
 
 export const siteUrl = "https://sspzoa.io";
 export const siteTitle = `${profile.name} · ${profile.role}`;
-export const portfolioTitle = `${profile.name} · 포트폴리오`;
 
-const sitePaths = ["", "/portfolio"];
+const sitePaths = [""];
 
 export const sitemapUrls = sitePaths.map((path) => `${siteUrl}${path}`);
 
@@ -45,10 +44,3 @@ function serializeJsonLd(data: object) {
 }
 
 export const profileStructuredDataJson = serializeJsonLd(profileStructuredData);
-
-export const portfolioStructuredDataJson = serializeJsonLd({
-  ...profileStructuredData,
-  "@id": `${siteUrl}/portfolio#profile`,
-  url: `${siteUrl}/portfolio`,
-  name: portfolioTitle,
-});
