@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.35 0.17 965.11 1241.16" width="965.11" height="1241.16">
+<defs>
+<linearGradient id="face" gradientUnits="userSpaceOnUse" x1="0" y1="0.17" x2="0" y2="1241.33"><stop offset="0" stop-color="#7491A7"/><stop offset="1" stop-color="#212C3B"/></linearGradient>
+<linearGradient id="shadeTop" gradientUnits="userSpaceOnUse" x1="560" y1="260" x2="900" y2="520"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.58"/></linearGradient>
+<linearGradient id="shadeBot" gradientUnits="userSpaceOnUse" x1="404.4" y1="981.5" x2="64.4" y2="721.5"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.58"/></linearGradient>
+<clipPath id="rightHalf"><rect x="482.2" y="0.17" width="482.55" height="1241.16"/></clipPath>
+<clipPath id="leftHalf"><rect x="-0.35" y="0.17" width="482.55" height="1241.16"/></clipPath>
+</defs>
+<path d="M553.87 25.66L922.92 326.19A113.5 113.5 0 0 1 922.92 502.21L553.87 802.74A113.5 113.5 0 0 1 410.53 802.74L41.48 502.21A113.5 113.5 0 0 1 41.48 326.19L410.53 25.66A113.5 113.5 0 0 1 553.87 25.66Z" fill="url(#face)"/>
+<path d="M553.87 25.66L922.92 326.19A113.5 113.5 0 0 1 922.92 502.21L553.87 802.74A113.5 113.5 0 0 1 410.53 802.74L41.48 502.21A113.5 113.5 0 0 1 41.48 326.19L410.53 25.66A113.5 113.5 0 0 1 553.87 25.66Z" fill="url(#shadeTop)" clip-path="url(#rightHalf)"/>
+<path d="M553.87 438.76L922.92 739.29A113.5 113.5 0 0 1 922.92 915.31L553.87 1215.84A113.5 113.5 0 0 1 410.53 1215.84L41.48 915.31A113.5 113.5 0 0 1 41.48 739.29L410.53 438.76A113.5 113.5 0 0 1 553.87 438.76Z" fill="url(#face)"/>
+<path d="M553.87 438.76L922.92 739.29A113.5 113.5 0 0 1 922.92 915.31L553.87 1215.84A113.5 113.5 0 0 1 410.53 1215.84L41.48 915.31A113.5 113.5 0 0 1 41.48 739.29L410.53 438.76A113.5 113.5 0 0 1 553.87 438.76Z" fill="url(#shadeBot)" clip-path="url(#leftHalf)"/>
+<path d="M553.87 25.66L922.92 326.19A113.5 113.5 0 0 1 922.92 502.21L553.87 802.74A113.5 113.5 0 0 1 410.53 802.74L41.48 502.21A113.5 113.5 0 0 1 41.48 326.19L410.53 25.66A113.5 113.5 0 0 1 553.87 25.66Z" fill="url(#face)" clip-path="url(#leftHalf)"/>
+</svg>

@@ -1,0 +1,52 @@
+{
+  "slug": "dimigoin-lite",
+  "projectName": "디미고인 라이트",
+  "repos": [
+    {
+      "repo": "dimigo-din/dimigoin-lite",
+      "ref": "ea35da0 (2024-09-25, lite.dimigo.in 배포용 마지막 상태. main HEAD 7314cfc 는 다른 기여자가 API 주소, OAuth 클라이언트, 도메인만 다른 학교용으로 바꾼 커밋이라 UI 는 같음)"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 Notion 원본 자료(109382d20e6441c28bcce14a94c1c217-cover.png) (기존 커버의 나의 신청 현황, 세탁 신청 탭과 타임 목록, 잔류 좌석 표, 잔류 중 외출 신청 폼과 헤더가 일치)"
+    ],
+    "knownDifferences": [
+      "기존 커버는 2학년 계정이라 금요귀가가 없고 잔류가 '교실 잔류'(미선택 사유)였음. 이번 데모는 3학년 계정, 좌석 B3 선택이라 나의 신청 현황에 금요귀가 칸이 하나 더 있음(원본 코드의 grade === 3 분기)",
+      "잔류 좌석에 내 좌석이 '30604' 로 표시되는 것은 원본 코드가 반 번호를 두 자리로 채우는 방식 그대로(다른 학생 좌석은 4자리 학번)"
+    ],
+    "notVerified": [
+      "실제 Google 로그인과 api.dimigo.in 응답은 확인하지 못함: lite.dimigo.in, api.dimigo.in 모두 2026-11-03 기준 DNS 가 풀리지 않음. 목 응답 모양은 src/service, src/hooks 의 필드 사용처에서 역으로 맞춤",
+      "금요귀가, 외출 신청 화면은 기존 커버에 일부만 있어 전체 레이아웃의 실제 배포 화면 비교 근거는 없음"
+    ]
+  },
+  "limitations": [
+    "라이브 캡처 불가: lite.dimigo.in 이 DNS 에서 해석되지 않고 로그인도 디미고 Google 계정이 필요해서, 원본 repo 를 로컬 실행하고 API 를 목으로 바꿔 캡처",
+    "frigo.png 아래 푸터에 'Designed by jiinnuukk / Developed by sspzoa' 크레딧(디자이너 공개 핸들)이 원본 그대로 보임",
+    "원본 UI 문구에 중간점은 없음. 외출 신청 현황의 '학원 수업 / 중식 / 13:00 ~ 18:00' 은 원본 포맷의 슬래시 구분"
+  ],
+  "screens": [
+    {
+      "file": "screens/status-laundry.png",
+      "kind": "source-demo",
+      "origin": "dimigo-din/dimigoin-lite@ea35da0 src/app/page.js, src/components/sections/MyStatus.jsx, LaundryApply.jsx (route /, 나의 신청 현황 + 세탁 신청)",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T15:56:06+09:00"
+    },
+    {
+      "file": "screens/mobile-stay-seats.png",
+      "kind": "source-demo",
+      "origin": "route / 모바일, 잔류 신청 위치로 스크롤",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T15:58:12+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "319caae7d548c62d028117ae998ca9b3286f452ed5363486e9a56f808da64972",
+    "screens/mobile-stay-seats.png": "982e6e163184b78e7114ece51a24f3beaa92f5ff20f877d3f550ee21e104d436",
+    "screens/status-laundry.png": "342fec5d5054e8dec89e760f42c7d5cf089d64481f3c7a4cfea9a1e454f07eb6"
+  },
+  "approvedCoverSha256": "cc17f52183c6dc153abccff5c0d7b913a192ffdbef8e6590e972eeb9317f727d"
+}

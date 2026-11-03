@@ -1,0 +1,48 @@
+{
+  "slug": "assetify",
+  "projectName": "Assetify",
+  "repos": [
+    {
+      "repo": "sspzoa/assetify-desk",
+      "ref": "main@47e9d591e813844882d5e6eda878849af88d76c8"
+    },
+    {
+      "repo": "sspzoa/assetify",
+      "ref": "main@6b8c2e250738c99f3fa9d0d978747a9acf641ab4"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 Notion 원본 자료(2c6cc9b72a9c80ed9bc9e184bbdeb084-cover.png) (existing Notion cover: real browser screenshots of assetify-desk.vercel.app home and /inquiry from the original deployment; the local /inquiry capture matches its header, field cards, placeholders and radio rows)"
+    ],
+    "knownDifferences": [
+      "Data only: corporation names, people, asset numbers, ticket contents, license serials and the stocktaking period come from the mock Notion server instead of the company Notion DBs.",
+      "Home shows a third menu card (2026 하반기 노트북 자산 실사) because the mock stocktaking period covers today; the old cover showed 2026 노트북 자산 실사 with a different date range from the real DB."
+    ],
+    "notVerified": [
+      "Ticket pages, license finder results and the stocktaking confirm step have no original screenshot to compare against; they are the original components rendered with mock data.",
+      "Dark mode was not captured (host browser in light mode)."
+    ]
+  },
+  "limitations": [
+    "assetify-desk.vercel.app now serves a different app (title IdsTrust 자산 관리 포털, DAEWOONG branded sidebar UI) that does not match this repo, and the repo's own Vercel homepage assetify-desk-sspzoas-projects.vercel.app returns 404, so no live capture of this codebase was possible. Screens are the original code run locally with mocked Notion data.",
+    "Flutter admin app (sspzoa/assetify) screens not captured: Flutter SDK is not on this host and asset-work/flutter-sdk did not exist when checked.",
+    "Admin Tools page (/admin) was captured once but dropped because it shows a generated session URL token string."
+  ],
+  "screens": [
+    {
+      "file": "screens/repair-ticket.png",
+      "kind": "source-demo",
+      "origin": "src/app/(pages)/repair/(routes)/ticket/[ticketId]/page.tsx, route /repair/ticket/demo-repair-0001",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T14:03:13+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "5fb49d566c1cb458db0bd458a99d7080f1af0c4fdc94a8c66a131959f57e3f3e",
+    "screens/repair-ticket.png": "65914fa3b56eb64868aa525aa773cac734c980d8d49e9914db77a7cac5ab5dca"
+  },
+  "approvedCoverSha256": "eca6c129c71bedc5edff95df3d98655b6e72a8518f0a4167fcfd25d813e9bc08"
+}

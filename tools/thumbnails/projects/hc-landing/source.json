@@ -1,0 +1,49 @@
+{
+  "slug": "hc-landing",
+  "projectName": "HC Landing - 김희창 수학",
+  "repos": [
+    {
+      "repo": "sspzoa/hc-landing",
+      "ref": "main@a3cf53cdfd87e4d6c11fb5a26cebeaba3af18796"
+    }
+  ],
+  "sourceKind": "live",
+  "fidelity": {
+    "level": "live-capture",
+    "comparedAgainst": [
+      "https://hc-landing-henna.vercel.app/",
+      "당시 Notion 원본 자료(37fcc9b72a9c8196be8fd7fcc67c564f-cover.png)"
+    ],
+    "knownDifferences": [],
+    "notVerified": [
+      "배포본이 repo main@a3cf53c 와 같은 커밋인지는 Vercel 배포 정보로 확인하지 않음(화면 구성은 a3cf53c 의 Hero, ManagementSystem, Curriculum, Results 컴포넌트와 일치)"
+    ]
+  },
+  "limitations": [
+    "hero.png 와 mobile-hero.png 에 강사 본인(김희창, 클라이언트) 프로필 사진이 크게 들어감. 공개 마케팅 페이지의 주인공이라 그대로 두었지만, 얼굴을 빼야 하면 management.png 나 curriculum.png 를 주 화면으로 쓸 것",
+    "원본 UI 문구에 중간점이 있음(Hero 의 'UNIST 학사(U+00B7)석사 졸업', '부천(U+00B7)분당', 커리큘럼 제목 '고1(U+00B7)2'). 라이브 원문이라 손대지 않음. 커버 레이블로 재사용 금지",
+    "브랜드 전용 로고가 없어 logo.svg 는 S-CORE 문구의 폰트 아웃라인. 원래 사이트에서는 흰색 글자에 그림자가 있는 표현이라 단색 버전과 인상이 다름"
+  ],
+  "screens": [
+    {
+      "file": "screens/hero.png",
+      "kind": "live",
+      "origin": "https://hc-landing-henna.vercel.app/ (첫 화면, scrollY 0)",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T14:12:40+09:00"
+    },
+    {
+      "file": "screens/mobile-hero.png",
+      "kind": "live",
+      "origin": "https://hc-landing-henna.vercel.app/ (모바일 첫 화면)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T14:13:30+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "add2a291c74b149b49e6dd2a45f393bc830c6faccf83e32550ede164fa90bf78",
+    "screens/hero.png": "80be436eb6ffe5865455d2762c74bcfd68d808eaad6ff906a5170ccdcae619d6",
+    "screens/mobile-hero.png": "5851a140192709adc6e9deb48d88f629709c0169907208d930d0af81e7e3ce48"
+  },
+  "approvedCoverSha256": "83956696933026cf7fe57599e943a83f18a5602206dd439420482442f80732fd"
+}

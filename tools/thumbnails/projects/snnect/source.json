@@ -1,0 +1,45 @@
+{
+  "slug": "snnect",
+  "projectName": "스넥트 - SNNECT",
+  "repos": [
+    {
+      "repo": "Stare-in-dimigo/kcf-frontend",
+      "ref": "main@462f0ab42896bd2a1d282b4968ee6093dfd9d65c"
+    },
+    {
+      "repo": "Stare-in-dimigo/kcf-backend",
+      "ref": "main@12f43e8a259ffdbc7aee61c05a2a777b7b31bb8a"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 Notion 원본 자료(cdd43300346d4f2dbf42310087ff6138-cover.png) (existing Notion cover: tilted tablet mockups of the teams page and the STARE team page). Layout, sections, club cards and navbar match the local captures; the mockups are too small and skewed for pixel comparison."
+    ],
+    "knownDifferences": ["Student names on /profile are pseudonyms (outlined in the original font and size)."],
+    "notVerified": [
+      "The deployed hackathon build (if any) was not available; there is no live URL in the Notion record.",
+      "Hamburger menu (mobile navbar) state not captured."
+    ]
+  },
+  "limitations": [
+    "The submitted frontend is a design-first prototype: pages are full-page Figma SVG exports with fixed content, so there is no live data flow to mock; kcf-backend (Flask + MySQL schema) is not called by the frontend at any commit, so it was not run.",
+    "The home route (/) only shows the logo in the middle of the page, so it was not kept as a screen.",
+    "The repo's logo.svg is a raster inside an SVG; logo.svg here is a fitted vector rebuild, not an original vector file."
+  ],
+  "screens": [
+    {
+      "file": "screens/teams.png",
+      "kind": "source-demo",
+      "origin": "kcf-frontend src/app/teams/page.tsx rendering public/teams.svg, route /teams (팀 찾기: 일반 동아리, 장기 프로젝트 팀)",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T14:55:16+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "334d8ba3b88a9e168a4b71717f2cead1d09641ebc0599c8bb641916e7d0839c5",
+    "screens/teams.png": "0a9d13a05a67024fac7e5cc3ac8a462c0c69e7eaf93947fec591d243109f0834"
+  },
+  "approvedCoverSha256": "8bb3bbe45d82d5bc68a60af53a67d72fd53e4a331b032a0cb5f92876351de618"
+}

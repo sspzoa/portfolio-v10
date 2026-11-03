@@ -45,7 +45,7 @@
   },
   "overrides": [
     {
-      "includes": ["public/**"],
+      "includes": ["public/**", "tools/thumbnails/projects/**/*.svg"],
       "linter": {
         "rules": {
           "a11y": {

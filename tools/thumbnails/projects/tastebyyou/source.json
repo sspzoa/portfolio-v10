@@ -1,0 +1,65 @@
+{
+  "slug": "tastebyyou",
+  "projectName": "TasteByYou",
+  "repos": [
+    {
+      "repo": "Stare-in-dimigo/tastebyyou",
+      "ref": "main@d02d28e84a4fb16198981f5b63a0eac1bf31dd5f"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 Notion 원본 자료(tastebyyou-presentation-1.pdf) 7쪽 Design 슬라이드 폰 화면 6장(xref 106~111, 디자인 시안)",
+      "당시 Notion 원본 자료(63f468314eae44bb8db1b5dbd1bfdf76-cover.png) (같은 시안을 넣은 목업)"
+    ],
+    "knownDifferences": [
+      "PDF 와 기존 커버는 디자인 시안이고 실제 앱과 다르다. 시안 프로필은 'Original recipes', 'User@gmail.com', 숫자 칸(My recipe 4, Writes 12, Orders 6)인데 코드는 'Original resicpes', 'ddd@gmail.com', followers.png 이미지다. 시안 Order 화면은 'Order' 제목 아래 스테이크 굽기 카드와 '819kcal' 인데 실제 앱은 Order 탭이 레시피 목록이고 스테이크 상세는 별도 화면(999kcal)이다. 캡처는 시안이 아니라 코드가 그리는 화면 그대로임",
+      "기존 커버의 'Share your recipe! My first recipe 123456' 화면은 코드에 없음. 실제 Share 화면은 사진 4장과 Save, Share, Go back home 버튼"
+    ],
+    "notVerified": [
+      "Android 실기기 렌더링과의 픽셀 비교는 하지 않음(웹 빌드로만 실행)",
+      "조리 로봇 통신과 결제 승인: 코드에 실제 연동 호출이 없고(Progress 는 1초 타이머와 DB 문구만, Payment 는 카드 선택 UI 만) 검증 범위 밖"
+    ]
+  },
+  "limitations": [
+    "PDF 7쪽의 시안 6장은 실제 앱 화면이 아니라서 쓰지 않음. 참고용 원본 임베드 이미지: 당시 임시 비교 자료(tastebyyou/pdf/p07-x106.jpeg) ~ p07-x111.jpeg",
+    "Custom recipe 블록 편집은 원본 코드의 버그로 Add block 을 두 번 이상 누르면 추가된 블록들이 같은 리스트를 공유해 똑같이 바뀐다(lib/CustomActivity/blockCodePage.dart _addBlock 이 initialBlock 같은 객체를 반복 추가). 그래서 블록 두 개(처음 블록과 추가 블록 하나) 상태로 찍음",
+    "app-home.png 의 Hot recipe 카드 그림에 실존 연예인 이름이 들어 있음(원본 에셋). 화면 내부를 고치지 않는 원칙에 따라 그대로 두고 커버 후보 순서를 맨 뒤로 둠",
+    "음식, 로봇 사진은 repo 에셋 그대로이며 출처, 라이선스 기록은 repo 에 없음"
+  ],
+  "screens": [
+    {
+      "file": "screens/app-steak-customize.png",
+      "kind": "code-reproduction",
+      "origin": "원본 앱 실행: Order 탭 > Steak (lib/OrderActivity/steakPage.dart). Medium rare 와 Tomato 를 직접 눌러 선택한 상태",
+      "viewport": "390x812@3x (1170x2436)",
+      "capturedAt": "2026-11-03T16:15:46+0900",
+      "notes": "capturedAt 은 FINAL 사본 mtime. 실제 캡처 시각(원본 스크린샷 s8.png mtime) 2026-11-03T15:37:38+0900, 1차 빌드(코드 변경 없음)"
+    },
+    {
+      "file": "screens/app-order-list.png",
+      "kind": "code-reproduction",
+      "origin": "원본 앱 실행: 하단 첫 탭 Order (lib/OrderActivity/orderPage.dart). Western, Korean, Japanese 레시피 목록",
+      "viewport": "390x812@3x (1170x2436)",
+      "capturedAt": "2026-11-03T16:15:46+0900",
+      "notes": "실제 캡처 시각(s6.png) 2026-11-03T15:35:53+0900, 1차 빌드"
+    },
+    {
+      "file": "screens/app-custom-recipe-blocks.png",
+      "kind": "code-reproduction",
+      "origin": "원본 앱 실행: Custom 탭 > Let's go! > 재료 선택(Butter, Pork belly, Tenderloin) > Next > Custom recipe (lib/CustomActivity/blockCodePage.dart). Add block 한 번 뒤 둘째 블록을 butter, Grill, 20 mins, 150°C, Pepper 로 드롭다운에서 직접 고름",
+      "viewport": "390x812@3x (1170x2436)",
+      "capturedAt": "2026-11-03T16:15:46+0900",
+      "notes": "실제 캡처 시각(y1.png) 2026-11-03T16:13:32+0900, 2차 빌드. 이 화면은 DB 를 읽지 않음"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "60834d79a5de179fc28d8ba20f9e0d083d7fdfb4ce552d2a00e79a32498bac6d",
+    "screens/app-custom-recipe-blocks.png": "dd2da30043bac9009374df0e9039f7d3b29dbdc1c279f1f13bf022fcdf101118",
+    "screens/app-order-list.png": "010a79dfc8af3620568f8d965b76db69e4e49a9aba7b4f4a65409ae660e45276",
+    "screens/app-steak-customize.png": "971952056cbcc2eaca83af71354989da933797d035368a1bef326e824443bf16"
+  },
+  "approvedCoverSha256": "ac88ab75bc4cadca97c12896a2328c47159bb02da88f437dd5236a81074078c7"
+}

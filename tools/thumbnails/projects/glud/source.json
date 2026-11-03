@@ -1,0 +1,74 @@
+{
+  "slug": "glud",
+  "projectName": "글루드 - Glud",
+  "repos": [
+    {
+      "repo": "Stare-in-dimigo/glud",
+      "ref": "main@2253ed84be93aac744f094abd29e9f3fa8e20e94"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 임시 비교 자료(glud/pdf-screens/home-menu.jpeg) vs screens/app-home.png",
+      "당시 임시 비교 자료(glud/pdf-screens/report-form.jpeg) vs screens/app-report-form.png",
+      "당시 임시 비교 자료(glud/pdf-screens/my-posts.jpeg) vs screens/app-my-posts.png",
+      "당시 임시 비교 자료(glud/pdf-screens/home-accessible-mode.jpeg) vs screens/app-home-accessible-mode.png",
+      "당시 임시 비교 자료(glud/pdf-screens/voice-input.jpeg) vs screens/app-voice-input.png",
+      "당시 임시 비교 자료(glud/pdf-screens/onboarding-accessibility.jpeg) vs screens/app-onboarding-accessibility.png",
+      "side-by-side sheet: app-vs-pdf2-compare.png (PDF 2 real app screens, 557x1182, from glud-presentation-2.pdf pages 40 to 42)",
+      "Stare-in-dimigo/glud@2253ed8:flutter_01.png (screens/home.png) vs screens/app-home.png: same menu cards, illustrations and filled tab icons"
+    ],
+    "knownDifferences": [
+      "Platform: PDF 2 screens come from an iPhone build (taller aspect, notch area), ours is the Flutter web build of the same code. main.dart gives the bottom tab bar 85 px on iOS and 65 px on web, and the app bar sits higher on web, so vertical positions differ slightly.",
+      "Report form quote field: PDF 2 shows a speech bubble style icon, HEAD uses Icons.format_quote_outlined (since abf9295, 2023-08-14), so the PDF build predates that commit.",
+      "Data: PDF 2 shows real posts (#25 to #31 dated 2023-09-19, real school names); ours shows the fictional #1 to #5.",
+      "Onboarding: PDF 2 shows the first answer in its selected (blue) state; ours is the unselected initial state.",
+      "Material date picker, loading dialog and snackbar text are the Flutter 3.10 defaults the app uses (English date picker labels on web)."
+    ],
+    "notVerified": [
+      "app-report-generating.png, app-report-finished.png and app-report-result.png have no real screenshot to compare against (PDF 2 has none of those three).",
+      "Speech recognition and TTS on the voice page were not exercised (headless browser, no microphone); only the initial state is captured.",
+      "The AI draft is a fixed mock response, not real gpt-3.5-turbo output, so its length and wording are illustrative."
+    ]
+  },
+  "limitations": [
+    "Google Play 페이지 https://play.google.com/store/apps/details?id=com.glud.glud 가 2026-11-03 조회 시 404(앱 내려감)라 스토어 스크린샷을 받지 못함",
+    "기존 Notion 커버의 홈 화면은 쓰지 않기로 하고 FINAL 에서 뺌(당시 임시 비교 자료(glud/home-notion-cover-design-mock.png) 로 옮김). 하단 탭 아이콘이 외곽선 연필과 외곽선 사람이라, 2023-06-10(46a9ca7)부터 main 까지 코드가 쓰는 채운 아이콘(Icons.border_color_rounded, Icons.person_rounded)과 다름. 실제 앱 캡처가 아니라 디자인 시안을 목업에 넣은 것으로 판단",
+    "발표 PDF 1(glud-presentation-1.pdf) 23~35쪽 폰 화면은 디자인 시안이라 쓰지 않음(카카오 로그인, Docx 다운로드 등 코드에 없는 UI, 외곽선 탭 아이콘)",
+    "Screens are 1170x2436 (390x812@3x) instead of 1170x2532: the original web build caps the app at 812 px high via FlutterWebFrame, see differencesFromOriginal.",
+    "Real Google sign-in, Firebase Realtime Database and OpenAI calls were replaced by the Auth and Database emulators and a fixed mock response because firebase_options.dart and google-services.json were deleted from the repo (2380075, 0144660) and no API keys may be used; the screens therefore show the original UI with demo data, not production data.",
+    "The other Glud screens (독서록, 반성문, 소송문 forms, profile, settings) use the same components and were not captured."
+  ],
+  "screens": [
+    {
+      "file": "screens/app-report-form.png",
+      "kind": "source-demo",
+      "origin": "lib/glud_pages/report_page.dart (보도자료 input form, filled with demo values; date chosen in the original date picker)",
+      "viewport": "390x812@3x (1170x2436)",
+      "capturedAt": "2026-11-03T15:56:40+09:00"
+    },
+    {
+      "file": "screens/app-report-result.png",
+      "kind": "source-demo",
+      "origin": "lib/glud_pages/content_page.dart ResultPage for the new #5 보도자료 (AI draft text, 클립보드에 복사하기, 글루드가 읽어주기)",
+      "viewport": "390x812@3x (1170x2436)",
+      "capturedAt": "2026-11-03T16:00:32+09:00"
+    },
+    {
+      "file": "screens/app-my-posts.png",
+      "kind": "source-demo",
+      "origin": "lib/utility_pages/glud_list_page.dart (내가 작성한 글, opened by 확인하러 가기; #1 to #4 seeded, #5 created through the form)",
+      "viewport": "390x812@3x (1170x2436)",
+      "capturedAt": "2026-11-03T15:59:16+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "8c7a2b3b5c8388eedc90b5930472cdc4adf53f921446b1d7da4af6208bda820c",
+    "screens/app-my-posts.png": "a9b20b80eef835f86b36290cd667ab845b54284c71820a935bcab2d0209d3c14",
+    "screens/app-report-form.png": "1dea2e58111fbd3df3263ac15231b2553867256a9f6018ed5e877d813f082fc2",
+    "screens/app-report-result.png": "7e876b404e58d440ff8d91885a1c6480b67f3689c61fe4d8e6ed7deb5db59cad"
+  },
+  "approvedCoverSha256": "5e2e15f101823ac369f15aa80493995c52ef8abf8258ece46cd6369b678fefe5"
+}

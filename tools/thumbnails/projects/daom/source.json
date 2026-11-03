@@ -1,0 +1,61 @@
+{
+  "slug": "daom",
+  "projectName": "다옴",
+  "repos": [
+    {
+      "repo": "sspzoa/daom_app",
+      "ref": "main@414f43118f852537381a88d3c37ab852f2ecdab8"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [],
+    "knownDifferences": [
+      "데이터 목: HomePageController.items 의 imagePath 4개를 데모 이미지로 교체",
+      "인증 목: Supabase 세션을 서명 없는 데모 JWT 세션으로 주입(avatar_url, full_name 포함)",
+      "플랫폼: iOS/Android 대신 Flutter web. SDK 는 .metadata 와 같은 3.19.6 이라 Material 3 기본 스타일 차이 없음",
+      "광고: AdMob 앱 오프닝 광고는 web 에서 실행되지 않아 화면에 없음",
+      "profile.png 는 /profile 을 직접 열어 캡처해서 AppBar 뒤로가기 버튼이 없음(앱 안에서 이동하면 생김)"
+    ],
+    "notVerified": [
+      "실기기 렌더와 비교할 실제 앱 스크린샷이 기존 Notion 자료에 없음(기존 커버는 로고와 문구뿐)",
+      "Google 로그인 버튼을 눌렀을 때의 실제 OAuth 흐름은 실행하지 않음(외부 계정 사용 금지)"
+    ]
+  },
+  "limitations": [
+    "sspzoa/daom_app 은 2024-06-28 Initial commit 1개뿐이고 화면은 다옴뉴스(가운데 제목 텍스트 자리표시), 홈(이미지 캐러셀), 마이페이지(자리표시), 로그인, 프로필. 이 범위 그대로 home, news-feed, login, profile 4장을 캡처",
+    "news-feed.png, login.png 는 원본 그대로라 내용이 적음(제목 텍스트 하나, 버튼 하나). 커버 주 화면은 home.png 권장",
+    "로고는 래스터(512px 앱 아이콘)에서 트레이스한 것이라 원본 벡터와 수학적으로 같지는 않음. 심볼 색은 흰색에서 #917FFF 로 바꿈"
+  ],
+  "screens": [
+    {
+      "file": "screens/home.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/daom_app lib/app/screens/home/page.dart ('홈' 탭) + lib/app/screens/home/pages/homepage/page.dart (CarouselSlider)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T05:31:35Z"
+    },
+    {
+      "file": "screens/login.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/daom_app lib/app/screens/login/page.dart (/login, Google 로그인 버튼)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T05:20:14Z"
+    },
+    {
+      "file": "screens/profile.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/daom_app lib/app/screens/profile/page.dart (/profile, avatar_url 과 full_name 표시, Sign out)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T05:20:07Z"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "1ec6ef6b44fad73ab8708fee8e18658e0c6c50c516091723271c95d3ccf73834",
+    "screens/home.png": "8b383a093a015246ca17c4bac717a7ffa139d2658011db83d47d94e9f3adce12",
+    "screens/login.png": "fa8900e7db6b28f92731d220216537a88a5828a7cc628b1350ab2b24a947dc57",
+    "screens/profile.png": "1cc15de17248fecc28977506ee78c8fc4a80f6ab8e74fdd98842756e26ade303"
+  },
+  "approvedCoverSha256": "db032366f6e7a9cb1656640a10a90d91e09ed373ea5382a31674bf48c7658679"
+}

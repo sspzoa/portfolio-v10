@@ -1,0 +1,42 @@
+{
+  "slug": "prism",
+  "projectName": "Prism",
+  "repos": [
+    {
+      "repo": "sspzoa/prism",
+      "ref": "main@6283d75a4129d0b6679417b45d11823dc05c82fd"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [],
+    "knownDifferences": [
+      "Data only: all clients, keywords, articles, outlets, journalists and accounts are fictional seed data.",
+      "Database schema is a reconstruction from code (column names and types inferred), not the production schema."
+    ],
+    "notVerified": [
+      "No real screenshot of the deployed Prism exists to compare against (prism-five-psi.vercel.app returns 404 and Notion had no cover), so the screens are verified only as the original code running, not against a past production capture.",
+      "Dark theme not captured (theme setting was System on a light host)."
+    ]
+  },
+  "limitations": [
+    "Deployment https://prism-five-psi.vercel.app (repo homepage) returned HTTP 404 on 2026-11-03, and the app requires a Supabase login, so the original repo was run locally against a local Supabase with demo data.",
+    "Streaming progress: commit 2a6a3f4 added an SSE collector whose server emitted progress events (collecting, fetching_meta, done per keyword), but the client page never rendered the progress object, and commit 737159b replaced SSE with a plain JSON POST. At HEAD the only progress UI is the 수집 중... button state with spinning icons, which is what collecting.png shows. No per-keyword progress screen exists in any commit to capture.",
+    "Real Naver news collection and article meta scraping (매체명, 기자명) were not executed because they need NAVER_CLIENT_ID and NAVER_CLIENT_SECRET; the extracted fields shown are seeded values."
+  ],
+  "screens": [
+    {
+      "file": "screens/client-news.png",
+      "kind": "source-demo",
+      "origin": "src/app/(pages)/clients/[id]/page.tsx, route /clients/<id> with keyword 한결제약 selected (collected news table: 게재일, 매체명, 헤드라인, 기자명, 제목언급)",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T14:30:30+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "716e1f8fadf612df622414f1dde069133dc4e85ac97256f80f9291187b604d2f",
+    "screens/client-news.png": "1fe03b67e1201590764ec5d6ce6fc0cc704c6905f576746e311c0e0268d0be2d"
+  },
+  "approvedCoverSha256": "40f5bfd2eafe9919593103042c56f3ed71732c3edc9fe93c60c5985a42b9e8da"
+}

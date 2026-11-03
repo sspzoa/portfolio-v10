@@ -1,0 +1,52 @@
+{
+  "slug": "tnote",
+  "projectName": "티노트",
+  "repos": [
+    {
+      "repo": "sspzoa/tnote",
+      "ref": "main@18cc349cc7393d4ff3359400bc64084412e3a86f"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 Notion 원본 자료(2fecc9b72a9c80d49b7bfbc11ea6fdc0-cover.png) (기존 커버 속 대시보드: 사이드바 구성, 인사말, 통계 줄, 처리 대기 카드, 바로가기, 오늘 일정 레이아웃이 일치)"
+    ],
+    "knownDifferences": [
+      "인사말 아래 문구는 원본 getGreetingByTime() 이 시각에 따라 고르는 문장이라 기존 커버('아직도 일 중이시네요...')와 다름(이번 캡처는 오후 2시대)",
+      "Supabase Realtime, Storage 컨테이너는 띄우지 않음(이 화면들은 쓰지 않음). Solapi, Axiom 키 없음"
+    ],
+    "notVerified": [
+      "배포본 tnote-chi.vercel.app 은 /login 으로 리다이렉트되어 로그인 뒤 화면을 라이브로 직접 비교하지 못함(실계정 사용 금지)",
+      "재시험, 학생, 캘린더, 과제, 학생용 모바일 화면은 기존 커버에 없어 실제 배포 화면과의 비교 근거 없음. 같은 커밋의 원본 코드를 그대로 실행한 결과임"
+    ]
+  },
+  "limitations": [
+    "원본 UI 문구에 중간점이 있음(오늘 일정의 '바리 (고3) (U+00B7) 중간고사 대비 클리닉', 학생 목록의 '가람여고 (U+00B7) 고1' 등). 원본 그대로 두었으니 커버 레이블로 재사용 금지",
+    "학생 상세(/students/[id])는 캡처했지만 내보내지 않음: 원본 formatCourseDaysOfWeek(src/shared/lib/utils/date.ts)가 월요일 0 기준 배열을 써서, 수업 생성 폼과 캘린더(일요일 0 기준)로 화목반인 수업이 '수, 금' 으로 표시되고 성적 추이 차트 y축의 100 이 '00' 으로 잘려 보임. 원본 앱의 표시 문제라 데이터로 고칠 수 없어 제외",
+    "학생 이름은 일부러 고전소설 인물 이름을 써서 실제 학원 데이터처럼 보이지 않을 수 있음"
+  ],
+  "screens": [
+    {
+      "file": "screens/dashboard.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/tnote src/app/(pages)/(home)/page.tsx, (components)/TodayAgenda.tsx, /api/stats/home (route /, 오너 로그인)",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T14:48:09+09:00"
+    },
+    {
+      "file": "screens/mobile-student-exams.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/tnote src/app/(pages)/my/courses/page.tsx (학생 로그인, route /my/courses)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T14:53:35+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "4520893cde0a354c8f66eb2aab4562a07bd19c70a83e0d84d388497ed0c6236e",
+    "screens/dashboard.png": "5a3013b08defaea63bebefbfc609626075bbd5110b5a7b30f3a01b6e3402b624",
+    "screens/mobile-student-exams.png": "eb148d5dc7b031c79fae5af5336f6e69b3be2a9a801aee59bd3c6d3f5878e4a4"
+  },
+  "approvedCoverSha256": "845e3e9fab4a9517d67def4cdf51ce4b18cc3f3a9b2e6cc5f0deaf3b3ef8a9eb"
+}

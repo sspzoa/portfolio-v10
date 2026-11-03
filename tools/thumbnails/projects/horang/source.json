@@ -1,0 +1,57 @@
+{
+  "slug": "horang",
+  "projectName": "호랑",
+  "repos": [
+    {
+      "repo": "horang-corp/service-frontend",
+      "ref": "stage@438be3ee296f80eacb1111e563b843a4bcd99c5e (apps/horang-frontend-v2, apps/ai-lab-frontend mounted by hfv2 at /ai-lab)"
+    },
+    {
+      "repo": "horang-corp/horang-backend",
+      "ref": "dev@2e38ea4eb68b4849c399cec0b2dc13ac83cc1733"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "https://app.horang.it/login/organization (live capture, same layout as the local login)",
+      "https://app.horang.it/modu-ai/ live capture taken earlier in this task (same sidebar, fonts, icons)"
+    ],
+    "knownDifferences": [
+      "Local env runs service-frontend stage and horang-backend dev, which can be ahead of production",
+      "Seed has a single lesson unit, so the teacher dashboard (학생별 학습 현황) counts lesson problems and stayed at 0 percent; that screen was not delivered",
+      "The editor renders spaces as faint dots in the code area; these are the product's whitespace markers, not text"
+    ],
+    "notVerified": [
+      "Logged-in screens were not compared against production logged-in screens (no production account used)"
+    ]
+  },
+  "limitations": [
+    "Teacher dashboard and classroom assignment list were captured but not delivered: the dashboard counts only lesson problems (seed has one unit, nobody solved it) and the assignment list shows 0/5 complete because each assignment counts as complete only when every problem is done",
+    "The browser session for this env was repeatedly relaunched by something outside this task (other agent-browser sessions on the host), so logins were scripted and re-run; no effect on the captured pixels",
+    "Built-in sample classroom pages (/classroom/sample, for logged-out visitors) were not used because they show a license upsell overlay"
+  ],
+  "screens": [
+    {
+      "file": "screens/ai-lab-chat.png",
+      "kind": "source-demo",
+      "origin": "local run of service-frontend apps/ai-lab-frontend inside hfv2, route /ai-lab/my/chat/<session>. Session created and answered by the real backend through ./dev-env ailab (real model call, generate_image tool)",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T15:14:10+09:00"
+    },
+    {
+      "file": "screens/teacher-grading.png",
+      "kind": "source-demo",
+      "origin": "local run of hfv2, teacher 김선생 (seed) grading a submission at /classroom/assignments/<id>/custom/<problem>/submissions/<student>, code re-run in the grading view",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T15:21:50+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "c05f07656ede8ecc6aa4eb80d6974669cb42c0f6ccfb700cada9b508ccbbb5be",
+    "screens/ai-lab-chat.png": "58e860c0416a8de2e82ae148fa83ffd32b7416c438e26fcef23f54dff25040ce",
+    "screens/teacher-grading.png": "e5839df756a8fd8fa617c249aa5ad049b88acf5e88f12942ccf8f217ad596370"
+  },
+  "approvedCoverSha256": "2c3a4811c71e4811259af877c4f9dcaa95298ba4857512abdd796248b6259520"
+}

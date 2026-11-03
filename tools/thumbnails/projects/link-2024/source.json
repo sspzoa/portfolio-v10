@@ -1,0 +1,53 @@
+{
+  "slug": "link-2024",
+  "projectName": "2024 Link 랜딩 페이지",
+  "repos": [
+    {
+      "repo": "sspzoa/link-landing",
+      "ref": "b024046ec3fe9561e8fe87274ce0f0ced3aec0ae (2024-08-04, Notion 작업 기간 마지막 커밋. main HEAD 는 d9b698e43e3c667fc55eace6483d53fb83482ba1)"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 Notion 원본 자료(71051702cb8d467397f048370c16f2fa-cover.png) (기존 커버의 첫 화면: 내비게이션 항목, Link 글자 로고, 가로선, '미래의 창업가를 연결하다', Demo Day 신청하기 버튼, 배경 사진이 일치)"
+    ],
+    "knownDifferences": [
+      "데모 데이터 치환 없음(공개 페이지라 바꿀 데이터가 없음). level 은 원본 앱 로컬 실행이라 이 값으로 기록",
+      "라이트 모드로 캡처. 원본에는 prefers-color-scheme 다크 모드 변수도 있음"
+    ],
+    "notVerified": [
+      "첫 화면 외 섹션(동아리, 행사 소개, 일정, 지난 행사, 신청)은 2024년 당시 라이브 캡처가 없어 비교 근거 없음. 같은 커밋의 원본 코드 실행 결과임"
+    ]
+  },
+  "limitations": [
+    "라이브 캡처 불가: link-circle.com 은 2026-11-03 기준 다른 호스팅 업체의 기본 안내 페이지('Your website is ready to use', 자체 서명 인증서)로 바뀌어 Link 사이트가 아님. 그래서 repo 의 Notion 기간 마지막 커밋 b024046 을 로컬에서 실행해 캡처",
+    "hero.png, mobile-hero.png, previous-event.png 의 행사 사진에 참가자 얼굴이 보임. 원본 공개 홍보 페이지에 실린 사진 그대로(public/images/background.png, link.jpeg, club.jpeg, speaker.jpeg)이고 가리지 않았음",
+    "about-clubs.png 의 참가 동아리 로고(LUNA, 디미고 동아리 등)는 각 동아리의 로고라 커버에서 크게 쓰지 않는 편이 좋음",
+    "previous-event.png 상단에서 고정 내비게이션이 사진 위에 겹쳐 보임(원본 동작 그대로)",
+    "섹션이 IntersectionObserver 로 나타나는 애니메이션이라 스크롤 후 3초 이상 기다렸다 찍음. 전체 페이지 한 장 캡처는 섹션이 비어 보여 쓰지 않음"
+  ],
+  "screens": [
+    {
+      "file": "screens/hero.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/link-landing@b024046 src/components/Navbar.tsx, Onboarding.tsx (첫 화면)",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T15:25:08+09:00"
+    },
+    {
+      "file": "screens/mobile-hero.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/link-landing@b024046 Onboarding.tsx 모바일 레이아웃",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T15:28:34+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "0ce5a7ff8103458bc7ca9549a9e1a858de47b766775d2bf42112c424db203b9f",
+    "screens/hero.png": "9ad01906ee0a649ac7fdd6fe6a5116fe5d221dd3d3c0e449d36930bbea043649",
+    "screens/mobile-hero.png": "c6949c206046fb91828ea3ae726db62a2abba2f2a51cc7040cbeaaccda8fb879"
+  },
+  "approvedCoverSha256": "486997f812290a061c23477e5c20ea3b6f624dc34f75af92bc6ed8d638baf128"
+}

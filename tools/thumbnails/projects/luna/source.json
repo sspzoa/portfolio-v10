@@ -1,0 +1,49 @@
+{
+  "slug": "luna",
+  "projectName": "LUNA 랜딩페이지 리뉴얼",
+  "repos": [
+    {
+      "repo": "sspzoa/luna-landing",
+      "ref": "main@c3e652f1e1b2032214ff0f39654c9ebabd71f76f (2025-03-09, end of the renewal; captured version). Current main is 6e44db2c7f3e9b0a0f859819fe747c900496bcb5"
+    },
+    {
+      "repo": "sspzoa/luna-landing-back",
+      "ref": "main (api.luna.codes Notion proxy, not run; its responses were replaced by demo data)"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 Notion 원본 자료(bfd58a6000784f6aa397ff9c6ef21ad3-cover.png) (home hero at luna.codes, same copy, layout, nav items and 3D moon image)"
+    ],
+    "knownDifferences": [
+      "API data mocked in the browser (fetch shim), code untouched",
+      "Production build (next build, next start) used so that the Next dev indicator and React Query devtools do not appear",
+      "Member, award and project images are the original default.svg placeholders because demo data has no image URLs"
+    ],
+    "notVerified": [
+      "Members, awards and projects pages have no real screenshot to compare against; they are the original code rendering demo data",
+      "Exact real counter values and real project, award and member lists (api.luna.codes no longer responds)"
+    ]
+  },
+  "limitations": [
+    "Live capture impossible: https://luna.codes now answers 301 to https://cloudflare.bz/, a fake 'verify you are human' page that is not Cloudflare (looks like a lapsed or hijacked domain). Nothing was clicked there. Replaced with a local run of the original repo",
+    "The renewal-era frontend reads https://api.luna.codes, which no longer resolves (curl exit 6). Replaced with browser-side demo responses",
+    "Captured the 2025-03-09 renewal commit, matching the Notion record and existing cover. The current main (2026-08, server components, Spline 3D hero) is a later rewrite and was not captured"
+  ],
+  "screens": [
+    {
+      "file": "screens/home.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/luna-landing@c3e652f src/app/page.tsx (Intro), next build + next start",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T14:15:58+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "13b9f9038ad6df723c999ccef50fd45519e3261002f9f6e968929752b1eeea40",
+    "screens/home.png": "756467a4d4ee843ded42c2f51d3199577a4b4ff693bfa35536e4e06508ebfd09"
+  },
+  "approvedCoverSha256": "647a1b6504c2079436368b72aeba2706460682a2532dd50934f6871b087ff517"
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "bapsang",
+  "projectName": "밥상",
+  "repos": [
+    {
+      "repo": "sspzoa/bapsang_app",
+      "ref": "main@74540bac299d1c7ce2ab68292bd7b442b756af12"
+    },
+    {
+      "repo": "sspzoa/bapsang-back",
+      "ref": "main@88a4c3280e1d8836a2a0d034c35ebad80895ce7e"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [],
+    "knownDifferences": [
+      "데이터 목: WelcomeRepository.getFoodPosition 이 bapsang-back 대신 데모 FoodPositionList 반환",
+      "입력 목: image_picker 카메라 호출 대신 빈 XFile",
+      "플랫폼: iOS/Android 대신 Flutter web(CanvasKit) 로 실행. .metadata 와 같은 3.24.1 과 3.24.5 빌드의 캡처가 픽셀 단위로 같음. 위젯, SUITv1 폰트, 색, 간격은 원본 코드 그대로",
+      "web/ scaffold 는 flutter create 기본값으로 추가(앱 화면에는 영향 없음)",
+      "hardware.png 만 level crop-of-real-screenshot: 기존 Notion 커버의 제품 렌더를 원본 해상도로 자름"
+    ],
+    "notVerified": [
+      "실기기(iOS/Android) 렌더와의 픽셀 비교 자료 없음: 기존 Notion 자료에 앱 스크린샷이 없어 비교하지 못함",
+      "실제 OpenAI 응답이 들어온 화면은 확인하지 않음(운영 백엔드 호출 금지)"
+    ]
+  },
+  "limitations": [
+    "TTS 음성 안내: 소리라 캡처에 담기지 않음. 대체 없음",
+    "앱 UI 가 HomePage 한 화면(인식 전, 인식 후 결과 목록)뿐이라 앱 화면은 main.png, result.png 2장. 하드웨어는 기존 커버 크롭으로 보충",
+    "상태바 없음: web 실행이라 iOS 상태바가 렌더되지 않음"
+  ],
+  "screens": [
+    {
+      "file": "screens/result.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/bapsang_app lib/app/pages/home/page.dart (인식하기 탭 후 FoodPositionList 결과 목록), 응답 형식은 sspzoa/bapsang-back app/main.py",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T05:04:54Z",
+      "capturedAtSource": "file mtime"
+    },
+    {
+      "file": "screens/hardware.png",
+      "kind": "captured-existing",
+      "origin": "당시 Notion 원본 자료(08ead7aa15db4ef28360dec3b35725ed-cover.png) crop (990,170)-(1790,1020), 원본 해상도",
+      "viewport": "800x850 crop of 1920x1080 cover",
+      "capturedAt": "2026-11-03T05:05:07Z",
+      "capturedAtSource": "file mtime"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "1e4db3c7d0910ba1a47593111f20b767a59132888aae332ec1f95b8b69015707",
+    "screens/hardware.png": "c53fe5774e242143570049dab705575a0791034589fdddadf60894ae825e9f17",
+    "screens/result.png": "40c643fb8c2d8a8ff135155d3419a2ec1364874d1bce6110f8713f321a9b2693"
+  },
+  "approvedCoverSha256": "b2d7c31b451b5b9891295f42cfff1263f9bd4a25c9a006a531a7e6dd6610ea96"
+}

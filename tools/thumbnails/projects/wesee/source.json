@@ -1,0 +1,52 @@
+{
+  "slug": "wesee",
+  "projectName": "WeSee (위시)",
+  "repos": [
+    {
+      "repo": "sspzoa/wesee",
+      "ref": "main@770981e507e7c98fcd8f07c58b67acaf76e05dcf"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [],
+    "knownDifferences": [
+      "데이터 목: SupabaseService.getExpirationDateItems 데모 행",
+      "인증 목: 서명 없는 데모 JWT 세션",
+      "플랫폼: iOS/Android 대신 Flutter web. SDK 는 .metadata 와 같은 3.22.2. 위젯, SUITv1 폰트, 색, 간격, Material 아이콘(kitchen_rounded, add)은 원본 그대로",
+      "원본 남은 날 계산(DateTime.parse(만료일).difference(now).inDays 버림) 때문에 내일 만료가 D-DAY, 모레가 D-1 로 보이는데 이는 원본 동작 그대로. 오늘 날짜 품목은 넣지 않아 D-DAY 가 둘 나오지 않게 함"
+    ],
+    "notVerified": [
+      "실기기 렌더와 비교할 실제 앱 스크린샷 없음(새 항목이라 기존 Notion 자료 없음)",
+      "capture 화면(lib/app/screens/expiration_date/capture)은 실행하지 못함"
+    ]
+  },
+  "limitations": [
+    "capture 화면 미캡처: camera 플러그인과 google_mlkit_text_recognition 은 web 구현이 없어 카메라 미리보기와 OCR 날짜 인식 대화상자를 띄울 수 없음. 데이터만 바꾸는 원칙상 UI 를 흉내 내지 않고 home, expiration-date 2장으로 대체",
+    "short_mall 화면은 홈에서 주석 처리된 미사용 화면이라 캡처하지 않음",
+    "로고는 1024px 래스터에서 트레이스한 것이라 원본 벡터와 수학적으로 같지는 않음. 심볼 색은 흰색에서 #2ED096 으로 바꿈"
+  ],
+  "screens": [
+    {
+      "file": "screens/home.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/wesee lib/app/screens/home/page.dart + controller.dart (인사말, 소비기한 카드, 임박 3개)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T05:15:08Z"
+    },
+    {
+      "file": "screens/expiration-date.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/wesee lib/app/screens/expiration_date/page.dart + controller.dart (홈 카드 탭으로 이동한 /expiration_date, 남은 날 순 정렬 목록, 추가 FAB)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T05:15:12Z"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "4c77f0796815cc923ce1cd3a0f9f83fa11ef16c719f4315f4dd548c6024e2d9c",
+    "screens/expiration-date.png": "3a16ccc4350756020927f91120efc35f6cf96e2c24e0a5dd2054c4b2c292c05e",
+    "screens/home.png": "e664b2ef7060f7bd8713bc47e354528a6ea1cf03f7ff163fccbe194bb6fdcd05"
+  },
+  "approvedCoverSha256": "8ed753b79e9c32cd1916c080f2ead844603726b0265f57d5fbf3b41672d25c7c"
+}

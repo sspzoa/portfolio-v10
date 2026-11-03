@@ -1,0 +1,44 @@
+{
+  "slug": "moabora",
+  "projectName": "모아보라",
+  "repos": [
+    {
+      "repo": "Team-Aquarium/junctionx-upstage",
+      "ref": "main@3bfbf45d7ca253afd7689406d6990c2f1d1f2c49"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 Notion 원본 자료(3c8cc9b72a9c814894c3d0b5072740df-cover.png) (existing Notion cover, a real 2560x1440 screenshot of the feed in dark mode): header, filter chips, counters, Recommended for you cards, Fit scores and reasons match screens/feed.png"
+    ],
+    "knownDifferences": [
+      "D-day values differ by one day from the old cover because of the pinned clock.",
+      "App strings contain middle dots that come from the original UI text (the field tag on notice-detail.png, the category and title separator in the ingest progress row, and the university and major separator on profile.png all use U+00B7); they were left as is because the UI must match the original."
+    ],
+    "notVerified": [
+      "Landing, ingest, profile, notice detail and doc chat screens have no original screenshot to compare against beyond the shared header and components."
+    ]
+  },
+  "limitations": [
+    "Live site https://moabora.sharp0802.com returned HTTP 502 on 2026-11-03, so no live capture; the original app was run locally instead.",
+    "Doc chat demo (/chat?demo=1) crashes in the original code with React 'Maximum update depth exceeded' (seen in next dev), both with and without the clock pin, so the seeded chat conversation could not be captured; replaced with the empty doc chat start screen (/chat). A real chat would need an Upstage API key.",
+    "Real agent runs (Studio agent parse, crawl, recommendations) need UPSTAGE_API_KEY and Supabase, which were not used; the ingest screen shows the demo progress row from the built-in demo, not a live streaming run.",
+    "Server logs a missing SUPABASE_URL error for announcement loads on non-demo routes; the landing page still renders its built-in demo card."
+  ],
+  "screens": [
+    {
+      "file": "screens/feed.png",
+      "kind": "source-demo",
+      "origin": "app/feed/feed-client.tsx with the repo's built-in pitch demo data (lib/pitch-demo.ts), route /feed?demo=1",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T14:08:24+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "12bf985a8e744fe80983298990d67350ee38a65dc776cfc195706b1e1106ddde",
+    "screens/feed.png": "7f837d3b546270ce01ff6e4b7e70708ee3ab41c9700fc7293de2e7e17b296631"
+  },
+  "approvedCoverSha256": "7cb3f82c88ca664ac6892901a476b03f823f5b514347203b5ebe72b28cc05010"
+}

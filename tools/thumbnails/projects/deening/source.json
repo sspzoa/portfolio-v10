@@ -1,0 +1,67 @@
+{
+  "slug": "deening",
+  "projectName": "디닝 - Deening",
+  "repos": [
+    {
+      "repo": "sspzoa/deening_app",
+      "ref": "main@56c23fafd566d8048432d7d58901bc1d8702c9ad"
+    },
+    {
+      "repo": "sspzoa/deening-back",
+      "ref": "main@acf55575d8d7f8858fd406f9ad3e31a18eb33533"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [],
+    "knownDifferences": [
+      "랜딩은 원본 정적 파일을 그대로 실행한 것이라 컴포넌트, 폰트, 아이콘 차이는 없음. 다만 배포 당시 화면과 직접 비교할 자료가 없음",
+      "앱 화면 데이터 목: DemoInterceptor 가 /recipe/search, /recipe, /recipe/chat 에 데모 JSON 반환. 위젯, WantedSans 폰트, 색, 간격, SVG 아이콘, chef_logo.png, icon.png 는 원본 그대로",
+      "앱 화면 레시피 사진: 원래는 deening-back 이 DALL-E 3 로 만든 이미지(base64)지만 repo 에 생성 결과 에셋이 없어 CC0 실사 사진으로 대체",
+      "앱 화면 플랫폼: iOS/Android 대신 Flutter web(CanvasKit), .metadata 와 같은 3.24.3. 상태바 없음"
+    ],
+    "notVerified": [
+      "배포본과의 픽셀 비교 불가: deening.sspzoa.io 는 2026-11-03 조회 시 DNS 가 풀리지 않음(curl: Could not resolve host)",
+      "앱 화면은 기존 Notion 커버 속 세 폰 화면과 같은 구성(검색 결과의 '새로운 레시피 찾아보기', 해물 짬뽕 상세와 영양 정보 아이콘, '요리 비서 디닝' 채팅)임을 눈으로만 확인. 커버 화면이 원근으로 기울어진 목업이라 픽셀 비교는 하지 못함",
+      "냉장고(pages/refrigerator), 선호 키워드, 재료 상세와 조리 단계 펼침(이미지 생성 응답)은 이번에 캡처하지 않음"
+    ]
+  },
+  "limitations": [
+    "기존 Notion 커버의 세 폰 화면은 원근으로 기울어진 3D 목업이라 브리프 규칙대로 쓰지 않음. repo 에 스크린샷이 없고 App Store(bundleId io.sspzoa.deeningApp lookup 결과 0건)와 Play(io.sspzoa.deening_app 404)에도 없음. 그래서 원본 앱을 직접 실행해 app-home, app-search, app-recipe, app-chat 4장을 새로 캡처함",
+    "레시피 사진은 DALL-E 3 생성 결과 대신 CC0 사진(Wikimedia Commons, 작가 Jungyeon). 생성 이미지 에셋이 deening-back repo 에 없어 대체",
+    "app-recipe.png 는 첫 화면 높이(844pt)까지만 담겨 식재료 목록은 첫 줄 일부만 보임. 조리법 단계는 화면 밖",
+    "냉장고 화면은 캡처하지 않음: 지시 범위(홈, 레시피 상세, AI 채팅) 밖이고 /refrigerator/ingredients 목이 필요함",
+    "api-landing.png 는 로고와 링크 세 개뿐인 백엔드 랜딩이라 커버의 주 화면으로는 정보가 적음. raw-screen.png 는 app-home.png 로 교체"
+  ],
+  "screens": [
+    {
+      "file": "screens/app-search.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/deening_app@56c23fa:lib/app/pages/search_result/page.dart (홈 검색창에 '해물 짬뽕' 입력 후 Enter, GET /recipe/search 목 응답)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T05:37:27Z"
+    },
+    {
+      "file": "screens/app-recipe.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/deening_app@56c23fa:lib/app/pages/recipe/page.dart (검색 결과 카드 탭, POST /recipe 목 응답. 사진 헤더, 이름, 조리 시간, 설명, 영양 정보 아이콘 assets/images/carbs|proteins|fats|calories.svg, 식재료 시작부, 요리비서 FAB)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T05:44:23Z"
+    },
+    {
+      "file": "screens/app-chat.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/deening_app@56c23fa:lib/app/pages/chat/page.dart + controller.dart (레시피 화면 FAB 탭, 질문 입력 후 전송, POST /recipe/chat 목 응답)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T05:46:08Z"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "7b50d6cc08019cbb0f42c079f7a5eb85d39dbf0c4c28f406b90a8da99be56a2b",
+    "screens/app-chat.png": "d9285079bfa26ea902829798f01f0be4ebc6d6e7435a4237a072f6010c216f66",
+    "screens/app-recipe.png": "18eacc1f8f85056ed1c80efdf03ede8e20d3642f72fe5d691fcf5ddf974ec120",
+    "screens/app-search.png": "120a2db1a8dd14faef3551c3ac9e414a5e6fc64bb6503ee90af65bd95f051147"
+  },
+  "approvedCoverSha256": "e724c7bea084f82d60ee8b5dfd0de427af211f16df121d37ca4049768e762bb4"
+}

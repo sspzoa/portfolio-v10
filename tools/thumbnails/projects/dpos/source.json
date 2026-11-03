@@ -1,0 +1,52 @@
+{
+  "slug": "dpos",
+  "projectName": "DPOS (디포스)",
+  "repos": [
+    {
+      "repo": "sspzoa/dpos",
+      "ref": "main@f369883e6a278b8cf4f992fcdad1e5ef9a96a01d"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 Notion 원본 자료(37fcc9b72a9c81f092c7e0ab29291178-cover.png) (기존 커버 속 실시간 주문, 오늘의 통계 화면과 사이드바, 카드, 차트 레이아웃이 일치함)"
+    ],
+    "knownDifferences": [
+      "컴포넌트, CSS, 폰트, 아이콘은 원본 코드 그대로. 바꾼 것은 DB 데이터, Storage 이미지, next.config.ts 의 이미지 허용 호스트뿐",
+      "Supabase Realtime 컨테이너는 떠 있으나 캡처 중 새 주문 이벤트는 없음(정적 상태 캡처)"
+    ],
+    "notVerified": [
+      "배포본 dpos.sspzoa.io 는 2026-11-03 기준 DNS 가 풀리지 않아(NXDOMAIN) 라이브와 직접 비교하지 못함",
+      "손님용 모바일 화면과 상품 관리 화면은 기존 커버에 없어 실제 배포 화면과의 비교 근거 없음. 다만 같은 커밋의 원본 코드를 그대로 실행한 결과임"
+    ]
+  },
+  "limitations": [
+    "라이브 캡처 불가: dpos.sspzoa.io 가 DNS 에서 해석되지 않고, GitHub deployment 의 Vercel URL(dpos-9gq6q69sz-sspzoas-projects.vercel.app)도 404. 그래서 원본 repo 를 로컬 Supabase 와 next start 로 실행해 캡처함",
+    "원본 UI 문구 자체에 중간점이 있음(예: 주문 카드의 '2번 (U+00B7) 성춘향 (U+00B7) 14:22', 통계 설명문, 상품 화면 설명 '상태 변경 (U+00B7) 편집 (U+00B7) 삭제', 대시보드 바로가기 설명, 장바구니 바의 '3개 담음 (U+00B7) 16,000원'). 원본 화면 충실도를 위해 손대지 않았으니 커버 합성 시 레이블로 재사용하지 말 것",
+    "메뉴 사진은 Wikimedia Commons 의 CC0, 퍼블릭 도메인 사진이라 실제 축제 부스 사진과 톤이 제각각임(사진마다 촬영 환경이 다름)"
+  ],
+  "screens": [
+    {
+      "file": "screens/products.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/dpos src/app/(admin)/admin/products/page.tsx, src/components/admin/products/product-grid.tsx, sortable-product-card.tsx (route /admin/products)",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T14:27:21+09:00"
+    },
+    {
+      "file": "screens/mobile-order-menu.png",
+      "kind": "source-demo",
+      "origin": "sspzoa/dpos src/app/order/page.tsx, src/components/customer/menu-view.tsx (QR /order/redeem 진입 뒤 /order, 장바구니 3개 담은 상태)",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T14:28:38+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "84f9bb18009f3f6ed0aefaf18f9a37e2c1875fb0ada70a4078f22d07a0ae801b",
+    "screens/mobile-order-menu.png": "c6128817e7e5b2e36d65e004dde7107255d18441122d9c3f9cfa09b5e8c175af",
+    "screens/products.png": "c6524159a2ad8e5900ea5dca3a8ceb1ea49e011587051a62eb0c03fa59775baa"
+  },
+  "approvedCoverSha256": "acc6f2eafb332ef46e0b6aa6dae477a065163acf2bc2283055f2bd4276953124"
+}

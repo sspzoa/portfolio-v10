@@ -1,0 +1,43 @@
+{
+  "slug": "dalbit-yaksok",
+  "projectName": "달빛약속 오픈소스 기여",
+  "repos": [
+    {
+      "repo": "rycont/dalbit-yaksok",
+      "ref": "main@3b31c3e9cb0f8585f10f3208d55d5c2ba2e98556"
+    }
+  ],
+  "sourceKind": "live",
+  "fidelity": {
+    "level": "live-capture",
+    "comparedAgainst": [
+      "https://dalbit-yaksok.postica.app (cover 에 쓴 화면 자체가 live 캡처)",
+      "https://github.com/rycont/dalbit-yaksok/pull/192/files"
+    ],
+    "knownDifferences": [
+      "cover.png 는 playground-optional-args.png 를 1.2배로 확대해 약속실행기 영역을 잘라 보여준다. 위쪽 nav 와 카드 줄 일부가 잘린다",
+      "before-after-terminal.png 는 실제 실행 출력을 넣은 설명용 HTML 이라 live 화면이 아니다. cover 에는 쓰지 않았다"
+    ],
+    "notVerified": ["배포된 사이트의 정확한 커밋 해시"]
+  },
+  "limitations": [
+    "공식 로고가 없어 logo.svg 는 사이트 타이틀 워드마크의 윤곽선이다 (심볼 없음)",
+    "공식 사이트가 정확히 어느 커밋으로 배포됐는지는 확인하지 못했다. PR 직전 코드에서 실패하는 예제가 사이트에서 성공하므로 머지 후 버전이라는 것만 동작으로 확인했다",
+    "brand.primary 는 VitePress 기본 indigo(--vp-c-brand-1 = --vp-c-indigo-1 #3451b2) 로, 달빛약속이 따로 정한 브랜드 색은 아니다"
+  ],
+  "screens": [
+    {
+      "file": "screens/playground-optional-args.png",
+      "kind": "live",
+      "origin": "https://dalbit-yaksok.postica.app/?code=<example.yak> (공식 문서 사이트의 약속실행기, 코드 3줄을 ?code= 로 넣고 자동 실행된 결과)",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-03T13:58:59+09:00",
+      "note": "raw-screen.png 와 같은 파일. 출력 '라떼, 톨, 아이스' 로 배포본이 머지 후 동작임을 확인"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "528fee37f1f91967e42bebfc21af71e2d44042fe57d99d2c6a27198abed1adb6",
+    "screens/playground-optional-args.png": "517278cd89b407ad39f1bea67d2af711abb76a0e256ad6543a7a5a5216a960f3"
+  },
+  "approvedCoverSha256": "069b26d8eced3e8ebd3b759e2abceb50f96ce5b0586210edbc66c349faf523d3"
+}

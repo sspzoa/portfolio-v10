@@ -1,0 +1,429 @@
+[
+  {
+    "slug": "dpos",
+    "title": "DPOS",
+    "layout": "desktop",
+    "logoHeight": 40,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1180,
+    "phoneWidth": 330,
+    "phoneTop": 232,
+    "phoneLeft": 1174,
+    "screens": [
+      {
+        "file": "screens/products.png",
+        "zoom": 0.98
+      },
+      {
+        "file": "screens/mobile-order-menu.png"
+      }
+    ]
+  },
+  {
+    "slug": "wesee",
+    "title": "WeSee",
+    "layout": "mobile",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "bg": "#FFFFFF",
+    "phoneWidth": 500,
+    "gap": 64,
+    "offsets": [0, 110],
+    "phoneTop": 136,
+    "shiftX": 120,
+    "screens": [
+      {
+        "file": "screens/expiration-date.png"
+      },
+      {
+        "file": "screens/home.png"
+      }
+    ]
+  },
+  {
+    "slug": "prism",
+    "title": "Prism",
+    "layout": "desktop",
+    "logoHeight": 40,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1408,
+    "screens": [
+      {
+        "file": "screens/client-news.png",
+        "crop": [0, 0, 1180, 760]
+      }
+    ]
+  },
+  {
+    "slug": "assetify",
+    "title": "Assetify",
+    "layout": "desktop",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "deskLeft": 320,
+    "deskTop": 148,
+    "deskWidth": 960,
+    "screens": [
+      {
+        "file": "screens/repair-ticket.png",
+        "crop": [324, 0, 792, 900]
+      }
+    ]
+  },
+  {
+    "slug": "bapsang",
+    "title": "밥상",
+    "layout": "mobile",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "bg": "#FFFFFF",
+    "phoneWidth": 440,
+    "gap": 72,
+    "offsets": [0, 170],
+    "phoneTop": 136,
+    "shiftX": 80,
+    "screens": [
+      {
+        "file": "screens/result.png"
+      },
+      {
+        "file": "screens/hardware.png",
+        "frame": "card",
+        "cardBg": "#F9F9F9"
+      }
+    ]
+  },
+  {
+    "slug": "dalbit-yaksok",
+    "title": "달빛약속",
+    "layout": "desktop",
+    "wordmark": true,
+    "wordmarkHeight": 38,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 196,
+    "deskWidth": 1408,
+    "screens": [
+      {
+        "file": "screens/playground-optional-args.png",
+        "crop": [128, 340, 1184, 490]
+      }
+    ]
+  },
+  {
+    "slug": "daom",
+    "title": "다옴",
+    "layout": "mobile",
+    "logoHeight": 36,
+    "markLeft": 96,
+    "phoneWidth": 360,
+    "gap": 48,
+    "offsets": [110, 0, 110],
+    "phoneTop": 120,
+    "screens": [
+      {
+        "file": "screens/login.png"
+      },
+      {
+        "file": "screens/home.png"
+      },
+      {
+        "file": "screens/profile.png"
+      }
+    ]
+  },
+  {
+    "slug": "deening",
+    "title": "디닝",
+    "layout": "mobile",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "phoneWidth": 360,
+    "gap": 48,
+    "offsets": [110, 0, 110],
+    "phoneTop": 120,
+    "screens": [
+      {
+        "file": "screens/app-search.png"
+      },
+      {
+        "file": "screens/app-recipe.png"
+      },
+      {
+        "file": "screens/app-chat.png"
+      }
+    ]
+  },
+  {
+    "slug": "glud",
+    "title": "글루드",
+    "layout": "mobile",
+    "logoHeight": 30,
+    "markLeft": 96,
+    "phoneWidth": 360,
+    "gap": 48,
+    "offsets": [110, 0, 110],
+    "phoneTop": 120,
+    "screens": [
+      {
+        "file": "screens/app-report-form.png",
+        "ratio": 2.082
+      },
+      {
+        "file": "screens/app-report-result.png",
+        "ratio": 2.082
+      },
+      {
+        "file": "screens/app-my-posts.png",
+        "ratio": 2.082
+      }
+    ]
+  },
+  {
+    "slug": "hc-landing",
+    "title": "김희창 수학",
+    "layout": "desktop",
+    "logoHeight": 28,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1180,
+    "phoneWidth": 330,
+    "phoneTop": 232,
+    "phoneLeft": 1174,
+    "screens": [
+      {
+        "file": "screens/hero.png",
+        "zoom": 0.98
+      },
+      {
+        "file": "screens/mobile-hero.png"
+      }
+    ]
+  },
+  {
+    "slug": "luna",
+    "title": "LUNA",
+    "layout": "desktop",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1408,
+    "screens": [
+      {
+        "file": "screens/home.png",
+        "crop": [0, 0, 1440, 780]
+      }
+    ]
+  },
+  {
+    "slug": "moabora",
+    "title": "모아보라",
+    "layout": "desktop",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1408,
+    "screens": [
+      {
+        "file": "screens/feed.png",
+        "crop": [0, 0, 1300, 800]
+      }
+    ]
+  },
+  {
+    "slug": "nababa",
+    "title": "NABABA",
+    "layout": "panel",
+    "noLogo": true,
+    "markLeft": 122,
+    "panelHeight": 763,
+    "panelPad": 0,
+    "panelTop": 120,
+    "panelBg": "#FFD044",
+    "screens": [
+      {
+        "file": "screens/existing-cover-full.png"
+      }
+    ]
+  },
+  {
+    "slug": "tnote",
+    "title": "Tnote",
+    "layout": "desktop",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1180,
+    "phoneWidth": 330,
+    "phoneTop": 232,
+    "phoneLeft": 1174,
+    "screens": [
+      {
+        "file": "screens/dashboard.png",
+        "zoom": 0.98
+      },
+      {
+        "file": "screens/mobile-student-exams.png"
+      }
+    ]
+  },
+  {
+    "slug": "snnect",
+    "title": "SNNECT",
+    "layout": "desktop",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1408,
+    "screens": [
+      {
+        "file": "screens/teams.png",
+        "crop": [120, 0, 1200, 760]
+      }
+    ]
+  },
+  {
+    "slug": "bap-net",
+    "title": "밥.net",
+    "layout": "desktop",
+    "logoHeight": 38,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1180,
+    "phoneWidth": 330,
+    "phoneTop": 232,
+    "phoneLeft": 1174,
+    "screens": [
+      {
+        "file": "screens/meal-dimigo.png",
+        "zoom": 0.98
+      },
+      {
+        "file": "screens/mobile-meal-dimigo.png"
+      }
+    ]
+  },
+  {
+    "slug": "horang",
+    "title": "호랑",
+    "layout": "desktop",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1180,
+    "insetWidth": 740,
+    "insetLeft": 796,
+    "insetTop": 360,
+    "screens": [
+      {
+        "file": "screens/ai-lab-chat.png",
+        "crop": [0, 0, 1440, 860]
+      },
+      {
+        "file": "screens/teacher-grading.png",
+        "crop": [395, 0, 1045, 640]
+      }
+    ]
+  },
+  {
+    "slug": "dimipay-v2",
+    "title": "디미페이",
+    "layout": "mobile",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "gap": 56,
+    "offsets": [0, 100],
+    "phoneTop": 120,
+    "shiftX": 60,
+    "screens": [
+      {
+        "file": "screens/kiosk-2024-facesign-products.png",
+        "width": 540,
+        "ratio": 1.334,
+        "radiusRatio": 0.04
+      },
+      {
+        "file": "screens/app-2024-home.png",
+        "width": 350
+      }
+    ]
+  },
+  {
+    "slug": "tastebyyou",
+    "title": "TasteByYou",
+    "layout": "mobile",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "phoneWidth": 360,
+    "gap": 48,
+    "offsets": [110, 0, 110],
+    "phoneTop": 120,
+    "screens": [
+      {
+        "file": "screens/app-order-list.png",
+        "ratio": 2.082
+      },
+      {
+        "file": "screens/app-steak-customize.png",
+        "ratio": 2.082
+      },
+      {
+        "file": "screens/app-custom-recipe-blocks.png",
+        "ratio": 2.082
+      }
+    ]
+  },
+  {
+    "slug": "dimigoin-lite",
+    "title": "디미고인 라이트",
+    "layout": "desktop",
+    "logoHeight": 38,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1040,
+    "phoneWidth": 330,
+    "phoneTop": 232,
+    "phoneLeft": 1110,
+    "screens": [
+      {
+        "file": "screens/status-laundry.png",
+        "crop": [290, 0, 860, 860]
+      },
+      {
+        "file": "screens/mobile-stay-seats.png"
+      }
+    ]
+  },
+  {
+    "slug": "link-2024",
+    "title": "Link",
+    "layout": "desktop",
+    "logoHeight": 40,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1180,
+    "phoneWidth": 330,
+    "phoneTop": 232,
+    "phoneLeft": 1174,
+    "screens": [
+      {
+        "file": "screens/hero.png",
+        "zoom": 0.98
+      },
+      {
+        "file": "screens/mobile-hero.png"
+      }
+    ]
+  }
+]

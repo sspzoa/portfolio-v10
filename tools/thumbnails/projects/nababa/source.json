@@ -1,0 +1,39 @@
+{
+  "slug": "nababa",
+  "projectName": "NABABA",
+  "repos": [],
+  "sourceKind": "captured-existing",
+  "fidelity": {
+    "level": "crop-of-real-screenshot",
+    "comparedAgainst": ["당시 Notion 원본 자료(86782abea6234c5db84959ddd6e89abc-cover.png)"],
+    "knownDifferences": [
+      "원본 앱 캡처가 아니라 팀이 만든 3D 목업 이미지다. 화면은 원근으로 기울어져 있고 휴대폰끼리 일부 가려진다",
+      "해상도는 기존 커버 그대로라 휴대폰 한 대 화면이 대략 200px 폭이다. 작은 글자는 선명하지 않다",
+      "세 번째(둘러보기) 화면에 다른 사용자 아이디(_s_.pyo, danam_0805)와 King of Banana 순위의 아이디(apptcion, chuonxic)가 보인다. 기존 실제 이미지를 변형하지 않는다는 사용자 결정에 따라 가리지 않았다"
+    ],
+    "notVerified": [
+      "원본 코드가 없어 이 목업 화면이 실제 출시 앱 화면과 같은지 확인할 수 없다",
+      "3D 목업 안 화면 데이터가 데모인지 실제 사용자 데이터인지 확인할 수 없다"
+    ]
+  },
+  "limitations": [
+    "원본 repo 를 찾지 못함. 확인한 것: authored-commits.json 과 GitHub GraphQL contributionsCollection 에서 2024-08-08~2024-08-13 본인 커밋은 sspzoa/bapsang-back, sspzoa/portfolio-v6, dimipay/dimipay_app_v2 뿐(restrictedContributionsCount 0). 접근 가능한 263개 repo 중 그 기간에 만들어지거나 push 된 Dart repo 는 LUNA-coding/phonch(2024-08-09 생성, hayward2007 단독 12커밋, 가속도 센서 앱이라 NABABA 아님) 하나. apptcion/poggly-back(2024-08-08, Express)은 상품, 로그인 API 라 NABABA 아님. gh search repos nababa 결과에도 관련 repo 없음. 팀원 개인 계정의 비공개 repo 이거나 삭제된 것으로 보임",
+    "그래서 원본 앱 실행이나 고해상도 재촬영이 불가능하다. 사용자 결정으로 기존 커버 속 실제 3D 목업 이미지를 변형 없이 사용한다",
+    "피드 화면의 사용자 아이디가 그대로 보인다(위 fidelity.knownDifferences)",
+    "Notion 원문 본문은 비어 있음(blank-page). PDF, 영상, 스토어 링크 없음"
+  ],
+  "screens": [
+    {
+      "file": "screens/existing-cover-full.png",
+      "kind": "captured-existing",
+      "origin": "당시 Notion 원본 자료(86782abea6234c5db84959ddd6e89abc-cover.png) (기존 Notion 커버 1920x1080 원본 그대로 복사, cmp 로 동일 확인)",
+      "capturedAt": "2026-11-03T13:51:24+09:00",
+      "capturedAtSource": "source-assets 파일 다운로드 시각(mtime)"
+    }
+  ],
+  "inputs": {
+    "logo-dark.svg": "b1b9ccf9934e43241d9216b15592a2837e2a26e3a60a42e3356ab203c4f851db",
+    "screens/existing-cover-full.png": "8a245150484dd2b895fce60bde2d46196f6eb5158212587087ecc9153f0f9aac"
+  },
+  "approvedCoverSha256": "e6b4942e204ceda8b7383381128e48d568192430a041043f65a1553f30769886"
+}

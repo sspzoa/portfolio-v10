@@ -1,0 +1,67 @@
+{
+  "slug": "dimipay-v2",
+  "projectName": "디미페이 v2",
+  "repos": [
+    {
+      "repo": "dimipay/dimipay_app_v2",
+      "ref": "main@e9d4a37ba88ddfa784936d97429b2a9d15c9534e"
+    },
+    {
+      "repo": "dimipay/dimipay_kiosk",
+      "ref": "main@7b111cd740a69aef825e1990dbdb48a31a6ae288"
+    },
+    {
+      "repo": "dimipay/dimipay_design_kit",
+      "ref": "main@7875bbda8c98e8a9a22fc0d569133cd2bef3d5c4"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-demo-data",
+    "comparedAgainst": [
+      "당시 Notion 원본 자료(7e930b8fe2ac42c1a9f9e03962056366-cover.png) (기존 커버의 앱 홈과 키오스크 상품 화면)",
+      "screens/payment-detail.png (Play 스토어 공식 스크린샷의 결제 내역 상세)"
+    ],
+    "knownDifferences": [
+      "앱 홈: 기존 커버와 스토어는 '결제 바코드, 결제 단말기에 바코드를 읽혀주세요' 문구지만 현재 main 코드는 '결제 QR, 스캐너에 결제 QR을 찍어주세요'. 캡처는 현재 코드 그대로",
+      "키오스크 상품 화면: 기존 커버는 얼굴 인식 헤더('강디미님, 얼굴 다시 인식하기')와 결제 카드 줄이 있는 버전이고, 현재 main(kiosk-*.png)은 2025-02-19 비활성화 이후라 헤더가 '얼굴 인식 결제는 추후 제공될 예정입니다.'. 2024년 마지막 커밋으로 찍은 kiosk-2024-*.png 는 커버와 같은 얼굴 인식 헤더와 카드 줄 구조. 다만 목록 안내 문구('상품 등록창에서 바로 QR결제를 할 수 있어요.')와 수량 -/+ 버튼은 2024년 말 코드 그대로라 커버('상품을 터치해서 삭제할 수 있어요', '-' 버튼만)보다 뒤의 버전",
+      "kiosk-2024-*.png 의 얼굴 인식 결과는 데모 응답(카메라 프레임 없음). 프로필 사진은 데모 글자 아바타",
+      "앱 결제 내역 상세: 스토어 이미지와 같은 구성(결제액, 구매한 상품, 결제 시각, 결제 카드, 결제 방식). 상품과 금액은 데모 값",
+      "앱은 pubspec 이 고정한 Flutter 3.35.6, 키오스크는 lock 이 요구하는 Flutter 3.29.0 으로 빌드(.metadata revision 과 다름, builds.*.whyNotMetadata)",
+      "키오스크는 fast_rsa 만 3.6.3 으로 바꿔 빌드(web 컴파일 호환, 화면과 무관)"
+    ],
+    "notVerified": [
+      "실제 iPhone, iPad 렌더와의 픽셀 비교는 하지 않음(현재 버전의 실기기 스크린샷 자료 없음)",
+      "키오스크 실제 해상도: 코드에 고정 기준 해상도가 없어 BackgroundSpot 좌표로 1024pt 너비를 추정"
+    ]
+  },
+  "limitations": [
+    "app-payment-qr.png 는 app-home.png 와 같은 캡처: 이 버전 앱은 결제 QR 을 홈 카드에서 바로 보여 주고 별도 결제 QR 페이지가 없음",
+    "app-history.png 맨 아래 '31일 토요일' 묶음은 데모 날짜를 '오늘 기준 며칠 전'으로 만들어 이번 달 목록에 지난달 31일 거래가 섞인 것. 화면 위쪽(커버 후보 영역)에는 영향 없음",
+    "키오스크 상품 화면은 30초 무입력 타이머가 있어 20초가 지나면 '아직 사용하고 계신가요?' 대화상자가 뜸. 스캔 직후에 캡처함",
+    "app-pay-success.png, kiosk-onboarding.png, kiosk-payment-success.png 는 정보량이 적어 커버 후보에서 뺌",
+    "기존 home.png(392x851), payment-detail.png(스토어 업스케일)는 지우지 않고 남김. 고해상도 대체는 app-home.png, app-history-detail.png"
+  ],
+  "screens": [
+    {
+      "file": "screens/kiosk-2024-facesign-products.png",
+      "kind": "source-demo",
+      "origin": "dimipay/dimipay_kiosk@a6053b2(2024-12-16, 2024년 마지막 커밋):lib/app/pages/product/page.dart + widgets/product_page_header.dart(_buildDetectedHeader: '고디미님', '얼굴 다시 인식하기') + product_page_list.dart + product_page_footer.dart(_buildPaymentMethodSelection: 'X CHECK, 이 카드로 결제, 변경'). 데모 바코드 5번 스캔 뒤 얼굴 인식 결과(데모 응답)가 반영된 상태",
+      "viewport": "1024x1366@2x",
+      "capturedAt": "2026-11-03T15:50:19+09:00"
+    },
+    {
+      "file": "screens/app-2024-home.png",
+      "kind": "source-demo",
+      "origin": "dimipay/dimipay_app_v2@3a9eab7(2024-12-22, 2024년 마지막 커밋, 2.2.3+64):lib/app/pages/home/page.dart, widgets/pay_area.dart('결제 QR', '스캐너에 결제 QR을 찍어주세요'), qr_area.dart. QR 은 원본 LocalPay 가 데모 키로 만든 값",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-03T16:07:32+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "7d1cd07578be080fcb6d4702886ab16d4282aa22ae40f10ff14a3c1b6c003f0c",
+    "screens/app-2024-home.png": "db4e26579df722c4ea2b3375ff304b0e683bb880d31c7eec6fe3de5aea293ae6",
+    "screens/kiosk-2024-facesign-products.png": "9caec52c18c662f529b0eca071d088883eca71ae1dcae7c1fbf0d988d432a9cb"
+  },
+  "approvedCoverSha256": "344172aa0a7dda92ba7460b5628ec2d3d6911b31d76e169e7f2d403456df7184"
+}
