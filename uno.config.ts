@@ -58,7 +58,6 @@ export default defineConfig({
     supports: { timeline: "(animation-timeline: view())" },
     animation: {
       keyframes: {
-        "logo-refine": "{from{transform:scale(1.4142)}to{transform:none}}",
         "section-rule": "{from{transform:scaleX(0)}to{transform:scaleX(1)}}",
         reveal: "{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}",
         rise: "{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}",
@@ -67,7 +66,6 @@ export default defineConfig({
         "fade-in": "{from{opacity:0}to{opacity:1}}",
       },
       durations: {
-        "logo-refine": "0.9s",
         "section-rule": "1ms",
         reveal: "1ms",
         rise: "var(--duration-slow)",
@@ -76,7 +74,6 @@ export default defineConfig({
         "fade-in": "var(--duration-base)",
       },
       timingFns: {
-        "logo-refine": "var(--ease-out)",
         "section-rule": "linear",
         reveal: "var(--ease-out)",
         rise: "var(--ease-out)",
@@ -85,7 +82,6 @@ export default defineConfig({
         "fade-in": "var(--ease-out)",
       },
       properties: {
-        "logo-refine": { "animation-fill-mode": "backwards" },
         "section-rule": {
           ...fillBoth,
           "animation-timeline": "--section",

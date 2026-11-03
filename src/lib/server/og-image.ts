@@ -1,13 +1,12 @@
 import "server-only";
 import { renderAsync } from "@resvg/resvg-js";
 import satori, { type Font } from "satori";
-import { logoMark } from "~/lib/logo-mark";
 import { profile } from "~/lib/profile";
 import { socialImage } from "~/lib/seo";
 import boldFont from "../../../assets/fonts/portfolio-og-bold.otf?inline";
 import regularFont from "../../../assets/fonts/portfolio-og-regular.otf?inline";
 
-const palette = { canvas: "#ffffff", ink: "#000000", secondary: "#555555", accent: "#f5b300" };
+const palette = { canvas: "#ffffff", ink: "#000000", secondary: "#555555", muted: "#707070" };
 
 function decodeFont(dataUrl: string) {
   return Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64");
@@ -22,18 +21,21 @@ function element(type: string, props: Record<string, unknown>, children?: unknow
   return { type, props: children === undefined ? props : { ...props, children } };
 }
 
-const mark = element("svg", { width: 168, height: 168, viewBox: logoMark.viewBox, style: { flexShrink: 0 } }, [
-  element("path", { d: logoMark.ink, fill: palette.ink }),
-  element("path", { d: logoMark.corner.d, fill: palette.accent }),
-]);
-
-const heading = element("div", { style: { display: "flex", flexDirection: "column", justifyContent: "center" } }, [
+const heading = element("div", { style: { display: "flex", flexDirection: "column", alignItems: "center" } }, [
   element(
     "div",
-    { style: { fontSize: 76, fontWeight: 700, lineHeight: 1.15, whiteSpace: "nowrap" } },
-    profile.englishName,
+    { style: { fontSize: 136, fontWeight: 700, lineHeight: 1.15, letterSpacing: -6, whiteSpace: "nowrap" } },
+    profile.name,
   ),
-  element("div", { style: { marginTop: 20, fontSize: 38, lineHeight: 1.4, color: palette.secondary } }, profile.role),
+  element(
+    "div",
+    { style: { display: "flex", marginTop: 28, fontSize: 38, lineHeight: 1.4, color: palette.secondary } },
+    [
+      element("span", {}, profile.englishName),
+      element("span", { style: { margin: "0 18px", color: palette.muted } }, "·"),
+      element("span", {}, profile.role),
+    ],
+  ),
 ]);
 
 const card = element(
@@ -43,7 +45,6 @@ const card = element(
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      gap: 96,
       width: "100%",
       height: "100%",
       padding: 80,
@@ -52,7 +53,7 @@ const card = element(
       fontFamily: "Wanted Sans",
     },
   },
-  [mark, heading],
+  [heading],
 );
 
 export async function createPortfolioImage() {

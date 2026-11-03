@@ -1,4 +1,3 @@
-import { LogoMark } from "~/components/logo-mark";
 import { ProfileHeader, ProfileLinks } from "~/components/profile-header";
 import { RecordEntries } from "~/components/record-entries";
 import { RichText } from "~/components/rich-text";
@@ -16,16 +15,9 @@ import { profile } from "~/lib/profile";
 export function PortfolioPage(props: { data: RenderedPortfolioData }) {
   return (
     <div class="page-column pt-24 pb-10 max-sm:pt-12 lg:max-w-wide print:p-0!">
-      <header class="rail-grid pb-20 max-sm:pb-12">
-        <a href="/" aria-label="홈" class="mb-8 block w-fit lg:mt-2 lg:mb-0 print:hidden">
-          <LogoMark class="view-transition-logo-mark block size-[42px] text-ink" />
-        </a>
-        <div class="min-w-0">
-          <ProfileHeader size="title" introduction={profile.introduction}>
-            <ProfileLinks class="tap-target" />
-          </ProfileHeader>
-        </div>
-      </header>
+      <ProfileHeader size="title" introduction={profile.introduction} class="pb-20 max-sm:pb-12">
+        <ProfileLinks class="tap-target" />
+      </ProfileHeader>
       <main>
         <Section id="about" title="소개" result={props.data.about}>
           {(about) => <RichText lead>{about.content}</RichText>}
@@ -61,7 +53,7 @@ export function PortfolioPage(props: { data: RenderedPortfolioData }) {
           )}
         </Section>
       </main>
-      <SiteFooter backToTop class="border-line border-t pt-4 text-caption print:hidden" />
+      <SiteFooter class="border-line border-t pt-4 text-caption print:hidden" />
     </div>
   );
 }

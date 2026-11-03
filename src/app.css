@@ -70,8 +70,7 @@ a:hover {
     animation-duration: 200ms;
   }
 
-  ::view-transition-group(profile-name),
-  ::view-transition-group(logo-mark) {
+  ::view-transition-group(profile-name) {
     animation-duration: 360ms;
     animation-timing-function: var(--ease-out);
   }
