@@ -14,7 +14,9 @@
   "sourceKind": "live",
   "fidelity": {
     "level": "live-capture",
-    "comparedAgainst": ["https://xn--rh3b.net/"],
+    "comparedAgainst": [
+      "https://xn--rh3b.net/"
+    ],
     "knownDifferences": [],
     "notVerified": [
       "배경 일러스트와 먼저 보이는 끼니는 접속 시각에 따라 바뀜(오후 3시 전후 캡처). 다른 시간대 모습은 확인하지 않음",
@@ -48,5 +50,6 @@
     "screens/meal-dimigo.png": "c18b2a65f5a160e0cd40ca5aa2ffd3cc338fe97e9ee9f15de92839365c127b6d",
     "screens/mobile-meal-dimigo.png": "eb9390944dd5cccc31a5f0948cafbc66287d90dc76ed54772a780af10c2a20df"
   },
-  "approvedCoverSha256": "06d1097b3192007864e0769efe18fe229e1917e08d93265a95fd68e570ba29f7"
+  "approvedCoverSha256": "ef2bdedcdbc7ec2128a9d91ee32c2ed0218ee564ec7fa842995b81b59eda2369",
+  "coverLogo": "logo-background.svg"
 }

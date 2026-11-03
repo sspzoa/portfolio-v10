@@ -67,4 +67,6 @@ uv run --no-project --with pillow==13.0.0 python tools/thumbnails/render.py
 - 화면 밖에 새로 쓰는 문구에는 중간점을 쓰지 않는다. 원본 UI의 문구는 그대로 둔다.
 - 로고의 빈 캔버스는 도형 경계로 맞춘다. 배경은 임의로 추가하지 않는다. 밥.net 아이콘만 사용자가 선택한 원래 배경 버전을 쓴다.
 
+밥.net 커버도 `logoFile: "logo-background.svg"`를 지정해 페이지 아이콘과 같은 배경 버전을 사용한다. 기본 `logo.svg`는 투명 버전이므로 커버에 대신 사용하지 않는다.
+
 사이트의 디자인이 바뀌면 `src/tokens.css`, `src/components/sections/projects.tsx`, `src/components/detail-dialog.tsx`를 먼저 읽고 카드 크기와 잘리는 범위를 다시 확인한다.

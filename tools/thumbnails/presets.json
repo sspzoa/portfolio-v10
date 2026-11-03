@@ -293,6 +293,7 @@
     "slug": "bap-net",
     "title": "밥.net",
     "layout": "desktop",
+    "logoFile": "logo-background.svg",
     "logoHeight": 38,
     "markLeft": 96,
     "deskLeft": 96,
