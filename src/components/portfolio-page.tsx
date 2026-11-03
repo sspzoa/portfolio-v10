@@ -54,7 +54,7 @@ export function PortfolioPage(props: { data: RenderedPortfolioData }) {
         <Section id="experiences" title="경험" result={props.data.experiences}>
           {(items) => <TimelineEntries items={items} label={(item) => item.role} />}
         </Section>
-        <Section id="projects" title="프로젝트" result={props.data.projects}>
+        <Section id="projects" title="프로젝트" result={props.data.projects} align="start">
           {(items) => <ProjectsContent items={items} />}
         </Section>
         <Section id="activities" title="활동" result={props.data.activities}>

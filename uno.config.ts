@@ -63,6 +63,8 @@ export default defineConfig({
         reveal: "{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}",
         rise: "{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}",
         "disclosure-in": "{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}",
+        "dialog-in": "{from{opacity:0;transform:translateY(8px) scale(0.98)}to{opacity:1;transform:none}}",
+        "fade-in": "{from{opacity:0}to{opacity:1}}",
       },
       durations: {
         "logo-refine": "0.9s",
@@ -70,6 +72,8 @@ export default defineConfig({
         reveal: "1ms",
         rise: "var(--duration-slow)",
         "disclosure-in": "var(--duration-base)",
+        "dialog-in": "var(--duration-base)",
+        "fade-in": "var(--duration-base)",
       },
       timingFns: {
         "logo-refine": "var(--ease-out)",
@@ -77,6 +81,8 @@ export default defineConfig({
         reveal: "var(--ease-out)",
         rise: "var(--ease-out)",
         "disclosure-in": "var(--ease-out)",
+        "dialog-in": "var(--ease-out)",
+        "fade-in": "var(--ease-out)",
       },
       properties: {
         "logo-refine": { "animation-fill-mode": "backwards" },
@@ -92,6 +98,8 @@ export default defineConfig({
         },
         rise: fillBoth,
         "disclosure-in": fillBoth,
+        "dialog-in": fillBoth,
+        "fade-in": fillBoth,
       },
     },
   },

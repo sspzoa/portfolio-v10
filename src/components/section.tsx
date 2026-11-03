@@ -1,10 +1,16 @@
 import { type JSX, Match, Show, Switch } from "solid-js";
 import type { SectionResult } from "~/lib/portfolio/types";
 
+const alignments = {
+  baseline: { section: "items-baseline", heading: "" },
+  start: { section: "items-start", heading: "lg:-mt-2" },
+};
+
 export function Section<T>(props: {
   id: string;
   title: string;
   result: SectionResult<T>;
+  align?: keyof typeof alignments;
   children: (data: NonNullable<T>) => JSX.Element;
 }) {
   const data = () => props.result.data;
@@ -12,14 +18,15 @@ export function Section<T>(props: {
     const value = data();
     return props.result.error !== null || (value != null && (!Array.isArray(value) || value.length > 0));
   };
+  const alignment = () => alignments[props.result.error === null ? (props.align ?? "baseline") : "baseline"];
   return (
     <Show when={hasContent()}>
       <section
         aria-labelledby={`${props.id}-title`}
-        class="section-timeline rail-grid relative items-baseline pt-10 pb-14 after:absolute after:inset-x-0 after:top-0 after:origin-left after:border-ink after:border-t after:content-empty motion-safe:supports-timeline:after:animate-section-rule max-sm:pt-8 max-sm:pb-10">
+        class={`section-timeline rail-grid relative pt-10 pb-14 after:absolute after:inset-x-0 after:top-0 after:origin-left after:border-ink after:border-t after:content-empty motion-safe:supports-timeline:after:animate-section-rule max-sm:pt-8 max-sm:pb-10 ${alignment().section}`}>
         <h2
           id={`${props.id}-title`}
-          class="mb-6 font-semibold text-section tracking-[-0.02em] lg:sticky lg:top-8 lg:mb-0 print:break-after-avoid">
+          class={`mb-6 font-semibold text-section tracking-[-0.02em] lg:sticky lg:top-8 lg:mb-0 print:break-after-avoid ${alignment().heading}`}>
           {props.title}
         </h2>
         <div class="min-w-0">
