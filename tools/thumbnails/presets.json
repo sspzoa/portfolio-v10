@@ -426,5 +426,28 @@
         "file": "screens/mobile-hero.png"
       }
     ]
+  },
+  {
+    "slug": "solabinc",
+    "title": "솔랩컴퍼니",
+    "layout": "desktop",
+    "wordmark": true,
+    "wordmarkHeight": 48,
+    "markLeft": 96,
+    "deskLeft": 96,
+    "deskTop": 148,
+    "deskWidth": 1180,
+    "phoneWidth": 330,
+    "phoneTop": 232,
+    "phoneLeft": 1174,
+    "screens": [
+      {
+        "file": "screens/hero.png",
+        "zoom": 0.98
+      },
+      {
+        "file": "screens/mobile-hero.png"
+      }
+    ]
   }
 ]

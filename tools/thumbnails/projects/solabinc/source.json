@@ -1,0 +1,55 @@
+{
+  "slug": "solabinc",
+  "projectName": "솔랩컴퍼니 홈페이지",
+  "repos": [
+    {
+      "repo": "sspzoa/solab-landing",
+      "ref": "main@535b50b"
+    }
+  ],
+  "sourceKind": "source-demo",
+  "fidelity": {
+    "level": "original-app-run-with-default-content",
+    "comparedAgainst": [
+      "public/images/solab-logo.png (301x131, 저장소와 회사소개서 PDF에 든 유일한 로고 원본)",
+      "사용자가 대화에서 전달한 고해상도 로고 이미지(파일로는 보관하지 않음)",
+      "assets/favicon.ico (16x16, http://solabinc.com/data/file/favicon.ico 와 SHA256 동일)"
+    ],
+    "knownDifferences": [
+      "2026-11-17 기준 solabinc.com 은 이전 Apache 사이트를 제공하고 solab-landing.vercel.app 은 404 라서 라이브 화면 대신 로컬 next dev 로 캡처함",
+      "Supabase 환경 변수를 비워 실행해 CMS 게시본이 아닌 저장소의 기본 콘텐츠(src/content)와 public 이미지를 사용함",
+      "next dev 의 개발 도구 표시(nextjs-portal)는 캡처 전에 DOM 에서 제거함. 앱 UI 는 건드리지 않음"
+    ],
+    "notVerified": [
+      "운영 CMS 게시 콘텐츠와 기본 콘텐츠가 첫 화면에서 같은지는 확인하지 않음"
+    ]
+  },
+  "limitations": [
+    "logo.svg 와 favicon.svg 는 원본 벡터가 없어 래스터를 기준으로 다시 그린 것. 직선 글자와 육각형은 측정값으로 작도하고 S 와 B 는 베지에 곡선으로 맞춤",
+    "로고 색은 전달받은 고해상도 이미지에 맞춰 #000 과 #8B8B8B. 저장소 PNG 의 글자색은 #342C2A",
+    "저장소 PNG 에는 M 과 P 사이 점이 없지만 고해상도 이미지에는 있어 6개를 모두 그림",
+    "favicon.svg 는 참고용이며 커버에는 쓰지 않음. solab-landing 저장소와 Supabase 스토리지의 파일은 바꾸지 않음"
+  ],
+  "screens": [
+    {
+      "file": "screens/hero.png",
+      "kind": "source-demo",
+      "origin": "로컬 next dev, http://127.0.0.1:3217/ko 첫 화면 (scrollY 0)",
+      "viewport": "1440x900@2x",
+      "capturedAt": "2026-11-17T18:34:14+09:00"
+    },
+    {
+      "file": "screens/mobile-hero.png",
+      "kind": "source-demo",
+      "origin": "로컬 next dev, http://127.0.0.1:3217/ko 모바일 첫 화면",
+      "viewport": "390x844@3x",
+      "capturedAt": "2026-11-17T18:34:16+09:00"
+    }
+  ],
+  "inputs": {
+    "logo.svg": "d35eef752e44817541bee2979f4ee56da3139886ba9d9db8acc709df27f0ae18",
+    "favicon.svg": "43ee5c520e14cc210790b755f3763bc29e09b5a50bb8cec586cdf16fcbe16d0d",
+    "screens/hero.png": "ed81e460e82d6deb20ce61163a08afaa95c287a6d2fc7a891ed9fe7dc6b8a666",
+    "screens/mobile-hero.png": "4ebc17070fd19a6ec81e2fe533c92f0cd2aa013116f6159538aef6cd0e1e5af2"
+  }
+}
